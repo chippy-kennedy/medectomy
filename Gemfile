@@ -50,6 +50,9 @@ gem "animate-rails"
 # devise for authentication
 gem 'devise', '3.0.1'
 
+# gibbon for MailChimp integration
+gem 'gibbon'
+
 group :development do
   gem 'debugger'
   gem 'faker'
