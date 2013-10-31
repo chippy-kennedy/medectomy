@@ -26,9 +26,13 @@
 					<h3>Keep Me Updated</h3>
 					<p>Subscribe to receive important updates about Medectomy's progress!</p>
 					<img class="ajax-loader" src="assets/ajax-loader.gif" alt="" />
-					<%= form_tag(subscribe_path, method: "post", id:"newsletter-form") do %>
-					  <%= text_field_tag('email', nil, placeholder:"Enter your Email") %>
-					  <%= button_tag("", class:"icon-ok", id:"newsletter-subscribe") %>
+					<%= form_for @subscriber, html: { id: 'newsletter-form'} do |f| %>
+						<%= f.text_field :first_name %>
+						<%= f.text_field :last_name %>
+						<%= f.text_field :email_primary %>
+						<%= f.text_field :email_secondary%>
+						<%= f.text_field :current_level %>
+						<%= f.submit() %>
 					<% end %>
 				</div> 
 			</div> <!-- end .row -->		
