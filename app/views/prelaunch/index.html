@@ -1,41 +1,14 @@
 <div class="lead-container">
 <div class="container">
 
-<!--    
-    <!-- Alt Carousel [Mock Up Version]-->
-<!--    <div id="myCarousel" class="carousel slide">
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-    <!-- Carousel items -->
-<!--    <div class="carousel-inner">
-        <div class="item active">
-            <div img src="background-image:url('images/carousel/1.jpg');"></div>
-        </div>
-        <div class="item">
-            <div img src="fill" style="background-image:url('images/carousel/2.jpg');"></div>
-            
-        </div>
-        <div class="item">
-            <div img src="fill" style="background-image:url('images/carousel/3.jpg');"></div>
-        </div>
-    <!-- Carousel nav -->
-<!--       <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-<!--        <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-<!--    </div>
--->
-    
 	<!-- Macbook carousel [Original]-->
-
 	<div id="carousel" class="carousel slide macbook" rel="carousel">
 		<img src="assets/carousel-macbook.png" class="carousel-macbook" alt="" />
 		<!-- Carousel items -->
 		<div class="carousel-inner">
 			<!-- Item -->
             <div class="item active">
-				<a href="#"><img src="assets/carousel/h.gif" alt="" /></a>
+				<a href="#"><img src="assets/carousel/start.jpg" alt="" /></a>
 			</div>
 			<!-- end Item -->
 			<!-- Item -->
@@ -69,32 +42,62 @@
 </div>
 </div>
 
+<!--Info  -->
 <section class="container">
-
 	<section class="row">
 		<article class="span4">
-			<h2><span class="grey">We're</span> Creative</h2>
+			<h2><span class="grey">Gain</span> Knowledge</h2>
 			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. 
+				Each specialized course allows you to create a personalized dashboard, take practice tests, highlight notes, interact with other medectomy users, and much more!
 			</p>
-			<p><a class="" href="#">Read more &raquo;</a></p>
+			<p><a class="" href="#" style="color:red">Read more &raquo;</a></p>
 		</article>
 		<article class="span4">
-			<h2><span class="grey">We're</span> Reliable</h2>
-			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. 
+			<h2><span class="grey">Improve</span> Test Scores</h2>
+			<p>A subscription to our unique and specialized courses is available for unlimited use for the duration of a student's med school career. Using medectomy's special approach, you can expect your exam score to increase tremendously. 
 			</p>
-			<p><a class="" href="#">Read more &raquo;</a></p>
+			<p><a class="red" href="#" style="color:red">Read more &raquo;</a></p>
 		</article>
 		<article class="span4">
-			<h2><span class="grey">We're</span> in Palo Alto</h2>
-			<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-			<p><a class="" href="#">Read more &raquo;</a></p>
+			<h2><span class="grey">Belong</span> To the Community</h2>
+			<p>Medectomy's goal is to bring medical students together, give them the resources they need to study effectively, and create a community of students and professors.</p>
+			<p><a class="red" href="#" style="color:red">Read more &raquo;</a></p>
 		</article>
 	</section>
 	<!-- end .row -->
 
 	<hr />
-
-	
 </section>
+<!--end Info  -->
+
+<!--Sign Up  -->
+<section class="container">
+	<h2  class="text-center">Keep Me Updated</h2>
+    <p class="text-center">Subscribe to receive important updates about Medectomy's progress!</p>
+    <div class="row-fluid">
+        <div class="span4">
+            <div class="span4 newsletter">
+				<img class="ajax-loader" src="assets/ajax-loader.gif" alt="" />
+				<%= form_for @subscriber, html: { id: 'newsletter-form'} do |f| %></%>
+				<%= f.text_field :first_name, placeholder:"First Name" %></%>
+				<%= f.text_field :last_name, placeholder: "Last Name" %></%>
+            </div>
+        </div>
+        <div class="span4">
+            <div class="span4 newsletter">
+				<%= f.text_field :email_primary, placeholder: "Primary (School) Email" %></%>
+				<%= f.text_field :email_secondary, placeholder: "Secondary Email (optional)" %></%>
+            </div>
+        </div>
+        <div class="span4">
+            <div class="span4 newsletter">
+				<%= f.text_field :current_level, placeholder: "Academic Level" %></%>
+				<%= f.submit "Subscribe", class:"button red" %></%>
+                <% end %></%>
+            </div>
+        </div>
+    </div> 
+                            
+            
+    </section>
+<!--End Sign Up  -->
