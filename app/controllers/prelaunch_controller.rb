@@ -2,12 +2,12 @@ class PrelaunchController < ApplicationController
 	protect_from_forgery with: :exception
 
 	def index
+		@subscriber = Subscriber.new
 		render "prelaunch/index"
 	end
 
 	def subscribe
 		# add validation code here
-
 		# initiate new instance of gibbon api
 		gibbon = Gibbon::API.new
 		# add user to the mailing list
