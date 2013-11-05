@@ -77,3 +77,24 @@
 .mls, .mhs, .mas { margin-left: 5px !important }
 .mlm, .mhm, .mam { margin-left: 10px !important }
 .mll, .mhl, .mal { margin-left: 20px !important }
+
+
+//PlaceHolder color
+
+::-webkit-input-placeholder {
+   color: red;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: red;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: red;  
+}
+
+:-ms-input-placeholder {  
+   color: red;  
+}
+
+
