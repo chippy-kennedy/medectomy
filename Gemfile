@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 #Chippy's TroubleShooting!
 gem 'rails_12factor', group: :production
-#gem 'rails_serve_static_assets'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -21,6 +20,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+#Rails 4.0: rubyrace not needed and takes up too much memory
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
