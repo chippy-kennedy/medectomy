@@ -72,3 +72,6 @@ end
 
 # Use debugger
 gem 'debugger', group: [:development, :test]
+
+#Specify which version of Ruby is being Used
+ruby "1.9.3"
