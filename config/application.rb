@@ -3,7 +3,8 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 #specify what assets need to be precompiled
-config.assets.precompile += ['assets/stylesheets/prelaunch.css.scss']
+#CAUSING APP TO CRASH
+#config.assets.precompile += ['assets/stylesheets/prelaunch.css.scss']
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
