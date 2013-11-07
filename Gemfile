@@ -11,6 +11,7 @@ gem 'rails', '4.0.0'
 gem 'pg'
 
 # Use SCSS for stylesheets
+#Chippy: Unknown if I fixed the prelaunch_deployment branch .CSS files to fit this format. Needs verification!!
 gem 'sass-rails', '~> 4.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
@@ -74,4 +75,5 @@ end
 gem 'debugger', group: [:development, :test]
 
 #Specify which version of Ruby is being Used
-ruby "1.9.3"
+#Upgraded to 2.0.0!!
+ruby "2.0.0"
