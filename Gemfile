@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 #Chippy's TroubleShooting!
 
 gem 'rails_12factor'
+gem 'rails_serve_static_assets'
 
 group :production do
   gem 'rails_12factor'
