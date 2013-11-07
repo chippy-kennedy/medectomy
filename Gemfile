@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
 #Chippy's TroubleShooting!
+
+gem 'rails_12factor'
+
 group :production do
   gem 'rails_12factor'
 end
