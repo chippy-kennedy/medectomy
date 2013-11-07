@@ -1,13 +1,9 @@
 source 'https://rubygems.org'
 
 #Chippy's TroubleShooting!
+gem 'rails_12factor', group: :production
+#gem 'rails_serve_static_assets'
 
-gem 'rails_12factor'
-gem 'rails_serve_static_assets'
-
-group :production do
-  gem 'rails_12factor'
-end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
