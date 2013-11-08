@@ -7,3 +7,8 @@ Beta Launch Files:
 
 Ruby on Rails files.
 
+Medectomy is awesome!
+Chippy Kennedy
+MJ Harkins
+Abdallah Soliman
+Zain Ahmed
