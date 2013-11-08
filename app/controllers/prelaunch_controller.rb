@@ -1,5 +1,7 @@
 class PrelaunchController < ApplicationController
 	protect_from_forgery with: :exception
+	
+	layout 'prelaunch'
 
 	def index
 		@subscriber = Subscriber.new
