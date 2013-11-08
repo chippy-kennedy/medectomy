@@ -30,7 +30,7 @@ body {
   cursor: default;
 }
 body {
-  background: url(../../assets/background.png) repeat-x #ffffff;
+  background: url(<%= assets_path "background.png" %>) repeat-x #ffffff;
 }
 h1,
 h2,
@@ -79,7 +79,7 @@ hr {
   color: #efefef;
 }
 blockquote {
-  background: url(../../assets/blockquote.png) 16px 16px no-repeat #f3f3f3;
+  background: url(<%= assets_path "blockquote.png" %>) 16px 16px no-repeat #f3f3f3;
   border: none;
   padding: 24px 24px 24px 56px;
   margin: 20px 0;
@@ -161,7 +161,7 @@ ul li:hover i[class^="icon-"] {
 /*	Footer */
 /* --------------------------------------------------------	*/
 footer {
-  background: url(../../assets/footer.png);
+  background: url(<%= assets_path "footer.png" %>);
   margin: 30px 0 0 0;
   padding: 36px 0 10px 0;
   color: #ccc;
@@ -235,7 +235,7 @@ footer #newsletter-subscribe:hover {
   color: #7ed090;
 }
 footer#copyright {
-  background: url(../../assets/copyright-background.png) repeat-x #080707;
+  background: url(<%= assets_path "copyright-background.png" %>) repeat-x #080707;
   margin: 0;
   padding: 14px 0 12px 0;
   font-size: 0.9em;
@@ -365,7 +365,7 @@ select {
   width: 232px;
   margin: 0;
   padding: 0 4px;
-  background: url(../../assets/select-box.png) #ffffff right center no-repeat;
+  background: url(<%= assets_path "select-box.png" %>) #ffffff right center no-repeat;
   line-height: 1.6em;
   cursor: pointer;
   color: #666;
@@ -841,12 +841,12 @@ input[type=button]:hover,
 }
 .carousel-control.left {
   left: 0px;
-  background: url(../../assets/carousel-prev.png) top center no-repeat;
+  background: url(<%= assets_path "carousel-prev.png" %>) top center no-repeat;
   background-size: contain;
 }
 .carousel-control.right {
   right: 0px;
-  background: url(../../assets/carousel-next.png) top center no-repeat;
+  background: url(<%= assets_path "carousel-next.png" %>) top center no-repeat;
   background-size: contain;
 }
 .carousel .item img,
@@ -873,7 +873,7 @@ input[type=button]:hover,
 /* --------------------------------------------------------	*/
 .lead-container {
   overflow: hidden;
-  background: url(../../assets/carousel-macbook-background.png) 0 410px repeat-x;
+  background: url(<%= assets_path "carousel-macbook-background.png" %>) 0 410px repeat-x;
 }
 .carousel.macbook {
   position: relative;
@@ -920,12 +920,12 @@ input[type=button]:hover,
   background-color: #f47d5e;
 }
 .carousel.macbook .carousel-control.left {
-  background-image: url(../../assets/carousel-macbook-prev.png);
+  background-image: url(<%= assets_path "carousel-macbook-prev.png" %>);
   background-position: top center;
   background-size: contain;
 }
 .carousel.macbook .carousel-control.right {
-  background-image: url(../../assets/carousel-macbook-next.png);
+  background-image: url(<%= assets_path "carousel-macbook-next.png" %>);
   background-position: top center;
   background-size: contain;
 }
@@ -934,7 +934,7 @@ input[type=button]:hover,
 /* --------------------------------------------------------	*/
 @media (max-width: 979px) and (min-width: 768px) {
   .lead-container {
-    background: url(../../assets/carousel-macbook-background.png) 0 360px repeat-x;
+    background: url(<%= assets_path "carousel-macbook-background.png" %>) 0 360px repeat-x;
   }
   .carousel.macbook .carousel-macbook {
     width: 620px;
@@ -1099,10 +1099,10 @@ html:not(.osx) ::-webkit-scrollbar-thumb:vertical {
   margin-left: -21px;
   margin-top: -21px;
   cursor: pointer;
-  background: url(../../assets/icon-link.png) center center no-repeat;
+  background: url(<%= assets_path "icon-link.png" %>) center center no-repeat;
 }
 .zoom .zoom-overlay {
-  background: url(../../assets/icon-zoom.png) center center no-repeat;
+  background: url(<%= assets_path "icon-zoom.png" %>) center center no-repeat;
 }
 .not-ie .link .link-overlay,
 .not-ie .zoom .zoom-overlay {
@@ -1298,7 +1298,7 @@ html:not(.osx) ::-webkit-scrollbar-thumb:vertical {
   content: " ";
   width: 15px;
   height: 10px;
-  background: url(../../assets/triangle.png);
+  background: url(<%= assets_path "triangle.png" %>);
   position: absolute;
   margin-top: -24px;
   left: 20px;
@@ -1397,7 +1397,7 @@ html:not(.osx) ::-webkit-scrollbar-thumb:vertical {
   cursor: pointer;
   background: #555;
   line-height: 1em;
-  background-image: url(../../assets/triangle.png);
+  background-image: url(<%= assets_path "triangle.png" %>);
   background-position: 12px 16px;
   background-repeat: no-repeat;
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=(0));
@@ -1612,7 +1612,7 @@ html:not(.osx) ::-webkit-scrollbar-thumb:vertical {
 /*	Our team */
 /* --------------------------------------------------------	*/
 .member {
-  background: url(../../assets/member-separator.png) 180px center no-repeat;
+  background: url(<%= assets_path "member-separator.png" %>) 180px center no-repeat;
   padding: 0px 40px 26px 242px;
   border-bottom: 0px dotted #ddd;
   position: relative;
@@ -2078,7 +2078,7 @@ input[type=search],
 input.search {
   padding-left: 26px;
   background-color: white;
-  background: url(../../assets/search.png) 5px 5px no-repeat #ffffff;
+  background: url(<%= assets_path "search.png" %>) 5px 5px no-repeat #ffffff;
 }
 input.animated {
   width: 50%;
@@ -2217,7 +2217,7 @@ input.animated:focus {
 /* --------------------------------------------------------	*/
 .social-network {
   display: inline-block;
-  background: url(../../assets/social-networks.png) no-repeat top left;
+  background: url(<%= assets_path "social-networks.png" %>) no-repeat top left;
   width: 32px;
   height: 32px;
   background-position-y: -42px;
