@@ -4,7 +4,10 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'sqlite3', group: [:development, :test]
+
+# Use PostgreSQL as database for Active Record
+gem 'pg', group: [:production]
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -64,6 +67,9 @@ group :test do
   gem 'capybara'
   gem 'guard-rspec'
 end
+
+# extends heroku functionality
+gem 'rails_12factor', group: :production
 
 # Use debugger
 gem 'debugger', group: [:development, :test]
