@@ -1,5 +1,5 @@
 class SubscribersController < ApplicationController 
-
+	layout	'prelaunch'
 	def create
 		# add entry to database
 		subscriber = Subscriber.create(params[:subscriber].permit(:first_name, :last_name, :email_primary, :email_secondary, :current_level))
