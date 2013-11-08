@@ -1,7 +1,7 @@
 class EmailValidator < ActiveModel::EachValidator
   def validate(record)
     unless record.email_primary =~ /^[A-Z0-9._%+]+@[A-Z0-9.]+\.[A-Z]{2,6}$/i
-      record.errors[attribute] << (options[:message] || "is not an email")
+      record.errors[:email_primary] << (options[:message] || "is not an email")
     end
 
     if !contains_university_email(record)
@@ -13,7 +13,7 @@ class EmailValidator < ActiveModel::EachValidator
   private 
 
   def contains_university_email(record)
-  	if (record.email_primary =~ /^[A-Z0-9._%+]+@[A-Z0-9.]+\.[A-Z]{2,6}$/i) || (record.email_secondary =~ /^[A-Z0-9._%+]+@[A-Z0-9.]+\.[A-Z]{2,6}$/i)
+  	if (record.email_primary =~ /^[A-Z0-9._%+]+@[A-Z0-9.]+\.edu$/i) || (record.email_secondary =~ /^[A-Z0-9._%+]+@[A-Z0-9.]+\.edu$/i)
   		return true
   	end
   end

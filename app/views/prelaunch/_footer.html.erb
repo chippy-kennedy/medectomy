@@ -9,12 +9,11 @@
 						Medectomy
 					</a>
 					<p>
-						Creative agency working <br />with web and interactive media. <br />
-						Lorem ipsum dolor sit amet.
+						Medical students creating a<br />community for medical students
 						
 					</p>
 				</div>
-				<div class="span4 social-networks">
+				<div class="span4 offset4 social-networks">
 					<h3>Find us elsewhere</h3>
 					<p>
 						<a class="social-network twitter"></a>
@@ -22,19 +21,7 @@
 						<a class="social-network linkedin"></a>
 					</p>
 				</div>
-				<div class="span4 newsletter">
-					<h3>Keep Me Updated</h3>
-					<p>Subscribe to receive important updates about Medectomy's progress!</p>
-					<img class="ajax-loader" src="assets/ajax-loader.gif" alt="" />
-					<%= form_for @subscriber, html: { id: 'newsletter-form'} do |f| %>
-						<%= f.text_field :first_name, placeholder:"First Name" %>
-						<%= f.text_field :last_name, placeholder: "Last Name" %>
-						<%= f.text_field :email_primary, placeholder: "Primary Email" %>
-						<%= f.text_field :email_secondary, placeholder: "Secondary Email" %>
-						<%= f.text_field :current_level, placeholder: "Academic Level" %>
-						<%= f.submit "Subscribe", class:"button yellow" %>
-					<% end %>
-				</div> 
+				
 			</div> <!-- end .row -->		
 		</div> <!-- end .container -->
 	</footer><!-- end #footer -->

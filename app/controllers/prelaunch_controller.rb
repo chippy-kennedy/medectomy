@@ -5,6 +5,11 @@ class PrelaunchController < ApplicationController
 		@subscriber = Subscriber.new
 		render "prelaunch/index"
 	end
+    
+    def contact
+        render "prelaunch/contact"
+    end
+    
 
 	def subscribe
 		# add validation code here
