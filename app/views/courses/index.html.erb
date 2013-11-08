@@ -1,0 +1,17 @@
+<div class="row">
+<% 3.times do |i| %>
+<h3 class="pbl"><span class="glyphicon glyphicon-tag"></span> Topic <%= i + 1 %></h3>
+<% 4.times do |j| %>
+  <div class="col-sm-6 col-md-3">
+    <div class="thumbnail">
+      <img data-src="holder.js/100%x180" alt="...">
+      <div class="caption">
+        <h4><span class="glyphicon glyphicon-book"></span> Course <%= j + 1 %></h4>
+        <p>Course Description</p>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% end %>
+</div>
+

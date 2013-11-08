@@ -23,7 +23,7 @@ end
 class Subscriber < ActiveRecord::Base
 	include ActiveModel::Validations
 	validates :first_name, :last_name, :email_primary, :current_level, presence: true
-	validates :email_primary, :email_secondary, uniqueness: true, email:true
+	validates :email_primary, :email_secondary, uniqueness: true, email: true
 
 end
 
