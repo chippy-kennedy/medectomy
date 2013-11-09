@@ -77,7 +77,7 @@
     <div class="row-fluid">
         <div class="span4">
             <div class="span4 newsletter">
-				<img class="ajax-loader" src="assets/ajax-loader.gif" alt="" />
+				<%= image_tag "ajax-loader.gif", class: "ajax-loader" %>
 				<%= form_for @subscriber, html: { id: 'newsletter-form'} do |f| %></%>
 				<%= f.text_field :first_name, placeholder:"First Name", style:"color:black"%></%>
 				<%= f.text_field :last_name, placeholder: "Last Name", style:"color:black" %></%>
