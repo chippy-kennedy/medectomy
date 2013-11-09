@@ -20,7 +20,7 @@ color:#333;
 -webkit-font-smoothing:subpixel-antialiased;
 -webkit-text-size-adjust:100%;
 cursor:default;
-background: url( <%= image-url("/background.png") %>) repeat-x #fff;
+background: url( <%= asset_path("/background.png") %>) repeat-x #fff;
 margin:0;
 padding:0;
 }
@@ -69,7 +69,7 @@ margin:18px 0;
 }
 
 blockquote {
-background: url( <%= image-url("/blockquote.png") %>) 16px 16px no-repeat #f3f3f3;
+background: url( <%= asset_path("/blockquote.png") %>) 16px 16px no-repeat #f3f3f3;
 border:0;
 font-size:1.1em;
 line-height:1.5em;
@@ -127,7 +127,7 @@ background-image:0;
 }
 
 footer {
-background: url( <%= image-url("/footer.png") %>);
+background: url( <%= asset_path("/footer.png") %>);
 color:#ccc;
 margin:30px 0 0;
 padding:36px 0 10px;
@@ -202,7 +202,7 @@ color:#7ed090;
 }
 
 footer#copyright {
-background: url( <%= image-url("/copyright-background.png") %>) repeat-x #080707;
+background: url( <%= asset_path("/copyright-background.png") %>) repeat-x #080707;
 font-size:.9em;
 color:#999;
 margin:0;
@@ -303,7 +303,7 @@ input[type="radio"] {
 select {
 display:block;
 width:232px;
-background: url( <%= image-url("/select-box.png") %>) #fff right center no-repeat;
+background: url( <%= asset_path("/select-box.png") %>) #fff right center no-repeat;
 line-height:1.6em;
 cursor:pointer;
 color:#666;
@@ -748,13 +748,13 @@ padding:0;
 
 .carousel-control.left {
 left:0;
-background: url( <%= image-url("/carousel-prev.png") %>) top center no-repeat;
+background: url( <%= asset_path("/carousel-prev.png") %>) top center no-repeat;
 background-size:contain;
 }
 
 .carousel-control.right {
 right:0;
-background: url( <%= image-url("/carousel-next.png") %>) top center no-repeat;
+background: url( <%= asset_path("/carousel-next.png") %>) top center no-repeat;
 background-size:contain;
 }
 
@@ -774,7 +774,7 @@ margin-top:-6%;
 .lead-container {
 margin-bottom:20px;
 overflow:hidden;
-background: url( <%= image-url("/carousel-macbook-background.png") %>) 0 410px repeat-x;
+background: url( <%= asset_path("/carousel-macbook-background.png") %>) 0 410px repeat-x;
 padding:0;
 }
 
@@ -824,13 +824,13 @@ background-color:#f47d5e;
 }
 
 .carousel.macbook .carousel-control.left {
-background-image: url( <%= image-url("/carousel-macbook-prev.png") %>);
+background-image: url( <%= asset_path("/carousel-macbook-prev.png") %>);
 background-position:top center;
 background-size:contain;
 }
 
 .carousel.macbook .carousel-control.right {
-background-image: url( <%= image-url("/carousel-macbook-next.png") %>);
+background-image: url( <%= asset_path("/carousel-macbook-next.png") %>);
 background-position:top center;
 background-size:contain;
 }
@@ -918,11 +918,11 @@ height:42px;
 margin-left:-21px;
 margin-top:-21px;
 cursor:pointer;
-background: url( <%= image-url("/icon-link.png") %>) center center no-repeat;
+background: url( <%= asset_path("/icon-link.png") %>) center center no-repeat;
 }
 
 .zoom .zoom-overlay {
-background: url( <%= image-url("/icon-zoom.png") %>) center center no-repeat;
+background: url( <%= asset_path("/icon-zoom.png") %>) center center no-repeat;
 }
 
 .not-ie .link .link-overlay,.not-ie .zoom .zoom-overlay {
@@ -1110,7 +1110,7 @@ display:block;
 content:" ";
 width:15px;
 height:10px;
-background: url( <%= image-url("/triangle.png") %>);
+background: url( <%= asset_path("/triangle.png") %>);
 position:absolute;
 margin-top:-24px;
 left:20px;
@@ -1198,7 +1198,7 @@ width:40px;
 cursor:pointer;
 background:#555;
 line-height:1em;
-background-image: url( <%= image-url("/triangle.png") %>);
+background-image: url( <%= asset_path("/triangle.png") %>);
 background-position:12px 16px;
 background-repeat:no-repeat;
 -ms-filter:alpha(opacity=(0));
@@ -1404,7 +1404,7 @@ background-clip:padding-box;
 }
 
 .member {
-background: url( <%= image-url("/member-separator.png") %>) 180px center no-repeat;
+background: url( <%= asset_path("/member-separator.png") %>) 180px center no-repeat;
 border-bottom:0 dotted #ddd;
 position:relative;
 min-height:128px;
@@ -1812,7 +1812,7 @@ color:#000;
 input[type=search],input.search {
 padding-left:26px;
 background-color:#FFF;
-background: url( <%= image-url("/search.png") %>) 5px 5px no-repeat #fff;
+background: url( <%= asset_path("/search.png") %>) 5px 5px no-repeat #fff;
 }
 
 input.animated {
@@ -1947,7 +1947,7 @@ margin-bottom:20px;
 
 .social-network {
 display:inline-block;
-background: url( <%= image-url("/social-networks.png") %>) no-repeat top left;
+background: url( <%= asset_path("/social-networks.png") %>) no-repeat top left;
 width:32px;
 height:32px;
 background-position-y:-42px;
@@ -2308,7 +2308,7 @@ padding:2px;
 
 @mediamax-width979px and min-width768px{
 .lead-container {
-background: url( <%= image-url("/carousel-macbook-background.png") %>) 0 360px repeat-x;
+background: url( <%= asset_path("/carousel-macbook-background.png") %>) 0 360px repeat-x;
 }
 
 .carousel.macbook .carousel-macbook {
