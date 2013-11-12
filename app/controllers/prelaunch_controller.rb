@@ -12,6 +12,11 @@ class PrelaunchController < ApplicationController
         render "prelaunch/contact"
     end
     
+    def product
+        render "prelaunch/product"
+    end
+    
+    
 
 	def subscribe
 		# add validation code here
