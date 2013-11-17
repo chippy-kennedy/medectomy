@@ -1,4 +1,5 @@
 class EmailValidator < ActiveModel::EachValidator
+
   def validate(record)
     unless record.email_primary =~ /^[A-Z0-9._%+]+@[A-Z0-9.]+\.[A-Z]{2,6}$/i
       record.errors[:email_primary] << (options[:message] || "is not an email")
@@ -21,7 +22,7 @@ class EmailValidator < ActiveModel::EachValidator
 end
 
 class Subscriber < ActiveRecord::Base
-	include ActiveModel::Validations
+	include ActiveModel::Validations, ActiveModel::NullifyTextAttributes
 	validates :first_name, :last_name, :email_primary, :current_level, presence: true
 	validates :email_primary, uniqueness: true, email: true
   validates_uniqueness_of :email_secondary, allow_blank: true

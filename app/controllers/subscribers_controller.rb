@@ -1,8 +1,8 @@
 class SubscribersController < ApplicationController 
 
 	def create
-		debugger
 		# add entry to database
+		debugger
 		subscriber = Subscriber.create(params[:subscriber].permit(:first_name, :last_name, :email_primary, :email_secondary, :current_level))
 		if subscriber.valid?
 			# initiate new instance of gibbon api
