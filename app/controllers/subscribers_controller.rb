@@ -1,6 +1,7 @@
 class SubscribersController < ApplicationController 
 
 	def create
+		debugger
 		# add entry to database
 		subscriber = Subscriber.create(params[:subscriber].permit(:first_name, :last_name, :email_primary, :email_secondary, :current_level))
 		if subscriber.valid?

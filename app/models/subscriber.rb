@@ -23,7 +23,9 @@ end
 class Subscriber < ActiveRecord::Base
 	include ActiveModel::Validations
 	validates :first_name, :last_name, :email_primary, :current_level, presence: true
-	validates :email_primary, :email_secondary, uniqueness: true, email: true
+	validates :email_primary, uniqueness: true, email: true
+  validates_uniqueness_of :email_secondary, allow_blank: true
+  validates :email_secondary, email: true
 
 end
 
