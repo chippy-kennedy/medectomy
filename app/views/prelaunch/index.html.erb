@@ -1,10 +1,36 @@
+<!--
+Medectomy Prelaunch Site - index.html.erb
+(Prelaunch Homepage)
+
+authors: HarKenSol/Chippy Kennedy
+-->
+
 <!-- Added Functionality to Index Carousel (Automatic Sliding)-->
+<!-- Works-->
 <script type="text/javascript">
   $(document).ready(function() {
     $('.carousel').carousel({
       interval: 3000
     })
   });
+</script>
+
+<!-- Added Functionality to Form Inputs (Hidden Help Text)-->
+<!-- Does Not Work-->
+<script>
+$(".checkbox").click(function(){
+   
+   $(this).next("div").toggle();    
+   //alert('fooo ' + $(this).next("div").html());
+});
+</script>
+
+<!-- Added Functionality to Dropdown Menu -->
+<!-- Works-->
+<script>
+$(document).ready( function() {
+    $('.dropdown-toggle').dropdown();
+});
 </script>
 
 <div class="lead-container">
@@ -16,28 +42,36 @@
 		<!-- Carousel items -->
 		<div class="carousel-inner">
 			<!-- Item -->
-            <div class="item active">
+            <div href="product.html" class="item active">
 				<a href="#"><%= image_tag "carousel/start.jpg" %></a>
 			</div>
 			<!-- end Item -->
 			<!-- Item -->
 			<div class="item">
-				<%= image_tag "carousel/1_mac.jpg" %>
+                <a href="product.html#1">
+				    <%= image_tag "carousel/1_mac_banner.jpg", html: { id: 'newsletter-form'} %>
+                </a>
 			</div>
 			<!-- end Item -->
 			<!-- Item -->
 			<div class="item">
-				<%= image_tag "carousel/2_mac.jpg" %>
+                <a href="product.html#2">
+				    <%= image_tag "carousel/2_mac_banner.jpg" %>
+                </a>
 			</div>
 			<!-- end Item -->
 			<!-- Item -->
 			<div class="item">
-				<%= image_tag "carousel/3_mac.jpg" %>
+				<a href="product.html#3">
+                    <%= image_tag "carousel/3_mac_banner.jpg" %>
+                </a>
 			</div>
 			<!-- end Item -->
 			<!-- Item -->
 			<div class="item">
-				<%= image_tag "carousel/4_mac.jpg" %>
+                <a href="product.html#4">
+				    <%= image_tag "carousel/4_mac_banner.jpg" %>
+                </a>
 			</div>
 			<!-- end Item -->
 		</div>
@@ -63,7 +97,7 @@
 		</article>
 		<article class="span4">
 			<h2><span style="color:#e65154">Improve</span> Test Scores</h2>
-			<p>A subscription to our unique and specialized courses is available for unlimited use for the duration of a student's med school career. Using medectomy's special approach, you can expect your exam score to increase tremendously. 
+			<p>A subscription to our unique and specialized courses is available for unlimited use for the duration of a student's medical career. Using medectomy's innovative approach, you can expect your exam score to increase tremendously. 
 			</p>
 			<p><a style="color:#e65154" href="product.html" style="color:red">Read more &raquo;</a></p>
 		</article>
@@ -82,7 +116,7 @@
 <!--Sign Up  -->
 <section id="subscribe-form" class="container">
 	<h2  class="text-center">Request an Invitation</h2>
-    <p class="text-center">Select users will be chosen to participate in our Beta</p>
+    <p class="text-center">Select medical school students will soon be contacted for participation in Medectomy's Beta Launch.</p>
     <div class="row-fluid">
         <div class="span4">
             <div class="span4 newsletter">
@@ -95,18 +129,34 @@
         <div class="span4">
             <div class="span4 newsletter">
 				<%= f.text_field :email_primary, placeholder: "Primary (School) Email", style:"color:black" %></%>
-				<%= f.text_field :email_secondary, placeholder: "Secondary Email (optional)", style:"color:black" %></%>
+				<%= f.text_field :email_secondary, placeholder: "Personal Email", style:"color:black" %></%>
             </div>
         </div>
         <div class="span4">
             <div class="span4 newsletter">
-				<%= f.text_field :current_level, placeholder: "Academic Level", style:"color:black" %></%>
+				<!--<%= f.text_field :current_level, placeholder: "Academic Level", style:"color:black" %></%>-->
+                <%= f.select :current_level, [['Med Student','med_student'],['Undergraduate','undergraduate'],['Graduate Student','grad_student'],['Faculty','faculty']] %></%>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+            <div class="span3 offset5 newsletter">
 				<%= f.submit "Subscribe", class:"button red"%></%>
                 <% end %></%>
             </div>
-        </div>
-    </div> 
-                            
+     </div>
+
+<!-- Testing for Block Text show up/invisible -->
+<!--
+<label class="checkbox">
+  <input id="user_holiday_ids_" name="user[holiday_ids][]" type="checkbox" value="5" />
+  Father's Day
+</label>
+<div style="display:none;">
+    Whatever you have to capture here<input type="text" id="foo3" />
+</div>
+<!-- END Testing for Block Text show up/invisible -->
+
             
     </section>
 <!--End Sign Up  -->
