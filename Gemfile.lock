@@ -115,6 +115,7 @@ GEM
     minitest (4.7.5)
     multi_json (1.8.2)
     multi_xml (0.5.5)
+    newrelic_rpm (3.6.9.171)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     nokogiri (1.6.0-x86-mingw32)
@@ -225,6 +226,7 @@ DEPENDENCIES
   guard-rspec
   jbuilder (~> 1.2)
   jquery-rails
+  newrelic_rpm
   pg
   rails (= 4.0.0)
   rails_12factor
