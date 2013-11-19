@@ -22,7 +22,7 @@ class EmailValidator < ActiveModel::EachValidator
 end
 
 class Subscriber < ActiveRecord::Base
-	include ActiveModel::Validations, ActiveModel::NullifyTextAttributes
+	include ActiveModel::Validations, NullifyTextAttributes
 	validates :first_name, :last_name, :email_primary, :current_level, presence: true
 	validates :email_primary, uniqueness: true, email: true
   validates_uniqueness_of :email_secondary, allow_blank: true
