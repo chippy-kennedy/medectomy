@@ -14,6 +14,6 @@ Medectomy::Application.routes.draw do
 
   #post '/subscribe', to: 'prelaunch#subscribe'
 
-  root to: 'prelaunch#index'
+  root to: 'dashboard#index'
 
 end
