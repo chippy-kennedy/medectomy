@@ -1,10 +1,19 @@
 source 'https://rubygems.org'
 
+ruby '2.0.0' 
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'sqlite3', group: [:development, :test]
+
+group :production do
+	# for heroku analytics
+	gem 'newrelic_rpm'
+	# Use PostgreSQL as database for Active Record
+	gem 'pg'
+end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -65,5 +74,8 @@ group :test do
   gem 'guard-rspec'
 end
 
+# extends heroku functionality
+gem 'rails_12factor', group: :production
+	
 # Use debugger
 gem 'debugger', group: [:development, :test]

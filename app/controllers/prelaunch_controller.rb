@@ -1,5 +1,11 @@
+#Medectomy Prelaunch_Controller.rb
+#Main Rails Controller for prelaunch page
+#Basic Page Navigation
+
 class PrelaunchController < ApplicationController
 	protect_from_forgery with: :exception
+	
+	layout 'prelaunch'
 
 	def index
 		@subscriber = Subscriber.new
@@ -10,6 +16,9 @@ class PrelaunchController < ApplicationController
         render "prelaunch/contact"
     end
     
+    def product
+        render "prelaunch/product"
+    end
 
 	def subscribe
 		# add validation code here

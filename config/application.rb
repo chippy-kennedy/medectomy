@@ -22,5 +22,10 @@ module Medectomy
 
     # add font-awesome to assets pipeline
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
+
+    config.assets.initialize_on_precompile = false
+
+    # Enable the asset pipeline
+    config.assets.enabled = true
   end
 end

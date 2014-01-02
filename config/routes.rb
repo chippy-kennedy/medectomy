@@ -10,6 +10,7 @@ Medectomy::Application.routes.draw do
 
   get '/contact', to: 'prelaunch#contact'
   get '/product', to: 'prelaunch#product'
+  get '/index', to: 'prelaunch#index'
 
   #post '/subscribe', to: 'prelaunch#subscribe'
 
