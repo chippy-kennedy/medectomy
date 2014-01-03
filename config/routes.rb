@@ -6,14 +6,13 @@ Medectomy::Application.routes.draw do
   	resources :chapters
   end
 
-  #root to: 'dashboard#index'
+  #root to: 'prelaunch#index'
 
   get '/contact', to: 'prelaunch#contact'
   get '/product', to: 'prelaunch#product'
-  get '/index', to: 'prelaunch#index'
 
   #post '/subscribe', to: 'prelaunch#subscribe'
 
-  root to: 'prelaunch#index'
+  root to: 'courses#index'
 
 end

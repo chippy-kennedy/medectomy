@@ -8,9 +8,15 @@ gem 'rails', '4.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', group: [:development, :test]
 
+
+#3. Do we add the following?
+#group :development do
+  #Put things here for Dev changes
+#end
+
 group :production do
 	# for heroku analytics
-	gem 'newrelic_rpm'
+  gem 'newrelic_rpm'
 	# Use PostgreSQL as database for Active Record
 	gem 'pg'
 end
@@ -49,6 +55,11 @@ end
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
+
+#*Might need to be taken out for Production
+#*Needed for Develpoment I think:
+gem 'therubyracer', '0.11.0beta5'
+gem 'libv8', '~> 3.11.8'
 
 # Bootstrap 3.0.0 for Rails 4
 gem 'anjlab-bootstrap-rails', '~> 3.0.0.3', :require => 'bootstrap-rails'
