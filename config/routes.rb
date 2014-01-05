@@ -1,5 +1,6 @@
 Medectomy::Application.routes.draw do
 
+  devise_for :users
   resources :subscribers
 
   resources :courses do

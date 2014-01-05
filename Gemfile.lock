@@ -213,7 +213,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   database_cleaner (< 1.1.0)
   debugger
-  devise (= 3.0.1)
+  devise
   factory_girl_rails
   faker
   gibbon
