@@ -32,6 +32,10 @@ GEM
       sass (>= 3.2)
     arel (4.0.1)
     atomic (1.1.14)
+    aws-s3 (0.6.3)
+      builder
+      mime-types
+      xml-simple
     bcrypt-ruby (3.1.2)
     bcrypt-ruby (3.1.2-x86-mingw32)
     builder (3.1.4)
@@ -41,6 +45,14 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carrierwave (0.9.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+    carrierwave_direct (0.0.13)
+      carrierwave
+      fog
+      uuidtools
     celluloid (0.15.2)
       timers (~> 1.1.0)
     coderay (1.0.9)
@@ -66,6 +78,7 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.4)
     erubis (2.7.0)
+    excon (0.31.0)
     execjs (2.0.2)
     factory_girl (4.3.0)
       activesupport (>= 3.0.0)
@@ -76,6 +89,16 @@ GEM
       i18n (~> 0.5)
     ffi (1.9.3)
     ffi (1.9.3-x86-mingw32)
+    fog (1.19.0)
+      builder
+      excon (~> 0.31.0)
+      formatador (~> 0.2.0)
+      mime-types
+      multi_json (~> 1.0)
+      net-scp (~> 1.1)
+      net-ssh (>= 2.1.3)
+      nokogiri (~> 1.5)
+      ruby-hmac
     formatador (0.2.4)
     gibbon (1.0.4)
       httparty
@@ -115,6 +138,9 @@ GEM
     minitest (4.7.5)
     multi_json (1.8.2)
     multi_xml (0.5.5)
+    net-scp (1.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.7.0)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     nokogiri (1.6.0-x86-mingw32)
@@ -162,6 +188,7 @@ GEM
     rspec-expectations (2.14.3)
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.14.4)
+    ruby-hmac (0.4.0)
     sass (3.2.12)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
@@ -196,9 +223,11 @@ GEM
     uglifier (2.3.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    uuidtools (2.1.4)
     warden (1.2.3)
       rack (>= 1.0)
     win32console (1.3.2-x86-mingw32)
+    xml-simple (1.1.3)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -209,13 +238,16 @@ PLATFORMS
 DEPENDENCIES
   animate-rails
   anjlab-bootstrap-rails (~> 3.0.0.3)
+  aws-s3
   capybara
+  carrierwave_direct
   coffee-rails (~> 4.0.0)
   database_cleaner (< 1.1.0)
   debugger
   devise
   factory_girl_rails
   faker
+  fog
   gibbon
   guard-rspec
   jbuilder (~> 1.2)

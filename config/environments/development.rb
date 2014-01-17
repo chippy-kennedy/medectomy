@@ -28,4 +28,9 @@ Medectomy::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  # Amazon S3 keys
+  amazon__s3_access_key_id = "AKIAIRD463QJ4GJ5V3HQ"
+  amazon_s3_secret_access_key = "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"
+
 end

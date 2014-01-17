@@ -38,6 +38,12 @@ gem 'devise'
 # gibbon for MailChimp integration
 gem 'gibbon'
 
+# SDK for AWS S3
+gem "fog"
+gem "carrierwave_direct"
+gem "aws-s3"
+
+
 group :deployment do 
 	# Use PostgreSQL as database for Active Record
 	gem 'pg'
