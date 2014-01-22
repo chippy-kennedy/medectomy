@@ -4,5 +4,5 @@ development:
   s3_secret: 2jfhjLhzmj+/yMEiuPEIvJhRrczoULpCuQW0KRvn
 
   content_directory: "/home/pi/Desktop/blah/*"
-
+  overwrite_directory: "/home/pi/Desktop/blah/*"
 
