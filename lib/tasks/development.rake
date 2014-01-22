@@ -31,7 +31,7 @@ if Rails.env.development?
 			medectomy_bucket = Bucket.find('medectomy')
 
 			# create course folder and chapter folder within
-			S3Object.store("Course/Chapter/", "", "medectomy")
+			S3Object.store("Courses/CourseName/Chapter/", "", "medectomy")
 
 
 
@@ -44,26 +44,32 @@ if Rails.env.development?
 			Dir.glob(S3_CONFIG[Rails.env]["content_directory"]).each do |file|
 
 				file_name = File.basename(file)
-				file_name.split("_").each { |x| puts x}
 
-				File.extname(file)
-
+				#Extracts name of the course from the file
+				course_name = file_name.split("_")[0]
+				#Extracts the chapter name from the file
+				chapter_name = file_name.split("_")[1].split("\#")[0]
+				s3_path = "Courses/#{course_name}/#{chapter_name}/"
 				case File.extname(file)
 
-					when ".png"
+				when ".png"
 
-						if file_name.include?("#lg")
-							
-						elsif file_name.include?("#sm")
+					if file_name.include?("#lg")
+						s3_path+="Large_Images/#{file_name}"
+						add_new_content(s3_path,file, "medectomy")
+					elsif file_name.include?("#sm")
+						s3_path+="Small_Images/#{file_name}"
+						add_new_content(s3_path,file, "medectomy")
+					end
 
-						end
-
-					when ".txt"
-					
-					when ".html"
-
-					else 
-						puts "Invalid file: #{File.basename(file)}"	
+				when ".txt"
+					s3_path+="Description/#{file_name}"
+					add_new_content(s3_path,file,"medectomy")
+				when ".html"
+					s3_path+="HTML/#{file_name}"
+					add_new_content(s3_path,file,"medectomy")
+				else 
+					puts "Invalid file: #{File.basename(file)}"	
 				end
 
 			end	
@@ -81,8 +87,17 @@ if Rails.env.development?
 			Base.establish_connection!(
 				access_key_id: S3_CONFIG[Rails.env]["s3_key"], 
 				secret_access_key: S3_CONFIG[Rails.env]["s3_secret"]
-			)
+				)
 
+			def add_new_content(s3_path,file, bucket)
+				if(S3Object.exists? s3_path, bucket)
+					puts "File already exists: #{s3_path}"
+					puts "Use dev:overwrite_content to overwrite files"
+				else
+					S3Object.store(s3_path,open(file), bucket)
+				end
+
+			end
 		end
 
 	end
