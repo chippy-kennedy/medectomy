@@ -3,6 +3,5 @@ development:
   s3_key: AKIAIRD463QJ4GJ5V3HQ
   s3_secret: 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
 
-  content_directory: "/home/pi/Desktop/blah/*"
-  overwrite_directory: "/home/pi/Desktop/blah/*"
+  content_directory: "/Users/soliman/Desktop/med_content"
 
