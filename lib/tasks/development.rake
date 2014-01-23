@@ -11,6 +11,7 @@ if Rails.env.development?
 
 	namespace :dev do
 		
+		desc "cleans development files & deletes all files from medectomy S3"
 		task :clean => :environment do
 
 			# clean the database
@@ -20,19 +21,18 @@ if Rails.env.development?
 
 			#initiate connection to Amazon S3
 			connect_s3
-			medectomy_bucket = Bucket.find('medectomy')
+			medectomy_bucket = Bucket.find(S3_CONFIG[Rails.env]["s3_bucket"])
 			medectomy_bucket.delete_all()
 			Base.disconnect!
-			puts "Cleaned Database and S3"
 		end
 
 		task :setup => :environment do 
 
 			connect_s3
-			medectomy_bucket = Bucket.find('medectomy')
+			medectomy_bucket = Bucket.find(S3_CONFIG[Rails.env]["s3_bucket"])
 
 			# create course folder and chapter folder within
-			S3Object.store("Courses/CourseName/Chapter/", "", "medectomy")
+			S3Object.store("Courses/CourseName/Chapter/", "", S3_CONFIG[Rails.env]["s3_bucket"])
 
 			Base.disconnect!
 
@@ -57,18 +57,18 @@ if Rails.env.development?
 
 					if file_name.include?("#lg")
 						s3_path+="large_images/#{file_name}"
-						add_new_content(s3_path,file, "medectomy")
+						add_new_content(s3_path,file, S3_CONFIG[Rails.env]["s3_bucket"])
 					elsif file_name.include?("#sm")
 						s3_path+="small_images/#{file_name}"
-						add_new_content(s3_path,file, "medectomy")
+						add_new_content(s3_path,file, S3_CONFIG[Rails.env]["s3_bucket"])
 					end
 
 				when ".txt"
 					s3_path+="description/#{file_name}"
-					add_new_content(s3_path,file,"medectomy")
+					add_new_content(s3_path,file,S3_CONFIG[Rails.env]["s3_bucket"])
 				when ".html"
 					s3_path+="html/#{file_name}"
-					add_new_content(s3_path,file,"medectomy")
+					add_new_content(s3_path,file,S3_CONFIG[Rails.env]["s3_bucket"])
 				else 
 					puts "Invalid file: #{File.basename(file)}"	
 				end
@@ -123,13 +123,5 @@ else
 	puts "'Development.rake' should only be run in the development environment."
 end
 
-
-
-
-
-
-
-
-Base.establish_connection!(access_key_id: S3_CONFIG[Rails.env]["s3_key"], secret_access_key: S3_CONFIG[Rails.env]["s3_secret"])
 
 
