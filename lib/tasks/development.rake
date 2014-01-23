@@ -5,11 +5,14 @@ require 'faker'
 require 'ext/faker'
 require 'database_cleaner'
 
-include AWS::S3
+#include AWS::S3
 
 if Rails.env.development?
 
 	namespace :dev do
+
+		# Create an AWS S3 Object
+		
 		
 		desc "cleans development files & deletes all files from medectomy S3"
 		task :clean => :environment do
@@ -21,20 +24,21 @@ if Rails.env.development?
 
 			#initiate connection to Amazon S3
 			connect_s3
-			medectomy_bucket = Bucket.find(S3_CONFIG[Rails.env]["s3_bucket"])
+			medectomy_bucket = s3.Bucket.find(S3_CONFIG[Rails.env]["s3_bucket"])
 			medectomy_bucket.delete_all()
-			Base.disconnect!
+			disconnect_s3
 		end
 
 		task :setup => :environment do 
 
 			connect_s3
-			medectomy_bucket = Bucket.find(S3_CONFIG[Rails.env]["s3_bucket"])
+
+			medectomy_bucket = s3.Bucket.find(S3_CONFIG[Rails.env]["s3_bucket"])
 
 			# create course folder and chapter folder within
 			S3Object.store("Courses/CourseName/Chapter/", "", S3_CONFIG[Rails.env]["s3_bucket"])
 
-			Base.disconnect!
+			disconnect_s3
 
 		end
 
@@ -95,7 +99,9 @@ if Rails.env.development?
 
 		# closes connection to Amazon S3
 		def disconnect_s3
-			Base.disconnect!
+			
+
+
 		end
 
 		def add_new_content(s3_path,file, bucket)
@@ -122,6 +128,5 @@ if Rails.env.development?
 else
 	puts "'Development.rake' should only be run in the development environment."
 end
-
 
 
