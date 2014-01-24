@@ -11,8 +11,9 @@ if Rails.env.development?
 
 	namespace :dev do
 
-		# Create an AWS S3 Object
-		
+		# holds an AWS S3 object
+		@s3 = nil
+		@medectomy_bucket = nil
 		
 		desc "cleans development files & deletes all files from medectomy S3"
 		task :clean => :environment do
@@ -22,21 +23,25 @@ if Rails.env.development?
 			DatabaseCleaner.start
 			DatabaseCleaner.clean
 
-			#initiate connection to Amazon S3
 			connect_s3
-			medectomy_bucket = s3.Bucket.find(S3_CONFIG[Rails.env]["s3_bucket"])
-			medectomy_bucket.delete_all()
+
+			# iterate and delete all files and folders 
+			@medectomy_bucket.objects.each do |file|
+				file.delete
+				puts "Deleted File: '#{file.key}'"
+			end
+
 			disconnect_s3
 		end
 
+		desc ""
 		task :setup => :environment do 
 
 			connect_s3
 
-			medectomy_bucket = s3.Bucket.find(S3_CONFIG[Rails.env]["s3_bucket"])
-
-			# create course folder and chapter folder within
-			S3Object.store("Courses/CourseName/Chapter/", "", S3_CONFIG[Rails.env]["s3_bucket"])
+			# create course folder
+			@medectomy_bucket.objects.create(Pathname.new("Courses/"), "")
+			puts "Created course directory"
 
 			disconnect_s3
 
@@ -55,24 +60,29 @@ if Rails.env.development?
 				#Extracts the chapter name from the file
 				chapter_name = file_name.split("_")[1].split("\#")[0]
 				s3_path = "Courses/#{course_name}/#{chapter_name}/"
+
 				case File.extname(file)
 
 				when ".png"
 
 					if file_name.include?("#lg")
 						s3_path+="large_images/#{file_name}"
-						add_new_content(s3_path,file, S3_CONFIG[Rails.env]["s3_bucket"])
+						add_new_content(s3_path, file)
 					elsif file_name.include?("#sm")
 						s3_path+="small_images/#{file_name}"
-						add_new_content(s3_path,file, S3_CONFIG[Rails.env]["s3_bucket"])
+						add_new_content(s3_path, file)
 					end
 
 				when ".txt"
+
 					s3_path+="description/#{file_name}"
-					add_new_content(s3_path,file,S3_CONFIG[Rails.env]["s3_bucket"])
+					add_new_content(s3_path, file)
+
 				when ".html"
+
 					s3_path+="html/#{file_name}"
-					add_new_content(s3_path,file,S3_CONFIG[Rails.env]["s3_bucket"])
+					add_new_content(s3_path, file)
+
 				else 
 					puts "Invalid file: #{File.basename(file)}"	
 				end
@@ -89,36 +99,35 @@ if Rails.env.development?
 
 		# initiates connection to Amazon S3
 		def connect_s3
-			if(!Base.connected?)
-				Base.establish_connection!(
-					access_key_id: S3_CONFIG[Rails.env]["s3_key"], 
-					secret_access_key: S3_CONFIG[Rails.env]["s3_secret"]
-				)
+			if(@s3.nil?)
+				@s3 = AWS::S3.new(access_key_id: S3_CONFIG[Rails.env]["s3_key"], secret_access_key: S3_CONFIG[Rails.env]["s3_secret"])
+				@medectomy_bucket = @s3.buckets[S3_CONFIG[Rails.env]["s3_bucket"]]
 			end
 		end
 
 		# closes connection to Amazon S3
 		def disconnect_s3
-			
-
-
+			@s3 = nil
+			@medectomy_bucket = nil
 		end
 
-		def add_new_content(s3_path,file, bucket)
-			if(S3Object.exists? s3_path, bucket)
+		def add_new_content(s3_path, file)
+
+			s3_file = @medectomy_bucket.objects[s3_path]
+
+			if(s3_file.exists?)
 				puts "File already exists: #{s3_path}, would you like to overwrite this?"
 				answer = gets.chomp.strip.downcase
 				# overwrite file
 				if answer == "y" || answer == "yes"
-					S3Object.delete s3_path, bucket
-					S3Object.store(s3_path,open(file),bucket)
+					s3_file.write(Pathname.new(file))
 					puts "Overwrote: #{s3_path}"
 				# skip file	
 				else
 					puts "Skipped file #{s3_path}"	
 				end
 			else
-				S3Object.store(s3_path,open(file), bucket)
+				#S3Object.store(s3_path,open(file), bucket)
 				puts "Stored: #{s3_path}"
 			end
 
