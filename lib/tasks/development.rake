@@ -116,8 +116,8 @@ if Rails.env.development?
 			s3_file = @medectomy_bucket.objects[location_to_store]
 
 			if(s3_file.exists?)
-				STDOUT.puts "File already exists: #{location_to_store}, would you like to overwrite this?"
-				answer = STDIN.gets.chomp.strip
+				puts "File already exists: #{location_to_store}, would you like to overwrite this?"
+				answer = gets.chomp.strip
 				# overwrite file
 				if answer == "y" || answer == "yes"
 					s3_file.write(Pathname.new(local_file_path))
