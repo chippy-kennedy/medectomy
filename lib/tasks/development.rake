@@ -51,40 +51,40 @@ if Rails.env.development?
 
 			connect_s3			
 
-			Dir.glob(S3_CONFIG[Rails.env]["content_directory"]).each do |file|
+			Dir.glob(S3_CONFIG[Rails.env]["content_directory"]).each do |local_file_path|
 
-				file_name = File.basename(file)
+				file_name = File.basename(local_file_path)
 
 				#Extracts name of the course from the file
 				course_name = file_name.split("_")[0]
 				#Extracts the chapter name from the file
 				chapter_name = file_name.split("_")[1].split("\#")[0]
-				s3_path = "Courses/#{course_name}/#{chapter_name}/"
+				location_to_store = "Courses/#{course_name}/#{chapter_name}/"
 
-				case File.extname(file)
+				case File.extname(local_file_path)
 
 				when ".png"
 
 					if file_name.include?("#lg")
-						s3_path+="large_images/#{file_name}"
-						add_new_content(s3_path, file)
+						location_to_store+="large_images/#{file_name}"
+						add_new_content(location_to_store, local_file_path)
 					elsif file_name.include?("#sm")
-						s3_path+="small_images/#{file_name}"
-						add_new_content(s3_path, file)
+						location_to_store+="small_images/#{file_name}"
+						add_new_content(location_to_store, local_file_path)
 					end
 
 				when ".txt"
 
-					s3_path+="description/#{file_name}"
-					add_new_content(s3_path, file)
+					location_to_store+="description/#{file_name}"
+					add_new_content(location_to_store, local_file_path)
 
 				when ".html"
 
-					s3_path+="html/#{file_name}"
-					add_new_content(s3_path, file)
+					location_to_store+="html/#{file_name}"
+					add_new_content(location_to_store, local_file_path)
 
 				else 
-					puts "Invalid file: #{File.basename(file)}"	
+					puts "Invalid file: #{File.basename(local_file_path)}"	
 				end
 
 			end	
@@ -111,24 +111,25 @@ if Rails.env.development?
 			@medectomy_bucket = nil
 		end
 
-		def add_new_content(s3_path, file)
+		def add_new_content(location_to_store, local_file_path)
 
-			s3_file = @medectomy_bucket.objects[s3_path]
+			s3_file = @medectomy_bucket.objects[location_to_store]
 
 			if(s3_file.exists?)
-				puts "File already exists: #{s3_path}, would you like to overwrite this?"
-				answer = gets.chomp.strip.downcase
+				STDOUT.puts "File already exists: #{location_to_store}, would you like to overwrite this?"
+				answer = STDIN.gets.chomp.strip
 				# overwrite file
 				if answer == "y" || answer == "yes"
-					s3_file.write(Pathname.new(file))
-					puts "Overwrote: #{s3_path}"
+					s3_file.write(Pathname.new(local_file_path))
+					puts "Overwrote: #{location_to_store}"
 				# skip file	
 				else
-					puts "Skipped file #{s3_path}"	
+					puts "Skipped file #{location_to_store}"	
 				end
+				
 			else
-				#S3Object.store(s3_path,open(file), bucket)
-				puts "Stored: #{s3_path}"
+				@medectomy_bucket.objects.create(location_to_store,Pathname.new(local_file_path))
+				puts "Stored: #{location_to_store}"
 			end
 
 		end
