@@ -117,7 +117,7 @@ if Rails.env.development?
 
 			if(s3_file.exists?)
 				puts "File already exists: #{location_to_store}, would you like to overwrite this?"
-				answer = gets.chomp.strip
+				answer = STDIN.gets.chomp.strip
 				# overwrite file
 				if answer == "y" || answer == "yes"
 					s3_file.write(Pathname.new(local_file_path))
