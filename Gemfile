@@ -27,7 +27,7 @@ group :doc do
 end
 
 # Bootstrap 3.0.0 for Rails 4
-gem 'anjlab-bootstrap-rails', '~> 3.0.0.3', :require => 'bootstrap-rails'
+gem 'bootstrap-sass', '~> 3.0.3.0'
 
 # Animate.css for Rails
 gem "animate-rails"
