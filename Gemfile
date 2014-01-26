@@ -32,8 +32,10 @@ gem 'bootstrap-sass', '~> 3.0.3.0'
 # Animate.css for Rails
 gem "animate-rails"
 
-# devise for authentication
+# Authentication w/ Devise, Rolify, & CanCan
 gem 'devise'
+gem 'rolify'
+gem 'cancan'
 
 # gibbon for MailChimp integration
 gem 'gibbon'
