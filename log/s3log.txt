@@ -1,0 +1,5 @@
+Stored: Courses/microbiology/1-blah/description/microbiology_1-blah#desc.txt
+Stored: Courses/microbiology/1-blah/images/large/microbiology_1-blah#lg.png
+Stored: Courses/microbiology/1-blah/html/microbiology_1-blah#.html
+Stored: Courses/microbiology/1-blah/images/small/microbiology_1-blah#sm.png
+Stored: Courses/microbiology/description/microbiology_1-blah#cdesc.txt

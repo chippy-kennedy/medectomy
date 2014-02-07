@@ -50,7 +50,7 @@ if Rails.env.development?
 		task :add_content => :environment do 
 
 			connect_s3			
-
+			logger = File.open("#{Rails.root}/log/s3log.txt","a")
 			Dir.glob(S3_CONFIG[Rails.env]["content_directory"]).each do |local_file_path|
 
 				file_name = File.basename(local_file_path)
@@ -59,34 +59,48 @@ if Rails.env.development?
 				course_name = file_name.split("_")[0]
 				#Extracts the chapter name from the file
 				chapter_name = file_name.split("_")[1].split("\#")[0]
-				location_to_store = "Courses/#{course_name}/#{chapter_name}/"
-
+				s3_destination = "Courses/#{course_name}/#{chapter_name}/"
+				logger = File.open("#{Rails.root}/log/s3log.txt","a")
+				valid = true
+				puts file_name
 				case File.extname(local_file_path)
 
 				when ".png"
 
 					if file_name.include?("#lg")
-						location_to_store+="large_images/#{file_name}"
-						add_new_content(location_to_store, local_file_path)
+						s3_destination+="images/large/#{file_name}"
+						add_new_content(s3_destination, local_file_path,logger)
 					elsif file_name.include?("#sm")
-						location_to_store+="small_images/#{file_name}"
-						add_new_content(location_to_store, local_file_path)
+						s3_destination+="images/small/#{file_name}"
+						add_new_content(s3_destination, local_file_path,logger)
+					elsif file_name.include?("#csm")
+						s3_destination="Courses/#{course_name}/images/small/#{file_name}"
+						add_new_content(s3_destination, local_file_path,logger)
+					elsif file_name.include?("#clg")
+						s3_destinatione="Courses/#{course_name}/images/large/#{file_name}"
+						add_new_content(s3_destination, local_file_path,logger)
+					else
+						puts "Invalid file: #{File.basename(local_file_path)}"	
 					end
 
 				when ".txt"
-
-					location_to_store+="description/#{file_name}"
-					add_new_content(location_to_store, local_file_path)
-
+					if file_name.include?('#cdesc')
+						s3_destination="Courses/#{course_name}/description/#{file_name}"
+						add_new_content(s3_destination, local_file_path,logger)
+					elsif file_name.include?('#desc')
+						s3_destination+="description/#{file_name}"
+						add_new_content(s3_destination, local_file_path,logger)
+					else
+						puts "Invalid file: #{File.basename(local_file_path)}"	
+					end
 				when ".html"
 
-					location_to_store+="html/#{file_name}"
-					add_new_content(location_to_store, local_file_path)
+					s3_destination+="html/#{file_name}"
+					add_new_content(s3_destination, local_file_path,logger)
 
 				else 
 					puts "Invalid file: #{File.basename(local_file_path)}"	
 				end
-
 			end	
 			
 
@@ -96,7 +110,37 @@ if Rails.env.development?
 			#Course.create(name: "Microbiology", description: "Teach me how to Microbiology. Everybody Microbiology. I Microbiology real smooth.", image_lg: "", image_sm: "")
 
 		end
+		task :add_database_info => :environment do 
+			#put code to deal with finding last update
+			connect_s3
+			courses_tree = @medectomy_bucket.as_tree(prefix: 'Courses/')
+			directories = courses_tree.children.select(&:branch?).collect(&:prefix)
+			logger = File.open("#{Rails.root}/log/s3log.txt","r")
+			course_names = Array.new
+			new_content = Array.new
+			directories.each do |f|
+			course_names.push(f.split('/')[1])
+			end
 
+				line = logger.readlines.each do |line|
+				break if(line.include?('Index'))
+				new_content.push(line.split(':')[1].strip)
+			end
+
+
+
+
+			course_names.each do |course|
+				course_mat = new_content.delete_if { |v| v.include?(course) }
+				puts course_mat
+				puts " "
+				chapter_name = course_mat[0].split('/')[2]
+				chapter_mat = course_mat.delete_if { |v| v.include?(chapter_name)}
+				puts chapter_mat
+			end
+
+
+		end
 		# initiates connection to Amazon S3
 		def connect_s3
 			if(@s3.nil?)
@@ -111,25 +155,25 @@ if Rails.env.development?
 			@medectomy_bucket = nil
 		end
 
-		def add_new_content(location_to_store, local_file_path)
+		def add_new_content(s3_destination, local_file_path,logger)
 
-			s3_file = @medectomy_bucket.objects[location_to_store]
+			s3_file = @medectomy_bucket.objects[s3_destination]
 
 			if(s3_file.exists?)
-				puts "File already exists: #{location_to_store}, would you like to overwrite this?"
+				puts "File already exists: #{s3_destination}, would you like to overwrite this?"
 				answer = STDIN.gets.chomp.strip
 				# overwrite file
 				if answer == "y" || answer == "yes"
 					s3_file.write(Pathname.new(local_file_path))
-					puts "Overwrote: #{location_to_store}"
+					logger.puts("Overwrote: #{s3_destination}")
 				# skip file	
 				else
-					puts "Skipped file #{location_to_store}"	
+					puts "Skipped file #{s3_destination}"	
 				end
-				
+
 			else
-				@medectomy_bucket.objects.create(location_to_store,Pathname.new(local_file_path))
-				puts "Stored: #{location_to_store}"
+				@medectomy_bucket.objects.create(s3_destination,Pathname.new(local_file_path))
+				logger.puts("Stored: #{s3_destination}")
 			end
 
 		end
