@@ -1,6 +1,6 @@
 class Chapter < ActiveRecord::Base
-	belongs_to :course
-	validates :number, uniqueness:true
+	#belongs_to :course
+	#validates :number, uniqueness:true
 
 	def index
 
