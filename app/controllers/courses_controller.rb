@@ -5,8 +5,13 @@ class CoursesController < ApplicationController
 	#without an AuthroizationNotPerformedError
 	skip_authorization_check
 
-	def show
+	def index
 		render "courses/index"
+	end
+
+	def show
+		@Course = Course.find(params[:id])
+		render "courses/chapter-list"
 	end
 
 	def new
@@ -24,6 +29,9 @@ class CoursesController < ApplicationController
 		end
 
 	end
+
+
+#TODO: should 'courses' be capitalized below???
 
 	def edit 
 		@course = course.find(params[:id])
@@ -47,6 +55,14 @@ class CoursesController < ApplicationController
 
     	puts "Destroyed: #{@course.name} course."
   	end
+end
 
+class ChaptersController < CoursesController
+
+	def show
+		@Course = Course.find(params[:id])
+		@Chapter = Chapter.find(params[:id])
+		render "/courses/:course_id/chapters/:id"
+	end
 
 end
