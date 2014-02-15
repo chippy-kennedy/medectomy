@@ -8,6 +8,8 @@ Medectomy::Application.routes.draw do
   	resources :chapters
   end
 
+  resources :dashboard
+
 
   #root to: 'prelaunch#index'
 

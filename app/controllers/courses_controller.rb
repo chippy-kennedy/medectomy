@@ -9,8 +9,11 @@ class CoursesController < ApplicationController
 		render "courses/index"
 	end
 
+
+	#TODO: I am not apt enought at testing,
+	#so I cannot call on specific objects because the databases are empty
 	def show
-		@Course = Course.find(params[:id])
+		#@Course = Course.find(params[:id])
 		render "courses/chapter-list"
 	end
 
@@ -56,6 +59,8 @@ class CoursesController < ApplicationController
     	puts "Destroyed: #{@course.name} course."
   	end
 end
+
+#TODO: THIS (BELOW) IS NOT BEING USED AS OF YET
 
 class ChaptersController < CoursesController
 
