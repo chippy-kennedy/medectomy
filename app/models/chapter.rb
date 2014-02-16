@@ -2,8 +2,15 @@ class Chapter < ActiveRecord::Base
 	belongs_to :course
 	validates :number, uniqueness:true
 
+	
 	def index
 
+	end
+
+	def show
+		@Course = Course.find(params[:id])
+		@Chapter = Chapter.find(params[:id])
+		render "/courses/:course_id/chapters/:id"
 	end
 
 	def new
