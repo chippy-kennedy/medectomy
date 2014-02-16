@@ -6,6 +6,7 @@ Medectomy::Application.routes.draw do
   	resources :chapters
   end
 
+
   resources :dashboard do
     resources :notes
   end
