@@ -15,4 +15,10 @@ class DashboardController < ApplicationController
 		render "dashboard/workspace"
 	end
 
+
+	#Shows the Contact Us Page
+	def contact
+		render "dashboard/contact"
+	end
+
 end
