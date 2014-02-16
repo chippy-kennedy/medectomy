@@ -7,10 +7,17 @@
 body {
   #font-size: 87.5%;
   color: #333333;
-  background: url('bg-noise.gif') ;
-  font-family: 'Montserrat', sans-serif;
-  padding-top: 70px;
-  padding-bottom: 20px;
+  background-color:#CCCCCC;
+
+  #background: url('bg-noise.gif') ;
+  #font-family: 'Montserrat', sans-serif;
+  
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+container {
+  background-color:#FFFFFF;
 }
 
 // Base table styles
@@ -33,14 +40,6 @@ a {
   }
 }
 
-header a {
-  color: #fff;
-
-  &:hover, 
-  &:focus {
-    color: #ddd;
-  }
-}
 
 ul, ol {
   //padding-left: 20px;
@@ -69,6 +68,11 @@ textarea {
 label {
   display: block;
   margin-bottom: 5px;
+}
+
+
+#footer {
+  background-color: #1A1A1A;
 }
 
 // Color mixins

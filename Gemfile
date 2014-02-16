@@ -29,6 +29,9 @@ end
 # Bootstrap 3.0.0 for Rails 4
 gem 'bootstrap-sass', '~> 3.0.3.0'
 
+# Fonts
+gem "font-awesome-rails"
+
 # Animate.css for Rails
 gem "animate-rails"
 

@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # ensures authentication occurs in every action
+
+
   check_authorization
 
   # catches denied access flag raised by CanCan 

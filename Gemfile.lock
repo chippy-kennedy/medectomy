@@ -81,6 +81,8 @@ GEM
       i18n (~> 0.5)
     ffi (1.9.3)
     ffi (1.9.3-x86-mingw32)
+    font-awesome-rails (4.0.3.1)
+      railties (>= 3.2, < 5.0)
     formatador (0.2.4)
     gibbon (1.1.1)
       httparty
@@ -225,6 +227,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker
+  font-awesome-rails
   gibbon
   guard-rspec
   jbuilder (~> 1.2)

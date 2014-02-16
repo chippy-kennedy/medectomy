@@ -1,12 +1,26 @@
 class CoursesController < ApplicationController
 
-	def index
 
+	#TODO: Fix below is the only way to run the program and access this controller
+	#without an AuthroizationNotPerformedError
+	skip_authorization_check
+
+	def index
+		render "courses/index"
+	end
+
+
+	#TODO: I am not apt enought at testing,
+	#so I cannot call on specific objects because the databases are empty
+	def show
+		#@Course = Course.find(params[:id])
+		render "courses/chapter-list"
 	end
 
 	def new
 		@course = Course.new
 	end
+
 
 	def create
 		@course = Course.create(permitted_params.course)
@@ -18,6 +32,9 @@ class CoursesController < ApplicationController
 		end
 
 	end
+
+
+#TODO: should 'courses' be capitalized below???
 
 	def edit 
 		@course = course.find(params[:id])
@@ -41,6 +58,16 @@ class CoursesController < ApplicationController
 
     	puts "Destroyed: #{@course.name} course."
   	end
+end
 
+#TODO: THIS (BELOW) IS NOT BEING USED AS OF YET
+
+class ChaptersController < CoursesController
+
+	def show
+		@Course = Course.find(params[:id])
+		@Chapter = Chapter.find(params[:id])
+		render "/courses/:course_id/chapters/:id"
+	end
 
 end
