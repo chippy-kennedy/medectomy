@@ -26,8 +26,13 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# Bootstrap 3.0.0 for Rails 4
-gem 'bootstrap-sass', '~> 3.0.3.0'
+# Bootstrap for Rails 4
+gem 'bootstrap-sass'
+
+group :development do
+  gem 'rails_layout'
+end
+
 
 # Fonts
 gem "font-awesome-rails"
