@@ -1,5 +1,41 @@
 
 
+.workspace-container {
+	
+	height: 900px;
+	border: 1px solid #bdbdbd;
+	box-shadow:0 0 8px rgba(0,0,0,0.4);
+	margin-bottom: 40px;
+	background-color:#FFFFFF;
+ 
+.workspace-info{
+	border: 1px solid #bdbdbd;
+	box-shadow:0 0 8px rgba(0,0,0,0.4);
+	height: 350px;
+	margin: 10px 0px 10px 0px;
+	background-color:#CCCCCC;
+
+	ul {
+		margin-top: 30px;
+		list-style: none;
+		height: 450px;
+		overflow-y: scroll;
+	}	
+
+	ul::webkit-scrollbar {
+		display: none;
+	}
+	
+	.last-course-listing {
+		border-bottom: none !important;
+	}
+
+}
+	
+
+}
+
+
 
 .landing-container {
 	height: 700px;
@@ -18,13 +54,28 @@
 	box-shadow:0 0 8px rgba(0,0,0,0.4);
 	margin-bottom: 40px;
 	background-color:#FFFFFF;
-
+ 
 	.dashboard-info{
-		height: 500px;
+		height: 560px;
 		border: 1px solid #bdbdbd;
 		box-shadow:0 0 8px rgba(0,0,0,0.4);
 		margin: 30px 40px 30px;
 		background-color:#CCCCCC;
+
+		ul {
+			margin-top: 30px;
+			list-style: none;
+			height: 450px;
+			overflow-y: scroll;
+		}	
+
+		ul::webkit-scrollbar {
+			display: none;
+		}
+
+		.last-course-listing {
+			border-bottom: none !important;
+		}
 
 	}
 	
