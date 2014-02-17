@@ -2,7 +2,7 @@
   Testing CSS properties in this file.
   TODO: move univesal container properties to CSS files as global style properties-->
 
-<div class="col-md-12 course-container" style="background-color:#FFFFFF; margin-bottom:20px;">
+<div class="col-md-12 course-container">
         <div class="pull-left course-list col-md-6" style="background-color:#FFFFFF;">
                 <ul class="media-list">
                         <% 10.times do |index| %>
@@ -19,7 +19,14 @@
                   </li>
                 </ul>
         </div>
+       
         <div class="pull-rigt col-md-6 course-content">
-                <h2 style="text-align:center;">Fundamentals of Basic Science and Clinical Medicine, 1st Edition</h2>
+                 <div class="row"> 
+                  <h2 style="text-align:center;">Fundamentals of Basic Science and Clinical Medicine, 1st Edition</h2>
+                </div>
+                <div class="row" style="padding-top:40px;">
+
+                  <img class="media-object" style="margin:auto;" src="http://placehold.it/480x360" alt="">
+                </div>
         </div>
 </div>

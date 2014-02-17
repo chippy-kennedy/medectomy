@@ -1,7 +1,57 @@
-.course-container {
+
+
+
+.landing-container {
 	height: 700px;
 	border: 1px solid #bdbdbd;
 	box-shadow:0 0 8px rgba(0,0,0,0.4);
+	margin-bottom: 40px;
+	background-color:#FFFFFF;
+
+
+}
+
+.dashboard-container {
+	
+	height: 700px;
+	border: 1px solid #bdbdbd;
+	box-shadow:0 0 8px rgba(0,0,0,0.4);
+	margin-bottom: 40px;
+	background-color:#FFFFFF;
+
+	.dashboard-info{
+		height: 500px;
+		border: 1px solid #bdbdbd;
+		box-shadow:0 0 8px rgba(0,0,0,0.4);
+		margin: 30px 40px 30px;
+		background-color:#CCCCCC;
+
+	}
+	
+
+}
+
+
+
+
+.navbar {
+	background-color:#FFFFFF;
+	#background-color:#FFB2B2;
+}
+
+
+
+
+
+
+
+.course-container {
+	
+	height: 700px;
+	border: 1px solid #bdbdbd;
+	box-shadow:0 0 8px rgba(0,0,0,0.4);
+	margin-bottom: 40px;
+	background-color:#FFFFFF;
 
 	.course-list {
 		height: 670px;
