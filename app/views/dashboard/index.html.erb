@@ -1,51 +1,117 @@
 
 
-<!-- Contact page -->
+<!-- User Dashboard -->
 
-<section id="content" class="container">
+<section id="content" class="dashboard-container">
 
 
   <div class="container">
     <h2 class="text-left"><span style="color:#e65154;">My</span> Dashboard</h2>
-    <p>This is your home page to access all your textbook resources, online notes, and more.</p>
-
+    <p>Current Classes</p>
   </div>
-    
-    <div class="container">
-        <ul class="media-list">
-            <li class="media" style="padding:30px 5px 0px; border-style:solid;
-border-width:3px; border-radius:7px;">
-                <a class="pull-left">
-                    <img class="media-object" src="assets/icons/laptop.png">
-                </a>
-                <div class="media-body">
-                    <h4 class="media-heading">My Notes</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                </div>
-            </li>
+
+  <!-- Column 1 -->
+    <div class="col-md-3 dashboard-info" style="margin: 30px 40px 40px 60px;">
+        <div class="col-md-8">
+            <h3> Microbiology</h3>
+        </div>
             
-            <li class="media" style="padding:30px 5px 0px; border-style:solid;
-border-width:3px; border-radius:7px;">
-                <a class="pull-left">
-                    <img class="media-object" src="assets/icons/stopwatch.png">
-                </a>
-                <div class="media-body">
-                    <h4 class="media-heading">My Courses</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                </div>
-            </li>
-            <li class="media" style="padding:30px 5px 0px; border-style:solid;
-border-width:3px; border-radius:7px;">
-                <a class="pull-left">
-                    <img class="media-object" src="assets/icons/globe.png">
-                </a>
-                <div class="media-body">
-                    <h4 class="media-heading">Start New Course</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                </div>
-            </li>
-        </ul>
- </div>
+        <div class="col-md-4">
+            <input type="text" value="43" class="dial" data-width="130%" data-displayInput=false>
+                <script>
+                    $('.dial')
+                    .trigger(
+                    'configure',
+                    {
+                    "min":10,
+                    "max":40,
+                    "fgColor":"#FFFFF",
+                    "skin":"tron",
+                    "cursor":true
+                    }
+                    );
+                </script>
+        </div>
+
+        <div class="col-md-12">
+            <p>Lorem ipsum dolor: ##<br>sit amet, consectetur: ##<br> adipisicing elit, sed: ##</p>
+        </div>
+        <div class="col-md-8">
+            <h3> Pharmacology</h3>
+        </div>
+            
+        <div class="col-md-4">
+            <input type="text" value="43" class="dial" data-width="130%" data-displayInput=false>
+                <script>
+                    $('.dial')
+                    .trigger(
+                    'configure',
+                    {
+                    "min":10,
+                    "max":40,
+                    "fgColor":"#FFFFF",
+                    "skin":"tron",
+                    "cursor":true
+                    }
+                    );
+                </script>
+        </div>
+
+        <div class="col-md-12">
+            <p>Lorem ipsum dolor: ##<br>sit amet, consectetur: ##<br> adipisicing elit, sed: ##</p>
+        </div>
+<div class="col-md-8">
+            <h3> Microbiology</h3>
+        </div>
+            
+        <div class="col-md-4">
+            <input type="text" value="43" class="dial" data-width="130%" data-displayInput=false>
+                <script>
+                    $('.dial')
+                    .trigger(
+                    'configure',
+                    {
+                    "min":10,
+                    "max":40,
+                    "fgColor":"#FFFFF",
+                    "skin":"tron",
+                    "cursor":true
+                    }
+                    );
+
+                                        $(function() {
+                    $(".dial").knob();
+                    });
+                </script>
+        </div>
+
+        <div class="col-md-12">
+            <p>Lorem ipsum dolor: ##<br>sit amet, consectetur: ##<br> adipisicing elit, sed: ##</p>
+        </div>
+
+</div> <!-- End Column 1 -->
+
+
+    <div class="col-md-3 dashboard-info">
+        <div class="col-md-12">
+            <h3>Start New Course</h3>
+            <p style="text-align:center;">
+            <span class="glyphicon glyphicon-asterisk"></span>
+            <br>Lorem ipsum dolor: sit amet, consectetur: adipisicing elit, sed:
+        </p>
+        </div>
+
+    </div>
+
+    <div class="col-md-3 dashboard-info">
+
+
+    </div>
+
+
+
+
+   
 
     
 </section>
