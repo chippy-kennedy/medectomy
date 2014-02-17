@@ -116,27 +116,55 @@ if Rails.env.development?
 			courses_tree = @medectomy_bucket.as_tree(prefix: 'Courses/')
 			directories = courses_tree.children.select(&:branch?).collect(&:prefix)
 			logger = File.open("#{Rails.root}/log/s3log.txt","r")
-			course_names = Array.new
+			course_names = Set.new
 			new_content = Array.new
+			chapter_names = Set.new
 			directories.each do |f|
-			course_names.push(f.split('/')[1])
+				course_names.add(f.split('/')[1])
+			end
+			course_names.each do |f|
+				course_tree = @medectomy_bucket.as_tree(prefix: "Courses/#{f}/")
+				dir = course_tree.children.select(&:branch?).collect(&:prefix)
+				dir.each do |f|
+					chapter_names.add(f.split('/')[2])
+				end
+			end
+			chapter_names.each do |f|
+				puts "#{f} chapter name"
 			end
 
-				line = logger.readlines.each do |line|
-				break if(line.include?('Index'))
-				new_content.push(line.split(':')[1].strip)
+			logger.readlines.each do |line|
+				break if(line.include?('Index')) 
+				new_content.push(line.split(":")[1].strip)
 			end
+		    new_content.sort!
+		    file_hash = Hash.recursive
+			new_content.each do |f| 
 
+				splitted = f.split("/")
+				course_name = splitted[1]
+				chapter_name = splitted[2]
+				@c = Course.where(name:course_name)
+				if @c.length > 0 
+					puts @c.length
+					@chap = @c.first.chapters.where(name: chapter_name)
+					if @chap.length > 0
+						puts "fuck you mj"
+					end
+				end
+			end
+			puts file_hash
+			chapter_names.each do |f|
+				chapter_content = Array.new
+				new_content.each do |f2|
+					if(f2.include?("#{f}"))
+						chapter_content.push(f2)
+					end
+				end
+				chapter_content.each do |f3|
+					puts "#{f} #{f3}"
+				end
 
-
-
-			course_names.each do |course|
-				course_mat = new_content.delete_if { |v| v.include?(course) }
-				puts course_mat
-				puts " "
-				chapter_name = course_mat[0].split('/')[2]
-				chapter_mat = course_mat.delete_if { |v| v.include?(chapter_name)}
-				puts chapter_mat
 			end
 
 
@@ -155,6 +183,12 @@ if Rails.env.development?
 			@medectomy_bucket = nil
 		end
 
+	class Hash
+  	def self.recursive
+    	new { |hash, key| hash[key] = recursive }
+  		end
+	end
+
 		def add_new_content(s3_destination, local_file_path,logger)
 
 			s3_file = @medectomy_bucket.objects[s3_destination]
@@ -167,17 +201,17 @@ if Rails.env.development?
 					s3_file.write(Pathname.new(local_file_path))
 					logger.puts("Overwrote: #{s3_destination}")
 				# skip file	
-				else
-					puts "Skipped file #{s3_destination}"	
-				end
-
 			else
-				@medectomy_bucket.objects.create(s3_destination,Pathname.new(local_file_path))
-				logger.puts("Stored: #{s3_destination}")
+				puts "Skipped file #{s3_destination}"	
 			end
 
+		else
+			@medectomy_bucket.objects.create(s3_destination,Pathname.new(local_file_path))
+			logger.puts("Stored: #{s3_destination}")
 		end
+
 	end
+end
 
 else
 	puts "'Development.rake' should only be run in the development environment."
