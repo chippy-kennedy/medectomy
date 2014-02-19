@@ -139,7 +139,6 @@ if Rails.env.development?
 						s3_destination="#{Rails.root}/Structure/Courses/#{course_name}/information/images/small"
 						organize(s3_destination, local_file_path)
 					elsif file_name.include?("#clg")
-						puts "OH YEAH MOTHA FUCKA"
 						s3_destination="#{Rails.root}/Structure/Courses/#{course_name}/information/images/large"
 						organize(s3_destination, local_file_path)
 					else
@@ -192,9 +191,9 @@ if Rails.env.development?
 					if(file.include?('#cdesc'))
 						course_database_information[:description] = @medectomy_bucket.objects[file].read
 					elsif(file.include?("#clg"))
-						course_database_information[:icon_lg] = @medectomy_bucket.objects[file].url_for(:read).to_s
+						course_database_information[:icon_lg] = file
 					elsif(file.include?("#csm"))
-						course_database_information[:icon_sm] = @medectomy_bucket.objects[file].url_for(:read).to_s
+						course_database_information[:icon_sm] = file
 					end
 				end
 				@Test =Course.new(course_database_information)
@@ -211,18 +210,17 @@ if Rails.env.development?
 					if(file.include?('#desc'))
 						course_database_information[:description] = @medectomy_bucket.objects[file].read
 					elsif(file.include?("#lg"))
-						course_database_information[:icon_lg] = @medectomy_bucket.objects[file].url_for(:read).to_s
+						course_database_information[:icon_lg] = file
 					elsif(file.include?("#sm"))
-						course_database_information[:icon_sm] = @medectomy_bucket.objects[file].url_for(:read).to_s
+						course_database_information[:icon_sm] = file
 					elsif(file.include?("#html"))
-						course_database_information[:]
-
+						course_database_information[:directory] = file
 					end
 
 				end
 			end
 		end
-
+end
 
 		# initiates connection to Amazon S3
 		def connect_s3
