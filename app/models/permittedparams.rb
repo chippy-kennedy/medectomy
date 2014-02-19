@@ -1,4 +1,4 @@
-class PermittedParams < Struct.new {:params, :user}
+class PermittedParams < Struct.new(:params, :user)
 
 def course
 	params.require(:course).permit(*course_attributes)

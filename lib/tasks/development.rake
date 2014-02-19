@@ -192,15 +192,33 @@ if Rails.env.development?
 					if(file.include?('#cdesc'))
 						course_database_information[:description] = @medectomy_bucket.objects[file].read
 					elsif(file.include?("#clg"))
-						course_database_information[:icon_lg] = @medectomy_bucket.objects[file].url_for(:read)
+						course_database_information[:icon_lg] = @medectomy_bucket.objects[file].url_for(:read).to_s
 					elsif(file.include?("#csm"))
-						course_database_information[:icon_sm] = @medectomy_bucket.objects[file].url_for(:read)
+						course_database_information[:icon_sm] = @medectomy_bucket.objects[file].url_for(:read).to_s
 					end
 				end
-				Course.create(course_database_information)
+				@Test =Course.new(course_database_information)
+				@Test.save
 				course_information = 'blah'
 				chapter_names = Dir["#{Rails.root}/Structure/Courses/#{file}/*"]
 				chapter_names.each do |chapter_name|
+					chapter_database_information = Hash.new
+					chapter_database_information[:name] = chapter_name
+					chapter_content = Dir["#{Rails.root}/Structure/Courses/{#course_name}/#{chapter_name}/**/*"]
+					chapter_content.each do |file|
+					file = file.split("/Structure/").last
+					puts file
+					if(file.include?('#desc'))
+						course_database_information[:description] = @medectomy_bucket.objects[file].read
+					elsif(file.include?("#lg"))
+						course_database_information[:icon_lg] = @medectomy_bucket.objects[file].url_for(:read).to_s
+					elsif(file.include?("#sm"))
+						course_database_information[:icon_sm] = @medectomy_bucket.objects[file].url_for(:read).to_s
+					elsif(file.include?("#html"))
+						course_database_information[:]
+
+					end
+
 				end
 			end
 		end
