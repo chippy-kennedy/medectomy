@@ -157,7 +157,7 @@ if Rails.env.development?
 					end
 				when ".html"
 
-					s3_destination+="html/#{file_name}"
+					s3_destination+="html"
 					organize(s3_destination, local_file_path)
 				else 
 					puts "Invalid file: #{File.basename(local_file_path)}"	
@@ -180,14 +180,11 @@ if Rails.env.development?
 			course_list.each do |course_name|
 				course_name.slice!("#{Rails.root}/Structure/Courses/")
 				course_names.add course_name
-				puts course_name
 				course_content = Dir["#{Rails.root}/Structure/Courses/#{course_name}/information/**/*"]
-				
 				course_database_information = Hash.new
 				course_database_information[:name] = course_name
 				course_content.each do |file|
 					file = file.split("/Structure/").last
-					puts file
 					if(file.include?('#cdesc'))
 						course_database_information[:description] = @medectomy_bucket.objects[file].read
 					elsif(file.include?("#clg"))
@@ -196,27 +193,44 @@ if Rails.env.development?
 						course_database_information[:icon_sm] = file
 					end
 				end
-				@Test =Course.new(course_database_information)
-				@Test.save
-				course_information = 'blah'
-				chapter_names = Dir["#{Rails.root}/Structure/Courses/#{file}/*"]
+				@new_course=Course.new(course_database_information)
+				@new_course.save
+				course_names.each do |file|
+
+
+				#need to count all chapter directories besides the course information folder
+				chapter_names_all = Dir["#{Rails.root}/Structure/Courses/#{file}/*"]
+				chapter_names_all.each do |name|
+					if(!name.include?("information"))
+						chapter_names.add name.split("/#{file}/").last
+					end
+				end
 				chapter_names.each do |chapter_name|
+					@course = Course.find_by name: "microbiology"
 					chapter_database_information = Hash.new
-					chapter_database_information[:name] = chapter_name
-					chapter_content = Dir["#{Rails.root}/Structure/Courses/{#course_name}/#{chapter_name}/**/*"]
+					chapter_database_information[:name] = chapter_name.split("-").last
+					chapter_database_information[:number] = chapter_name.split("-").first
+					chapter_database_information[:course_id] = @Test.id
+					chapter_content = Dir["#{Rails.root}/Structure/Courses/#{course_name}/#{chapter_name}/**/*"]
 					chapter_content.each do |file|
 					file = file.split("/Structure/").last
 					puts file
 					if(file.include?('#desc'))
-						course_database_information[:description] = @medectomy_bucket.objects[file].read
+						chapter_database_information[:description] = @medectomy_bucket.objects[file].read
+						puts "desc"
 					elsif(file.include?("#lg"))
-						course_database_information[:icon_lg] = file
+						chapter_database_information[:icon_lg] = file
+						puts "lg"
 					elsif(file.include?("#sm"))
-						course_database_information[:icon_sm] = file
-					elsif(file.include?("#html"))
-						course_database_information[:directory] = file
+						chapter_database_information[:icon_sm] = file
+						puts "sm"
+					elsif(file.include?(".html"))
+						chapter_database_information[:directory] = file
+						puts "html"
 					end
-
+				end
+					@new_chapter = Chapter.new(chapter_database_information)
+					@new_chapter.save
 				end
 			end
 		end
