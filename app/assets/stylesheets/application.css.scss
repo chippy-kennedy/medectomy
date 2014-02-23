@@ -1,6 +1,8 @@
 // Bootstrap
 @import "bootstrap";  
 
+
+
 // Base
 @import "base/helpers";
 
@@ -13,6 +15,8 @@
 //@import "modules/container";
 
 // Vendor
-@import "bootstrap-reset.css";
+
 @import "style.css";
+@import "bootstrap-reset.css";
 @import "style-responsive.css";
+
