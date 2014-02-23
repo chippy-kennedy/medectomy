@@ -8,13 +8,9 @@
   <%= csrf_meta_tags %>
 
 </head>
-<body>
-	<section id="container">
-		<%= render partial: "layouts/header" %>
-		<section id="main-content">
-			<%= yield %>
-		</section>
-    	<%= render partial: "layouts/footer" %>
-	</section>
+<body class="login-body">
+	<div class="container">
+		<%= yield %>
+	</div>
 </body>
 </html>

@@ -22,5 +22,18 @@ module Medectomy
 
     # add font-awesome to assets pipeline
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
+
+    # add vendor path to sass
+    config.sass.load_paths << File.expand_path('../../vendor/assets/stylesheets/')
+
+    # custom layout for devise pages
+    config.to_prepare do
+      Devise::SessionsController.layout "devise"
+      Devise::RegistrationsController.layout proc{ |controller| user_signed_in? ? "application" : "devise" }
+      Devise::ConfirmationsController.layout "devise"
+      Devise::UnlocksController.layout "devise"            
+      Devise::PasswordsController.layout "devise"        
+    end
+
   end
 end
