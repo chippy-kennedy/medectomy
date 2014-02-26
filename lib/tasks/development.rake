@@ -48,7 +48,13 @@ if Rails.env.development?
 			disconnect_s3
 
 		end
-
+		desc "Cleans, uploads, organizes, and structures html all in one"
+		task :redo => :environment  do
+			Rake::Task['dev:clean'].invoke
+			Rake::Task['dev:add_content'].invoke
+			Rake::Task['dev:organize_information'].invoke
+			Rake::Task['dev:structure_html'].invoke
+		end
 		task :add_content => :environment do 
 
 			connect_s3			
