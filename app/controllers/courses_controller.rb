@@ -60,14 +60,3 @@ class CoursesController < ApplicationController
   	end
 end
 
-#TODO: THIS (BELOW) IS NOT BEING USED AS OF YET
-
-class ChaptersController < CoursesController
-
-	def show
-		@Course = Course.find(params[:id])
-		@Chapter = Chapter.find(params[:id])
-		render "/courses/:course_id/chapters/:id"
-	end
-
-end
