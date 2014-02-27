@@ -24,5 +24,6 @@ def chapter_attributes
 	end
 end
 
+
 end
 
