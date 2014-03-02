@@ -11,10 +11,11 @@
 <body>
 	<section id="container">
 		<%= render partial: "layouts/header" %>
+		<%= render partial: "layouts/sidebar_left" %>
 		<section id="main-content">
 			<%= yield %>
 		</section>
-    	<%= render partial: "layouts/footer" %>
+		<%= render partial: "layouts/sidebar_right" %>
 	</section>
 </body>
 </html>
