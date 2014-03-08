@@ -6,8 +6,20 @@
 //= require bootstrap 
 //= require_tree .
 
+// Libraries
+//= require jquery
+//= require jquery.flot
+//= require jquery.flot.pie
+
 // Vendor Assets
-//= require_tree ../../../vendor/assets/javascripts/.
+//= require jquery.dcjqaccordion.2.7
+//= require jquery.easypiechart
+//= require jquery.nicescroll
+//= require jquery.scrollTo.min
+//= require jquery.sparkline
+//= require jquery.jplayer.min
+//= require jplayer.init
+//= require scripts
 
-
+// Custom
 

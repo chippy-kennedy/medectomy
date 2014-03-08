@@ -32,16 +32,14 @@ end
 # Bootstrap for Rails 4
 gem 'bootstrap-sass'
 
-group :development do
-  gem 'rails_layout'
-end
-
-
 # Fonts
 gem "font-awesome-rails"
 
 # Animate.css for Rails
 gem "animate-rails"
+
+# Flot Graph API
+gem 'flot-rails', :git => "https://github.com/Kjarrigan/flot-rails.git"
 
 # Authentication w/ Devise, Rolify, & CanCan
 gem 'devise'
@@ -53,7 +51,6 @@ gem 'gibbon'
 
 # Amazon's official AWS SDK
 gem "aws-sdk"
-
 
 group :deployment do 
 	# Use PostgreSQL as database for Active Record

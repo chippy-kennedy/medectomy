@@ -9,11 +9,16 @@
 
 // Libraries
 @import "jquery.ui.core";
-@import "jquery.ui.all";
 
 // Vendor
+@import "bootstrap-reset";
+@import "jplayer.blue.monday";
+@import "style";
+@import "style-responsive";
 
 // Modules
+@import "modules/course";
+
 
 
 

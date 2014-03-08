@@ -24,7 +24,7 @@ module Medectomy
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
     # add vendor path to sass
-    config.sass.load_paths << File.expand_path('../../vendor/assets/stylesheets/')
+    config.sass.load_paths += %w(vendor lib).map {|l| Rails.root.join(l, 'assets', 'stylesheets') }
 
     # custom layout for devise pages
     config.to_prepare do
@@ -37,3 +37,5 @@ module Medectomy
 
   end
 end
+
+

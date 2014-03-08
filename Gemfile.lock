@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/Kjarrigan/flot-rails.git
+  revision: c20cf50084856963f8554c762dd44cbb4a156c97
+  specs:
+    flot-rails (0.0.4)
+      jquery-rails (>= 2.0.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -166,7 +173,6 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.0.0)
       sprockets-rails (~> 2.0.0)
-    rails_layout (1.0.10)
     railties (4.0.0)
       actionpack (= 4.0.0)
       activesupport (= 4.0.0)
@@ -244,6 +250,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker
+  flot-rails!
   font-awesome-rails
   gibbon
   guard-rspec
@@ -252,7 +259,6 @@ DEPENDENCIES
   jquery-ui-sass-rails
   pg
   rails (= 4.0.0)
-  rails_layout
   rolify
   sass-rails (~> 4.0.0)
   sdoc

@@ -1,10 +1,10 @@
 class ChaptersController < ApplicationController
-	#belongs_to :course
-	#validates :number, uniqueness:true
-
 	
-	def index
+	skip_authorization_check
 
+	def index
+		@test = true
+		render "chapters/index"
 	end
 
 	def show
