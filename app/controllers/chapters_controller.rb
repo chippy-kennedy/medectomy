@@ -3,14 +3,19 @@ class ChaptersController < ApplicationController
 	skip_authorization_check
 
 	def index
-		@test = true
 		render "chapters/index"
 	end
 
 	def show
-		@Course = Course.find(params[:id])
-		@Chapter = Chapter.find(params[:id])
-		render "/courses/:course_id/chapters/:id"
+		@course = Course.find(params[:id])
+		@chapter = Chapter.find(params[:id])
+
+		# pull content from s3
+		@s3 = AWS::S3.new(access_key_id: S3_CONFIG[Rails.env]["s3_key"], secret_access_key: S3_CONFIG[Rails.env]["s3_secret"])
+		@medectomy_bucket = @s3.buckets[S3_CONFIG[Rails.env]["s3_bucket"]] 
+		@file = @medectomy_bucket.objects[@chapter.directory] 
+		
+		render "/chapters/show"
 	end
 
 	def new

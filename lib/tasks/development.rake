@@ -15,9 +15,10 @@ if Rails.env.development?
 		# holds an AWS S3 object
 		@s3 = nil
 		@medectomy_bucket = nil
+		askAgain = false;
 		
 		desc "cleans development files & deletes all files from medectomy S3"
-		task :clean_all => :environment do
+		task :clean => :environment do
 
 			# clean the database
 			DatabaseCleaner.strategy = :truncation
@@ -35,57 +36,357 @@ if Rails.env.development?
 			disconnect_s3
 		end
 
-		desc "cleans databases"
-		task :clean_db => :environment do
-
-			# clean the database
-			DatabaseCleaner.strategy = :truncation
-			DatabaseCleaner.start
-			DatabaseCleaner.clean
-			
-		end
-
 		desc ""
 		task :setup => :environment do 
 
 			connect_s3
 
 			# create course folder
-			@medectomy_bucket.objects.create(Pathname.new("Courses/"), "")
+			@medectomy_bucket.objects.create(Pathname.new("courses/"), "")
 			puts "Created course directory"
 
 			disconnect_s3
 
 		end
+		desc "Cleans, uploads, organizes, and structures html all in one"
+		task :redo => :environment  do
+			Rake::Task['dev:clean'].invoke
+			Rake::Task['dev:add_content'].invoke
+			Rake::Task['dev:organize_information'].invoke
+			Rake::Task['dev:structure_html'].invoke
+			Rake::Task['dev:add_database_info'].invoke
+		end
+		task :add_content => :environment do 
 
-		task :accounts_and_univ => :environment do
-			# create ten universities and their corresponding domains
-			University.create(name: "Case Western Reserve").domains.create(name: "case.edu")
-			University.create(name: "University of Southern California").domains.create(name: "usc.edu")
-			University.create(name: "Georgia Tech").domains.create(name: "gatech.edu")
-			University.create(name: "Purdue").domains.create(name: "purdue.edu")
-			University.create(name: "Virginia Tech").domains.create(name: "vt.edu")
-			University.create(name: "Emory").domains.create(name: "emory.edu")
-			University.create(name: "Harvard").domains.create(name: "harvard.edu")
-			University.create(name: "Princeton").domains.create(name: "princeton.edu")
-			University.create(name: "Duke").domains.create(name: "duke.edu")
-			University.create(name: "Ohio State").domains.create(name: "osu.edu")
+			connect_s3			
+			logger = File.open("#{Rails.root}/log/s3log.txt","a")
 
-			# create 100 different students
-			# password for all accounts 'test1234'
-			100.times do
-				User.create(
-					first_name: Faker::Name.first_name,
-					last_name: Faker::Name.last_name,
-					email: "#{Faker::Internet.user_name}@#{Faker::University.domain}",
-					encrypted_password: '$2a$10$dggRr7MIW2QX0i7sMSBk6.ZlSctxBS7GBQioPDGIlZcC1ZPtKe6Eu'
-				)
+			Dir.glob(S3_CONFIG[Rails.env]["content_directory"]).each do |local_file_path|
+
+				file_name = File.basename(local_file_path)
+
+				#Extracts name of the course from the file
+				course_name = file_name.split("_")[0]
+				#Extracts the chapter name from the file
+				chapter_name = file_name.split("_")[1].split("\#")[0]
+				s3_destination = "courses/#{course_name}/#{chapter_name}/"
+				logger = File.open("#{Rails.root}/log/s3log.txt","a")
+				valid = true
+				puts file_name
+				case File.extname(local_file_path)
+
+				when ".png"
+
+					if file_name.include?("#lg")
+						s3_destination+="images/large/#{file_name}"
+						add_new_content(s3_destination, local_file_path,logger)
+					elsif file_name.include?("#sm")
+						s3_destination+="images/small/#{file_name}"
+						add_new_content(s3_destination, local_file_path,logger)
+					elsif file_name.include?("#csm")
+						s3_destination="courses/#{course_name}/information/images/small/#{file_name}"
+						add_new_content(s3_destination, local_file_path,logger)
+					elsif file_name.include?("#clg")
+						s3_destination="courses/#{course_name}/information/images/large/#{file_name}"
+						add_new_content(s3_destination, local_file_path,logger)
+					elsif file_name.include?("#him")
+						s3_destination+="html/images/#{file_name}"
+						add_new_content(s3_destination, local_file_path,logger)
+					else
+						puts "Invalid file: #{File.basename(local_file_path)}"	
+					end
+
+				when ".txt"
+					if file_name.include?('#cdesc')
+						s3_destination="courses/#{course_name}/information/description/#{file_name}"
+						add_new_content(s3_destination, local_file_path,logger)
+					elsif file_name.include?('#desc')
+						s3_destination+="description/#{file_name}"
+						add_new_content(s3_destination, local_file_path,logger)
+					else
+						puts "Invalid file: #{File.basename(local_file_path)}"	
+					end
+				when ".html"
+
+					s3_destination+="html/#{file_name}.erb"
+					add_new_html(s3_destination, local_file_path,logger)
+
+				else 
+					puts "Invalid file: #{File.basename(local_file_path)}"	
+				end
+			end	
+			
+
+
+			# upload course material
+			
+			#Course.create(name: "Microbiology", description: "Teach me how to Microbiology. Everybody Microbiology. I Microbiology real smooth.", image_lg: "", image_sm: "")
+
+		end
+
+		task :structure_html => :environment do
+			#put code to deal with finding last update
+			connect_s3
+			courses_tree = @medectomy_bucket.as_tree(prefix: 'courses/')
+			directories = courses_tree.children.select(&:branch?).collect(&:prefix)
+			course_names = Set.new
+			new_content = Array.new
+			chapter_names = Set.new
+
+			course_list = Dir["#{Rails.root}/resources/structure/courses/*"]
+
+			course_list.each do |course_name|
+				course_name.slice!("#{Rails.root}/resources/structure/courses/")
+				course_names.add course_name
+				course_names.each do |file|
+
+
+				#need to count all chapter directories besides the course information folder
+				chapter_names_all = Dir["#{Rails.root}/resources/structure/courses/#{file}/*"]
+				chapter_names_all.each do |name|
+					if(!name.include?("information"))
+						chapter_names.add name.split("/#{file}/").last
+					end
+				end
+				chapter_names.each do |chapter_name|
+					chapter_content = Dir["#{Rails.root}/resources/structure/courses/#{course_name}/#{chapter_name}/**/*"]
+					images =  Dir["#{Rails.root}/resources/structure/courses/#{course_name}/#{chapter_name}/html/images**/*"]
+					image_base = "#{Rails.root}/resources/structure/courses/#{course_name}/#{chapter_name}/html/images/"
+					chapter_content.each do |file|
+					file = file.split("/resources/structure/").last
+					if(file.include?(".html"))
+
+						@htmlFile = @medectomy_bucket.objects[file +".erb"]
+						htm = @htmlFile.read
+						htmlDoc = Nokogiri::HTML(htm)
+						img_srcs = htmlDoc.css('img').collect(&:to_s)
+						images.each do |image|
+							one_to_use = Array.new
+							image_name = image.split("#him_").last
+							img_srcs.each do |blah|
+								if(blah.include?(image_name))
+									one_to_use.push(blah)
+								end
+							end
+							s3_location = image.split("/resources/structure/").last
+							reg = Regexp.new one_to_use[0]
+							@im = @medectomy_bucket.objects[s3_location]
+							ruby = "<% begin %>\n<% @s3 = AWS::S3.new(access_key_id: S3_CONFIG[Rails.env][\"s3_key\"], secret_access_key: S3_CONFIG[Rails.env][\"s3_secret\"])%>\n<% @medectomy_bucket = @s3.buckets[S3_CONFIG[Rails.env][\"s3_bucket\"]]%> \n <%@file = @medectomy_bucket.objects[\"#{s3_location}\"]%> \n<%=link_to image_tag(@file.url_for(:read).to_s)%>\n<% end %>"
+							htm=htm.gsub(reg,ruby)
+
+
+						end
+						@htmlFile.write(htm)
+					end
+					end
+				end
 			end
 		end
 	end
+		desc "Creates a directory structure from the files uploaded"
+		task :organize_information => :environment do		
+			logger = File.open("#{Rails.root}/log/s3log.txt","a")
+			Dir.glob(S3_CONFIG[Rails.env]["content_directory"]).each do |local_file_path|
+
+				file_name = File.basename(local_file_path)
+
+				#Extracts name of the course from the file
+				course_name = file_name.split("_")[0]
+				#Extracts the chapter name from the file
+				chapter_name = file_name.split("_")[1].split("\#")[0]
+				FileUtils.rm_rf "#{Rails.root}/Struture"
+				s3_destination = "#{Rails.root}/resources/structure/courses/#{course_name}/#{chapter_name}/"
+				valid = true
+				case File.extname(local_file_path)
+
+				when ".png"
+
+					if file_name.include?("#lg")
+						s3_destination+="images/large"
+						organize(s3_destination, local_file_path)
+					elsif file_name.include?("#sm")
+						s3_destination+="images/small"
+						organize(s3_destination, local_file_path)
+					elsif file_name.include?("#csm")
+						s3_destination="#{Rails.root}/resources/structure/courses/#{course_name}/information/images/small"
+						organize(s3_destination, local_file_path)
+					elsif file_name.include?("#clg")
+						s3_destination="#{Rails.root}/resources/structure/courses/#{course_name}/information/images/large"
+						organize(s3_destination, local_file_path)
+					elsif file_name.include?("#him")
+						s3_destination+="html/images"
+						organize(s3_destination,local_file_path)
+					else
+						puts "Invalid file: #{File.basename(local_file_path)}"	
+					end
+
+				when ".txt"
+					if file_name.include?('#cdesc')
+						s3_destination="#{Rails.root}/resources/structure/courses/#{course_name}/information/description"
+						organize(s3_destination, local_file_path)
+					elsif file_name.include?('#desc')
+						s3_destination+="description"
+						organize(s3_destination, local_file_path)
+					else
+						puts "Invalid file: #{File.basename(local_file_path)}"	
+					end
+				when ".html"
+
+					s3_destination+="html"
+					organize(s3_destination, local_file_path)
+				else 
+					puts "Invalid file: #{File.basename(local_file_path)}"	
+				end
+
+			end
+		end
+			task :add_database_info => :environment do 
+			#put code to deal with finding last update
+			connect_s3
+			courses_tree = @medectomy_bucket.as_tree(prefix: 'courses/')
+			directories = courses_tree.children.select(&:branch?).collect(&:prefix)
+			logger = File.open("#{Rails.root}/log/s3log.txt","r")
+			course_names = Set.new
+			new_content = Array.new
+			chapter_names = Set.new
+
+			course_list = Dir["#{Rails.root}/resources/structure/courses/*"]
+
+			course_list.each do |course_name|
+				course_name.slice!("#{Rails.root}/resources/structure/courses/")
+				course_names.add course_name
+				course_content = Dir["#{Rails.root}/resources/structure/courses/#{course_name}/information/**/*"]
+				course_database_information = Hash.new
+				course_database_information[:name] = course_name
+				course_content.each do |file|
+					file = file.split("/resources/structure/").last
+					if(file.include?('#cdesc'))
+						course_database_information[:description] = @medectomy_bucket.objects[file].read
+					elsif(file.include?("#clg"))
+						course_database_information[:icon_lg] = file
+					elsif(file.include?("#csm"))
+						course_database_information[:icon_sm] = file
+					end
+				end
+				@new_course=Course.new(course_database_information)
+				@new_course.save
+				course_names.each do |file|
+
+
+				#need to count all chapter directories besides the course information folder
+				chapter_names_all = Dir["#{Rails.root}/resources/structure/courses/#{file}/*"]
+				chapter_names_all.each do |name|
+					if(!name.include?("information"))
+						chapter_names.add name.split("/#{file}/").last
+					end
+				end
+				chapter_names.each do |chapter_name|
+					@course = Course.find_by name: file
+					chapter_database_information = Hash.new
+					chapter_database_information[:name] = chapter_name.split("-").last
+					chapter_database_information[:number] = chapter_name.split("-").first
+					chapter_database_information[:course_id] = @course.id
+					chapter_content = Dir["#{Rails.root}/resources/structure/courses/#{course_name}/#{chapter_name}/**/*"]
+					chapter_content.each do |file|
+					file = file.split("/resources/structure/").last
+					puts file
+					if(file.include?('#desc'))
+						chapter_database_information[:description] = @medectomy_bucket.objects[file].read
+						puts "desc"
+					elsif(file.include?("#lg"))
+						chapter_database_information[:icon_lg] = file
+						puts "lg"
+					elsif(file.include?("#sm"))
+						chapter_database_information[:icon_sm] = file
+						puts "sm"
+					elsif(file.include?(".html"))
+						chapter_database_information[:directory] = file + '.erb'
+						puts "html"
+					end
+				end
+					@new_chapter = Chapter.new(chapter_database_information)
+					@new_chapter.save
+				end
+			end
+		end
+end
+
+		# initiates connection to Amazon S3
+		def connect_s3
+			if(@s3.nil?)
+					@s3 = AWS::S3.new(access_key_id: S3_CONFIG[Rails.env]["s3_key"], secret_access_key: S3_CONFIG[Rails.env]["s3_secret"])
+					@medectomy_bucket = @s3.buckets[S3_CONFIG[Rails.env]["s3_bucket"]]
+			end
+		end
+
+		# closes connection to Amazon S3
+		def disconnect_s3
+			@s3 = nil
+			@medectomy_bucket = nil
+		end
+
+		def organize(s3_destination,local_file_path)
+			puts s3_destination
+			FileUtils.mkpath(s3_destination)
+			FileUtils.cp local_file_path, s3_destination
+			puts "Organized: #{s3_destination} #{local_file_path}"
+		end
+
+		def add_new_html(s3_destination, local_file_path,logger)
+
+			s3_file = @medectomy_bucket.objects[s3_destination]
+
+			if(s3_file.exists?)
+				puts "File already exists: #{s3_destination}, would you like to overwrite this?"
+				answer = STDIN.gets.chomp.strip
+				# overwrite file
+				if answer == "y" || answer == "yes"
+
+					s3_file.write(Pathname.new(local_file_path))
+					html = s3_file.read
+					nicehtml = Nokogiri::HTML(html).to_html
+					s3_file.write(nicehtml)
+					logger.puts("Overwrote: #{s3_destination}")
+				# skip file	
+				else
+				puts "Skipped file #{s3_destination}"	
+				end
+
+			else
+			@medectomy_bucket.objects.create(s3_destination,Pathname.new(local_file_path))
+			s3_file = @medectomy_bucket.objects[s3_destination]
+			html = s3_file.read
+			nicehtml = Nokogiri::HTML(html).to_html
+			s3_file.write(nicehtml)
+			logger.puts("Stored: #{s3_destination}")
+			end
+
+		end
+		def add_new_content(s3_destination, local_file_path,logger)
+
+			s3_file = @medectomy_bucket.objects[s3_destination]
+
+			if(s3_file.exists?)
+				puts "File already exists: #{s3_destination}, would you like to overwrite this?"
+				answer = STDIN.gets.chomp.strip
+				# overwrite file
+				if answer == "y" || answer == "yes"
+					s3_file.write(Pathname.new(local_file_path))
+					logger.puts("Overwrote: #{s3_destination}")
+				# skip file	
+				else
+				puts "Skipped file #{s3_destination}"	
+				end
+
+			else
+			@medectomy_bucket.objects.create(s3_destination,Pathname.new(local_file_path))
+			logger.puts("Stored: #{s3_destination}")
+			end
+
+		end
+end
 
 else
 	puts "'Development.rake' should only be run in the development environment."
 end
-
 
