@@ -176,6 +176,10 @@ if Rails.env.development?
 
 
 						end
+						reg = Regexp.new(".*<body lang=\"EN-US\">",Regexp::MULTILINE) 
+						htm = htm.gsub(reg,"")
+						reg = Regexp.new("</body>.*</html>",Regexp::MULTILINE)
+						htm = htm.gsub(reg,"")
 						@htmlFile.write(htm)
 					end
 					end
