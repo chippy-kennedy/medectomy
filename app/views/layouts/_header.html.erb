@@ -16,6 +16,7 @@
 
 <div class="nav notify-row" id="top_menu">
     <!--  notification start -->
+    <% if user_signed_in? %>
     <ul class="nav top-menu">
         <!-- notification dropdown start-->
         <li id="header_notification_bar" class="dropdown">
@@ -57,6 +58,7 @@
         </li>
         <!-- notification dropdown end -->
     </ul>
+    <% end %>
     <!--  notification end -->
 </div>
 <div class="top-nav clearfix">
@@ -66,6 +68,7 @@
             <input type="text" class="form-control search" placeholder=" Search">
         </li>
         <!-- user login dropdown start-->
+        <% if user_signed_in? %>
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 <%= image_tag "avatar1_small.jpg" %>
@@ -77,6 +80,7 @@
                 <li><a href="login.html"><i class="fa fa-key"></i> Log Out</a></li>
             </ul>
         </li>
+        <% end %>
         <!-- user login dropdown end -->
         <li>
             <div class="toggle-right-box">

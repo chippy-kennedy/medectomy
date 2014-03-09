@@ -155,34 +155,35 @@ if Rails.env.development?
 					chapter_content.each do |file|
 					file = file.split("/resources/structure/").last
 					if(file.include?(".html"))
+                        puts(file)
+                        @htmlFile = @medectomy_bucket.objects[file +".erb"]
+                        htm = @htmlFile.read
+                        htmlDoc = Nokogiri::HTML(htm)
+                        img_srcs = htmlDoc.css('img')
+                        images.each do |image|
+                            one_to_use = Array.new
+                            image_name = image.split("#him_").last
+                            img_srcs.each do |blah|
+                                if(blah.to_s.include?(image_name))
+                                    one_to_use.push(blah)
+                                end
+                            end
+                            s3_location = image.split("/resources/structure/").last
+                            reg = Regexp.new one_to_use[0].to_s
+                            @im = @medectomy_bucket.objects[s3_location]
+                            ruby = "<% begin %>\n<% @s3 = AWS::S3.new(access_key_id: S3_CONFIG[Rails.env][\"s3_key\"], secret_access_key: S3_CONFIG[Rails.env][\"s3_secret\"])%>\n<% @medectomy_bucket = @s3.buckets[S3_CONFIG[Rails.env][\"s3_bucket\"]]%> \n <%@file = @medectomy_bucket.objects[\"#{s3_location}\"]%> \n<%=@file.url_for(:read).to_s%>\n<% end %>"
+                            one_to_use[0].set_attribute('src',ruby)
+                            htm=htm.gsub(reg,one_to_use[0].to_s)
 
-						@htmlFile = @medectomy_bucket.objects[file +".erb"]
-						htm = @htmlFile.read
-						htmlDoc = Nokogiri::HTML(htm)
-						img_srcs = htmlDoc.css('img').collect(&:to_s)
-						images.each do |image|
-							one_to_use = Array.new
-							image_name = image.split("#him_").last
-							img_srcs.each do |blah|
-								if(blah.include?(image_name))
-									one_to_use.push(blah)
-								end
-							end
-							s3_location = image.split("/resources/structure/").last
-							reg = Regexp.new one_to_use[0]
-							@im = @medectomy_bucket.objects[s3_location]
-							ruby = "<% begin %>\n<% @s3 = AWS::S3.new(access_key_id: S3_CONFIG[Rails.env][\"s3_key\"], secret_access_key: S3_CONFIG[Rails.env][\"s3_secret\"])%>\n<% @medectomy_bucket = @s3.buckets[S3_CONFIG[Rails.env][\"s3_bucket\"]]%> \n <%@file = @medectomy_bucket.objects[\"#{s3_location}\"]%> \n<%=link_to image_tag(@file.url_for(:read).to_s)%>\n<% end %>"
-							htm=htm.gsub(reg,ruby)
 
-
-						end
-						reg = Regexp.new(".*<body lang=\"EN-US\">",Regexp::MULTILINE) 
-						htm = htm.gsub(reg,"")
-						reg = Regexp.new("</body>.*</html>",Regexp::MULTILINE)
-						htm = htm.gsub(reg,"")
-						@htmlFile.write(htm)
-					end
-					end
+                        end
+                        reg = Regexp.new(".*<body lang=\"EN-US\">",Regexp::MULTILINE) 
+                        htm = htm.gsub(reg,"")
+                        reg = Regexp.new("</body>.*</html>",Regexp::MULTILINE)
+                        htm = htm.gsub(reg,"")
+                        @htmlFile.write(htm)
+                    end
+                    end
 				end
 			end
 		end

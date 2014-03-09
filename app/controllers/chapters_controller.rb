@@ -13,7 +13,8 @@ class ChaptersController < ApplicationController
 		# pull content from s3
 		@s3 = AWS::S3.new(access_key_id: S3_CONFIG[Rails.env]["s3_key"], secret_access_key: S3_CONFIG[Rails.env]["s3_secret"])
 		@medectomy_bucket = @s3.buckets[S3_CONFIG[Rails.env]["s3_bucket"]] 
-		@file = @medectomy_bucket.objects[@chapter.directory].read
+		
+		@partial_file =  ERB.new(@medectomy_bucket.objects[@chapter.directory].read).result(binding)
 
 		render "/chapters/show"
 	end
