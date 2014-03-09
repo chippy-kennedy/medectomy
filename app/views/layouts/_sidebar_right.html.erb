@@ -16,6 +16,7 @@
         <span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
     </a>
 </li>
+<% if user_signed_in? %>
 <li class="widget-collapsible">
     <a href="#" class="head widget-head purple-bg active">
         <span class="pull-left"> recent activity (3)</span>
@@ -65,6 +66,7 @@
         </li>
     </ul>
 </li>
+<% end %>
 </ul>
 </div>
 <!--right sidebar end-->

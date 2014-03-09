@@ -17,9 +17,9 @@
   <%= f.submit "Sign in", class:"btn btn-lg btn-login btn-block" %>
   <div class="registration">
     Don't have an account yet?
-    <a class="" href="#">
-        Create an account
-    </a>
+    <%= link_to(new_user_registration_path) do%>
+      "Create an account"
+    <% end %>
   </div>
 
   <%= render "devise/passwords/new" %>

@@ -9,6 +9,6 @@ Medectomy::Application.routes.draw do
   # route for user profile
   get 'profile', :to => 'users#index'
 
-  root to: 'chapters#index'
+  root to: 'pages#home'
   
 end

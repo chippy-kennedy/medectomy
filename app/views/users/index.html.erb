@@ -13,14 +13,20 @@
           <div class="col-md-6">
             <div class="profile-desk">
               <h1>
-                John Doe
+                <%= "#{current_user.first_name} #{current_user.last_name}" %>
               </h1>
               <span class="text-muted">
-                Case Western Reserve University
+                <%= current_user.university %>
               </span>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean porttitor vestibulum imperdiet. Ut auctor accumsan erat, a vulputate metus tristique non. Aliquam aliquam vel orci quis sagittis.
-              </p>
+              <div>
+                <p>
+                  <% if(current_user.description.blank?) %>
+                    Please update your bio.
+                  <% else %>
+                  <%= current_user.description %>
+                  <% end %>
+                </p>
+              </div>
             </div>
           </div>
           <div class="col-md-3">
@@ -29,13 +35,13 @@
                 Member Since
               </h1>
               <p>
-                10/12/2014
+                <%= current_user.created_at.to_formatted_s(:month_day_year) %>
               </p>
               <h1>
                 Last Active
               </h1>
               <p>
-                6:00pm on 10/24/2014
+                <%= current_user.updated_at.to_formatted_s(:month_day_year) %>
               </p>
               <ul>
                 <li>

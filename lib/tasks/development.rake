@@ -155,10 +155,9 @@ if Rails.env.development?
 					chapter_content.each do |file|
 					file = file.split("/resources/structure/").last
 					if(file.include?(".html"))
-                        puts(file)
                         @htmlFile = @medectomy_bucket.objects[file +".erb"]
                         htm = @htmlFile.read
-                        htmlDoc = Nokogiri::HTML(htm)
+                        htmlDoc = Nokogiri::HTML(htm,"ascii-us")
                         img_srcs = htmlDoc.css('img')
                         images.each do |image|
                             one_to_use = Array.new
@@ -171,16 +170,41 @@ if Rails.env.development?
                             s3_location = image.split("/resources/structure/").last
                             reg = Regexp.new one_to_use[0].to_s
                             @im = @medectomy_bucket.objects[s3_location]
-                            ruby = "<% begin %>\n<% @s3 = AWS::S3.new(access_key_id: S3_CONFIG[Rails.env][\"s3_key\"], secret_access_key: S3_CONFIG[Rails.env][\"s3_secret\"])%>\n<% @medectomy_bucket = @s3.buckets[S3_CONFIG[Rails.env][\"s3_bucket\"]]%> \n <%@file = @medectomy_bucket.objects[\"#{s3_location}\"]%> \n<%=@file.url_for(:read).to_s%>\n<% end %>"
-                            one_to_use[0].set_attribute('src',ruby)
-                            htm=htm.gsub(reg,one_to_use[0].to_s)
+                            fuckk = Array.new
+                            fuckk.push("<img")
+                            ruby = "<%begin%><%@s3=AWS::S3.new(access_key_id:S3_CONFIG[Rails.env][\"s3_key\"],secret_access_key:S3_CONFIG[Rails.env][\"s3_secret\"])%><%@medectomy_bucket=@s3.buckets[S3_CONFIG[Rails.env][\"s3_bucket\"]]%><%@file=@medectomy_bucket.objects[\"#{s3_location}\"]%><%s=@file.url_for(:read,:secure false).to_s%><%= \"\\\"\" + s + \"\\\"\" %><%end%>"
+                            one_to_use[0].attribute('src').value =ruby
+                            one_to_use[0].attributes.each do |fuc|
+                            	if(fuc.last.to_s.include?(ruby))
+                            		fuckk.push("src= " + fuc.last.to_s)
+                            	else
+                            		fuckk.push(fuc.last.to_html)
+                            	end
+                            end
+                            fuckk.push(">")
+                            ass = fuckk.join("")
+                            replace = one_to_use[0].to_s
+                            stuff = replace.split(" ")
+                            newOne = Array.new
+                            stuff.each do |test|
 
+                            	if(test.include?(s3_location))
+                            		thing = test.gsub("src=\"","")
+                            		thing = thing.gsub("\"","")
+                            		newOne.push(thing)
+                            	else
+                            		newOne.push(test)
+                            	end
 
+                            end
+ 
+                            htm=htm.gsub(reg,ass)
                         end
                         reg = Regexp.new(".*<body lang=\"EN-US\">",Regexp::MULTILINE) 
                         htm = htm.gsub(reg,"")
                         reg = Regexp.new("</body>.*</html>",Regexp::MULTILINE)
                         htm = htm.gsub(reg,"")
+                        htm= htm.gsub(/(&lt;%|%&gt;)/) {|x| x=='&lt;%' ? '<%' : '%>'}
                         @htmlFile.write(htm)
                     end
                     end
@@ -394,4 +418,3 @@ end
 else
 	puts "'Development.rake' should only be run in the development environment."
 end
-
