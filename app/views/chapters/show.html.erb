@@ -129,7 +129,7 @@
           </span>
         </header>
         <div class="panel-body">
-          <%= raw(@file.read) %>
+          <%= render @file, layout: true %>
         </div>
         <div class="text-center">
           <ul class="pagination">
