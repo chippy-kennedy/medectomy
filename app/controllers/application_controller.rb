@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
-  before_filter :debug_helper, if: :devise_controller?
+  before_filter :detect_university, if: :devise_controller?
 
   # ensures authentication occurs in every action
   check_authorization :unless => :devise_controller?
@@ -24,14 +24,24 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
 
-    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:first_name, :last_name) }
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :first_name, :last_name, :university_id) }
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, :password) }
 
   end
 
-  def debug_helper
+  def detect_university
+    if params[:action] == "create"
+      # try to find a matching domain
+      domain = Domain.where(name: params[:user][:email].split("@").last).first
 
-    debugger
+      if domain.nil?
+        flash[:notice] = "Your institution does not currently have access to Medectomy. Feel free to contact us for a personal account."
+        redirect_to root
+      else
+        params[:user][:university_id] = domain.university_id
+      end
+      debugger
+    end
 
   end
 
