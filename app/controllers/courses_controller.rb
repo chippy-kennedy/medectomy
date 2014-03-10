@@ -1,7 +1,5 @@
 class CoursesController < ApplicationController
 
-	skip_authorization_check
-
 	def index
 		render "courses/index"
 	end

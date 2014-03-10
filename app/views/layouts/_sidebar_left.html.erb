@@ -1,52 +1,27 @@
 <!--sidebar-left start-->
 <aside>
     <div id="sidebar" class="nav-collapse">
+        <% if current_user.courses.nil? %>
+        <div> Enroll in a course to get started!</div>
+        <% else %>
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
+            <% current_user.courses.each do |course| %>
             <li class="sub-menu">
                 <a class="active" href="javascript:;">
                     <i class="fa fa-book"></i>
-                    <span>Microbiology</span>
+                    <span><%= course.name %></span>
                 </a>
                 <ul class="sub">
-                    <li class="active"><a href="#">CH1: Virology</a></li>
-                    <li><a href="#">CH2: Immunology</a></li>
-                    <li><a href="#">CH3: Bacteriology</a></li>
-                    <li><a href="#">CH4: Pathogens</a></li>
-                    <li><a href="#">CH5: Epidemiology</a></li>
-                    <li><a href="#">CH6: Bioterrorism</a></li>
+                    <% course.chapters.each do |chapter| %>
+                    <li class=""><a href="#"><% chapter.name %></a></li>
+                    <% end %>
                 </ul>
             </li>
-            <li class="sub-menu">
-                <a href="javascript:;">
-                    <i class="fa fa-book"></i>
-                    <span>Biology</span>
-                </a>
-                <ul class="sub">
-                    <li><a href="#">CH1: Virology</a></li>
-                    <li><a href="#">CH2: Immunology</a></li>
-                    <li><a href="#">CH3: Bacteriology</a></li>
-                    <li><a href="#">CH4: Pathogens</a></li>
-                    <li><a href="#">CH5: Epidemiology</a></li>
-                    <li><a href="#">CH6: Bioterrorism</a></li>
-                </ul>
-            </li>
-            <li class="sub-menu">
-                <a href="javascript:;">
-                    <i class="fa fa-book"></i>
-                    <span>Organic Chemistry</span>
-                </a>
-                <ul class="sub">
-                    <li><a href="#">CH1: Virology</a></li>
-                    <li><a href="#">CH2: Immunology</a></li>
-                    <li><a href="#">CH3: Bacteriology</a></li>
-                    <li><a href="#">CH4: Pathogens</a></li>
-                    <li><a href="#">CH5: Epidemiology</a></li>
-                    <li><a href="#">CH6: Bioterrorism</a></li>
-                </ul>
-            </li>
+            <% end %>
         </ul>
         <!-- sidebar menu end-->
+        <% end %>
     </div>
 </aside>
 <!--sidebar-left end-->

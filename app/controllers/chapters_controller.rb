@@ -1,6 +1,5 @@
 class ChaptersController < ApplicationController
 	
-	skip_authorization_check
 
 	def index
 		render "chapters/index"
