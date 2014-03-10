@@ -9,5 +9,15 @@ module Faker
       end
     end
   end
+
+  class Course < Base
+    flexible :name
+
+    class << self
+      def name
+        fetch('course.name')
+      end
+    end
+  end
   
 end

@@ -4,5 +4,8 @@
 en:
   faker:
     eduemail: [case.edu, usc.edu, gatech.edu, purdue.edu, vt.edu, emory.edu, harvard.edu, princeton.edu, duke.edu, osu.edu]
+
+    course: 
+      name: [Basic Drawing, Graphic Communication, Digital Drawing, Understand Architecture, Visual Studies, Architecture Design I, History of Architecture I, Structures I, Design Fundamentals I, Special Topics in Architecture, Intro Engineering, Intro to Sociology, Performance, Intro to Computers & Programming, Public & Small Group Communication, Intro to Anthropology, Intro to the Solar System, Ancient Greek World, Elementary Greek I, Elementary Latin I]
     
 

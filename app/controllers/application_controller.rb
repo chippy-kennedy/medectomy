@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
-  before_filter :detect_university, if: :devise_controller?
+  #before_filter :detect_university, if: :devise_controller?
 
   # ensures authentication occurs in every action
   check_authorization :unless => :devise_controller?
@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   end
 
   def detect_university
-    if params[:action] == "create"
+    if params[:action] == "create" && params[:controller] = "devise/registrations"
       # try to find a matching domain
       domain = Domain.where(name: params[:user][:email].split("@").last).first
 
