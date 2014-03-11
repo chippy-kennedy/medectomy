@@ -134,8 +134,9 @@ if Rails.env.development?
 				#Extracts the chapter name from the file
 				chapter_name = file_name.split("_")[1].split("\#")[0]
         FileUtils.rm_rf "#{Rails.root}/resources/struture"
+         FileUtils.rm_rf "#{Rails.root}/resources/struture"
 				s3_destination = "#{Rails.root}/resources/structure/courses/#{course_name}/#{chapter_name}/"
-				valid = true
+        valid = true
 				case File.extname(local_file_path)
 
 				when ".png"
@@ -187,7 +188,7 @@ if Rails.env.development?
 			logger = File.open("#{Rails.root}/log/s3log.txt","r")
 
 			course_list = Dir["#{Rails.root}/resources/structure/courses/*"]
-      course_list.map! {|course| course.split("/").last}
+      course_list.map! {|c| c.split("/").last}
 			course_list.each do |course_name|
     
 			new_content = Array.new
@@ -206,18 +207,15 @@ if Rails.env.development?
 					end
 				end
         Course.new(course_database_information).save
-				course_names.each do |file|
-
-
-				#need to count all chapter directories besides the course information folder
-				chapter_names_all = Dir["#{Rails.root}/resources/structure/courses/#{file}/*"]
+    #need to count all chapter directories besides the course information folder
+        chapter_names_all = Dir["#{Rails.root}/resources/structure/courses/#{course_name}/*"]
 				chapter_names_all.each do |name|
 					if(!name.include?("information"))
-						chapter_names.add name.split("/#{file}/").last
+            chapter_names.add name.split("/#{course_name}/").last
 					end
 				end
 				chapter_names.each do |chapter_name|
-					@course = Course.find_by name: file
+          @course = Course.find_by name: course_name
 					chapter_database_information = Hash.new
 					chapter_database_information[:name] = chapter_name.split("-").last
 					chapter_database_information[:number] = chapter_name.split("-").first
@@ -236,12 +234,10 @@ if Rails.env.development?
 						end
 					end
           
-          debugger
           Chapter.new(chapter_database_information).save
 				end
 			end
 		end
-	end
 
 		# initiates connection to Amazon S3
 		def connect_s3
