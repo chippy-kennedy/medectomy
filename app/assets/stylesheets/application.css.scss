@@ -1,9 +1,6 @@
 // Bootstrap
 @import "bootstrap";  
 
-// Base
-@import "base/helpers";
-
 // Fonts
 @import "font-awesome";
 
@@ -15,6 +12,10 @@
 @import "jplayer.blue.monday";
 @import "style";
 @import "style-responsive";
+
+// Base
+@import "base/helpers";
+@import "base/custom";
 
 // Modules
 @import "modules/course";

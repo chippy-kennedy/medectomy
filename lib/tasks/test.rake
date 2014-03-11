@@ -72,10 +72,10 @@ if Rails.env.development?
               # uses the directory structure to get the key for the image in s3
               s3_image_key = Dir["#{Rails.root}/resources/structure/courses/#{course_name}/#{chapter_name}/html/images/**/*#{img_name}"][0].split("/resources/structure/").last
               ruby = "<%begin%><%@s3=AWS::S3.new(access_key_id:S3_CONFIG[Rails.env][\"s3_key\"],secret_access_key:S3_CONFIG[Rails.env][\"s3_secret\"])%><%@medectomy_bucket=@s3.buckets[S3_CONFIG[Rails.env][\"s3_bucket\"]]%><%=image_tag(@medectomy_bucket.objects[\"#{s3_image_key}\"].url_for(:read).to_s)%><%@medectomy_bucket = nil%> <%@s3=nil%><%end%>"
-              reg = Regexp.new(old_url.to_s)
+              reg = Regexp.new(Regexp.escape(old_url))
               html_string = html_string.gsub(reg,ruby)
             end
-           reg = Regexp.new(".*<body lang=\"EN-US\">",Regexp::MULTILINE) 
+            reg = Regexp.new(".*<head>.*</head>",Regexp::MULTILINE) 
            html_string = html_string.gsub(reg,"")
            reg = Regexp.new("</body>.*</html>",Regexp::MULTILINE)
            html_string= html_string.gsub(reg,"")

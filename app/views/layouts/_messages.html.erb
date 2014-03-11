@@ -1,9 +1,9 @@
-<section id="notifications" class="container">
+<div id="notifications" class="panel-body">
 	<% flash.each do |name, msg| %>
-	    <div class="medium-margin-top alert alert-<%= name == :notice ? "success" : "error" %>">
+  <div class="alert alert-<%= name == :notice ? "info" : "danger" %>">
 	      <a class="close" data-dismiss="alert">&#215;</a>
 	      <%= content_tag :div, msg, :id => "flash_#{name}" %>
 	    </div>
 	<% end %>
-</section>
+</div>
 

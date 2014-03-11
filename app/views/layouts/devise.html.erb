@@ -9,9 +9,9 @@
 
 </head>
 <body class="login-body">
-	<%= render partial: "layouts/messages" %>
-	<%= devise_error_messages! %>
 	<div class="container">
+    <%= render partial: "layouts/messages" %>
+	  <%= devise_error_messages! %>
 		<%= yield %>
 	</div>
 </body>

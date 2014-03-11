@@ -20,7 +20,7 @@ if Rails.env.development?
 		task :clean => :environment do
 
 			# clean the database
-			DatabaseCleaner.strategy = :truncation, {:only => %w[chapters courses]}
+      DatabaseCleaner.strategy = :truncation, {:only => %w[chapters courses enrollments]}
 			DatabaseCleaner.start
 			DatabaseCleaner.clean
 
@@ -185,15 +185,13 @@ if Rails.env.development?
 			courses_tree = @medectomy_bucket.as_tree(prefix: 'courses/')
 			directories = courses_tree.children.select(&:branch?).collect(&:prefix)
 			logger = File.open("#{Rails.root}/log/s3log.txt","r")
-			course_names = Set.new
-			new_content = Array.new
-			chapter_names = Set.new
 
 			course_list = Dir["#{Rails.root}/resources/structure/courses/*"]
-
+      course_list.map! {|course| course.split("/").last}
 			course_list.each do |course_name|
-				course_name.slice!("#{Rails.root}/resources/structure/courses/")
-				course_names.add course_name
+    
+			new_content = Array.new
+			chapter_names = Set.new
 				course_content = Dir["#{Rails.root}/resources/structure/courses/#{course_name}/information/**/*"]
 				course_database_information = Hash.new
 				course_database_information[:name] = course_name
@@ -207,8 +205,7 @@ if Rails.env.development?
 						course_database_information[:icon_sm] = file
 					end
 				end
-				@new_course=Course.new(course_database_information)
-				@new_course.save
+        Course.new(course_database_information).save
 				course_names.each do |file|
 
 
@@ -238,8 +235,9 @@ if Rails.env.development?
 							chapter_database_information[:directory] = file + '.erb'
 						end
 					end
-					@new_chapter = Chapter.new(chapter_database_information)
-					@new_chapter.save
+          
+          debugger
+          Chapter.new(chapter_database_information).save
 				end
 			end
 		end
