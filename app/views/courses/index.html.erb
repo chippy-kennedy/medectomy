@@ -1,6 +1,7 @@
 <section class="wrapper">
   <!-- page start-->
   <div class="row">
+    <% @courses.each do |course| %>
     <div class="col-md-3">
       <!--widget start-->
       <aside class="profile-nav alt">
@@ -13,20 +14,20 @@
               </div>
             </a>
             <h1>
-              Microbiology
+              <%= course.name %>
             </h1>
           </div>
           
-          <div class="panel-group m-bot20" id="accordion">
+          <div class="panel-group m-bot20" id="<%= "#{course.name}-accordion" %>">
             <div class="panel">
               <div class="panel-heading">
                 <h4 class="panel-title text-center">
-                  <a class="text-center accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                  <a class="text-center accordion-toggle collapsed" data-toggle="collapse" data-parent="#<%= "#{course.name}-accordion" %>" href="#<%= "accordion-#{course.name}" %>">
                     Chapters
                   </a>
                 </h4>
               </div>
-              <div id="collapseOne" class="panel-collapse collapse" style="height: 0px;">
+              <div id="<%= "accordion-#{course.name}" %>" class="panel-collapse collapse" style="height: 0px;">
                 <div class="panel-body">
                   <table class="table">
                     <thead>
@@ -40,30 +41,16 @@
                       </tr>
                     </thead>
                     <tbody>
+                      <% course.chapters.each do |chapter| %>
                       <tr>
                         <td>
-                          1
+                          <%= chapter.id %>
                         </td>
                         <td>
-                          Virology
+                          <%= chapter.name %>
                         </td>
                       </tr>
-                      <tr>
-                        <td>
-                          2
-                        </td>
-                        <td>
-                          Immunology
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          3
-                        </td>
-                        <td>
-                          Bacteriology
-                        </td>
-                      </tr>
+                    <% end %>
                     </tbody>
                   </table>
                 </div>
@@ -74,7 +61,7 @@
       </aside>
       <!--widget end-->
     </div>
-    
+    <% end %>
   </div>
   <!-- page end-->
 </section>

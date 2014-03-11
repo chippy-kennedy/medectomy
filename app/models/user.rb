@@ -36,5 +36,4 @@ class User < ActiveRecord::Base
 			self.university_id = domain.university_id
 		end
 	end
-
 end

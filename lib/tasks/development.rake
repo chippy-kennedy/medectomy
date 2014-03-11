@@ -1,13 +1,12 @@
 # Rake task to generate testing data for use in the development environment
 
-#require 'populator'
 require 'faker'
 require 'ext/faker'
 require 'database_cleaner'
 require 'fileutils'
 
 #include AWS::S3
-
+ 
 if Rails.env.development?
 
 	namespace :dev do
@@ -21,7 +20,7 @@ if Rails.env.development?
 		task :clean => :environment do
 
 			# clean the database
-			DatabaseCleaner.strategy = :truncation
+			DatabaseCleaner.strategy = :truncation, {:only => %w[chapters courses]}
 			DatabaseCleaner.start
 			DatabaseCleaner.clean
 
@@ -60,9 +59,9 @@ if Rails.env.development?
 
 			connect_s3			
 			logger = File.open("#{Rails.root}/log/s3log.txt","a")
-
-			Dir.glob(S3_CONFIG[Rails.env]["content_directory"]).each do |local_file_path|
-
+			content_directory = S3_CONFIG[Rails.env]["content_directory"]
+			new_content = Dir.glob(content_directory)
+			new_content.each do |local_file_path|
 				file_name = File.basename(local_file_path)
 
 				#Extracts name of the course from the file
@@ -123,95 +122,6 @@ if Rails.env.development?
 			#Course.create(name: "Microbiology", description: "Teach me how to Microbiology. Everybody Microbiology. I Microbiology real smooth.", image_lg: "", image_sm: "")
 
 		end
-
-		task :structure_html => :environment do
-			#put code to deal with finding last update
-			connect_s3
-			courses_tree = @medectomy_bucket.as_tree(prefix: 'courses/')
-			directories = courses_tree.children.select(&:branch?).collect(&:prefix)
-			course_names = Set.new
-			new_content = Array.new
-			chapter_names = Set.new
-
-			course_list = Dir["#{Rails.root}/resources/structure/courses/*"]
-
-			course_list.each do |course_name|
-				course_name.slice!("#{Rails.root}/resources/structure/courses/")
-				course_names.add course_name
-				course_names.each do |file|
-
-
-				#need to count all chapter directories besides the course information folder
-				chapter_names_all = Dir["#{Rails.root}/resources/structure/courses/#{file}/*"]
-				chapter_names_all.each do |name|
-					if(!name.include?("information"))
-						chapter_names.add name.split("/#{file}/").last
-					end
-				end
-				chapter_names.each do |chapter_name|
-					chapter_content = Dir["#{Rails.root}/resources/structure/courses/#{course_name}/#{chapter_name}/**/*"]
-					images =  Dir["#{Rails.root}/resources/structure/courses/#{course_name}/#{chapter_name}/html/images**/*"]
-					image_base = "#{Rails.root}/resources/structure/courses/#{course_name}/#{chapter_name}/html/images/"
-					chapter_content.each do |file|
-					file = file.split("/resources/structure/").last
-					if(file.include?(".html"))
-                        @htmlFile = @medectomy_bucket.objects[file +".erb"]
-                        htm = @htmlFile.read
-                        htmlDoc = Nokogiri::HTML(htm,"ascii-us")
-                        img_srcs = htmlDoc.css('img')
-                        images.each do |image|
-                            one_to_use = Array.new
-                            image_name = image.split("#him_").last
-                            img_srcs.each do |blah|
-                                if(blah.to_s.include?(image_name))
-                                    one_to_use.push(blah)
-                                end
-                            end
-                            s3_location = image.split("/resources/structure/").last
-                            reg = Regexp.new one_to_use[0].to_s
-                            @im = @medectomy_bucket.objects[s3_location]
-                            fuckk = Array.new
-                            fuckk.push("<img")
-                            ruby = "<%begin%><%@s3=AWS::S3.new(access_key_id:S3_CONFIG[Rails.env][\"s3_key\"],secret_access_key:S3_CONFIG[Rails.env][\"s3_secret\"])%><%@medectomy_bucket=@s3.buckets[S3_CONFIG[Rails.env][\"s3_bucket\"]]%><%@file=@medectomy_bucket.objects[\"#{s3_location}\"]%><%s=@file.url_for(:read,:secure false).to_s%><%= \"\\\"\" + s + \"\\\"\" %><%end%>"
-                            one_to_use[0].attribute('src').value =ruby
-                            one_to_use[0].attributes.each do |fuc|
-                            	if(fuc.last.to_s.include?(ruby))
-                            		fuckk.push("src= " + fuc.last.to_s)
-                            	else
-                            		fuckk.push(fuc.last.to_html)
-                            	end
-                            end
-                            fuckk.push(">")
-                            ass = fuckk.join("")
-                            replace = one_to_use[0].to_s
-                            stuff = replace.split(" ")
-                            newOne = Array.new
-                            stuff.each do |test|
-
-                            	if(test.include?(s3_location))
-                            		thing = test.gsub("src=\"","")
-                            		thing = thing.gsub("\"","")
-                            		newOne.push(thing)
-                            	else
-                            		newOne.push(test)
-                            	end
-
-                            end
- 
-                            htm=htm.gsub(reg,ass)
-                        end
-                        reg = Regexp.new(".*<body lang=\"EN-US\">",Regexp::MULTILINE) 
-                        htm = htm.gsub(reg,"")
-                        reg = Regexp.new("</body>.*</html>",Regexp::MULTILINE)
-                        htm = htm.gsub(reg,"")
-                        htm= htm.gsub(/(&lt;%|%&gt;)/) {|x| x=='&lt;%' ? '<%' : '%>'}
-                        @htmlFile.write(htm)
-                    end
-                    end
-				end
-			end
-		end
-	end
 		desc "Creates a directory structure from the files uploaded"
 		task :organize_information => :environment do		
 			logger = File.open("#{Rails.root}/log/s3log.txt","a")
@@ -223,7 +133,7 @@ if Rails.env.development?
 				course_name = file_name.split("_")[0]
 				#Extracts the chapter name from the file
 				chapter_name = file_name.split("_")[1].split("\#")[0]
-				FileUtils.rm_rf "#{Rails.root}/Struture"
+        FileUtils.rm_rf "#{Rails.root}/resources/struture"
 				s3_destination = "#{Rails.root}/resources/structure/courses/#{course_name}/#{chapter_name}/"
 				valid = true
 				case File.extname(local_file_path)
@@ -269,7 +179,7 @@ if Rails.env.development?
 
 			end
 		end
-			task :add_database_info => :environment do 
+		task :add_database_info => :environment do 
 			#put code to deal with finding last update
 			connect_s3
 			courses_tree = @medectomy_bucket.as_tree(prefix: 'courses/')
@@ -317,34 +227,29 @@ if Rails.env.development?
 					chapter_database_information[:course_id] = @course.id
 					chapter_content = Dir["#{Rails.root}/resources/structure/courses/#{course_name}/#{chapter_name}/**/*"]
 					chapter_content.each do |file|
-					file = file.split("/resources/structure/").last
-					puts file
-					if(file.include?('#desc'))
-						chapter_database_information[:description] = @medectomy_bucket.objects[file].read
-						puts "desc"
-					elsif(file.include?("#lg"))
-						chapter_database_information[:icon_lg] = file
-						puts "lg"
-					elsif(file.include?("#sm"))
-						chapter_database_information[:icon_sm] = file
-						puts "sm"
-					elsif(file.include?(".html"))
-						chapter_database_information[:directory] = file + '.erb'
-						puts "html"
+						file = file.split("/resources/structure/").last
+						if(file.include?('#desc'))
+							chapter_database_information[:description] = @medectomy_bucket.objects[file].read
+						elsif(file.include?("#lg"))
+							chapter_database_information[:icon_lg] = file
+						elsif(file.include?("#sm"))
+							chapter_database_information[:icon_sm] = file
+						elsif(file.include?(".html"))
+							chapter_database_information[:directory] = file + '.erb'
+						end
 					end
-				end
 					@new_chapter = Chapter.new(chapter_database_information)
 					@new_chapter.save
 				end
 			end
 		end
-end
+	end
 
 		# initiates connection to Amazon S3
 		def connect_s3
 			if(@s3.nil?)
-					@s3 = AWS::S3.new(access_key_id: S3_CONFIG[Rails.env]["s3_key"], secret_access_key: S3_CONFIG[Rails.env]["s3_secret"])
-					@medectomy_bucket = @s3.buckets[S3_CONFIG[Rails.env]["s3_bucket"]]
+				@s3 = AWS::S3.new(access_key_id: S3_CONFIG[Rails.env]["s3_key"], secret_access_key: S3_CONFIG[Rails.env]["s3_secret"])
+				@medectomy_bucket = @s3.buckets[S3_CONFIG[Rails.env]["s3_bucket"]]
 			end
 		end
 
@@ -377,42 +282,42 @@ end
 					s3_file.write(nicehtml)
 					logger.puts("Overwrote: #{s3_destination}")
 				# skip file	
-				else
-				puts "Skipped file #{s3_destination}"	
-				end
-
 			else
+				puts "Skipped file #{s3_destination}"	
+			end
+
+		else
 			@medectomy_bucket.objects.create(s3_destination,Pathname.new(local_file_path))
 			s3_file = @medectomy_bucket.objects[s3_destination]
 			html = s3_file.read
 			nicehtml = Nokogiri::HTML(html).to_html
 			s3_file.write(nicehtml)
 			logger.puts("Stored: #{s3_destination}")
-			end
-
 		end
-		def add_new_content(s3_destination, local_file_path,logger)
 
-			s3_file = @medectomy_bucket.objects[s3_destination]
+	end
+	def add_new_content(s3_destination, local_file_path,logger)
 
-			if(s3_file.exists?)
-				puts "File already exists: #{s3_destination}, would you like to overwrite this?"
-				answer = STDIN.gets.chomp.strip
+		s3_file = @medectomy_bucket.objects[s3_destination]
+
+		if(s3_file.exists?)
+			puts "File already exists: #{s3_destination}, would you like to overwrite this?"
+			answer = STDIN.gets.chomp.strip
 				# overwrite file
 				if answer == "y" || answer == "yes"
 					s3_file.write(Pathname.new(local_file_path))
 					logger.puts("Overwrote: #{s3_destination}")
 				# skip file	
-				else
-				puts "Skipped file #{s3_destination}"	
-				end
-
 			else
-			@medectomy_bucket.objects.create(s3_destination,Pathname.new(local_file_path))
-			logger.puts("Stored: #{s3_destination}")
+				puts "Skipped file #{s3_destination}"	
 			end
 
+		else
+			@medectomy_bucket.objects.create(s3_destination,Pathname.new(local_file_path))
+			logger.puts("Stored: #{s3_destination}")
 		end
+
+	end
 end
 
 else

@@ -1,6 +1,9 @@
 class CoursesController < ApplicationController
-
+  
+  skip_authorization_check
+  
 	def index
+    @courses = Course.all
 		render "courses/index"
 	end
 

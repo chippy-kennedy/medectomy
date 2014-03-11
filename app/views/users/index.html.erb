@@ -16,7 +16,7 @@
                 <%= "#{current_user.first_name} #{current_user.last_name}" %>
               </h1>
               <span class="text-muted">
-                <%= current_user.university %>
+                <%= current_user.university.name %>
               </span>
               <div>
                 <p>
@@ -167,45 +167,27 @@
                     <h3 class="prf-border-head">
                       enrolled in
                     </h3>
-                    <div class=" wk-progress pf-status">
-                      <div class="col-md-7 col-xs-7">
-                        Microbiology
+                    <% if @enrollments.nil? %>
+                      <div class=" wk-progress pf-status">
+                        enroll in a course to get started!
                       </div>
-                      <div class="col-md-5 col-xs-5">
-                        <button type="button" class="btn btn-primary btn-info btn-xs">
-                          View
-                        </button>
-                        <button type="button" class="btn btn-primary btn-danger btn-xs">
-                          Withdraw
-                        </button>
+                    <% else %> 
+                      <% @enrollments.each do |enrollment| %>
+                      <div class=" wk-progress pf-status">
+                        <div class="col-md-7 col-xs-7">
+                          <%= enrollment.course.name %>
+                        </div>
+                        <div class="col-md-5 col-xs-5">
+                          <button type="button" class="btn btn-primary btn-info btn-xs">
+                            View
+                          </button>
+                          <button type="button" class="btn btn-primary btn-danger btn-xs">
+                            Withdraw
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                    <div class=" wk-progress pf-status">
-                      <div class="col-md-7 col-xs-7">
-                        Modern Physics
-                      </div>
-                      <div class="col-md-5 col-xs-5">
-                        <button type="button" class="btn btn-primary btn-info btn-xs">
-                          View
-                        </button>
-                        <button type="button" class="btn btn-primary btn-danger btn-xs">
-                          Withdraw
-                        </button>
-                      </div>
-                    </div>
-                    <div class=" wk-progress pf-status">
-                      <div class="col-md-7 col-xs-7">
-                        Virology
-                      </div>
-                      <div class="col-md-5 col-xs-5">
-                        <button type="button" class="btn btn-primary btn-info btn-xs">
-                          View
-                        </button>
-                        <button type="button" class="btn btn-primary btn-danger btn-xs">
-                          Withdraw
-                        </button>
-                      </div>
-                    </div>
+                      <% end %>
+                    <% end %>
                   </div>
                 </div>
               </div>

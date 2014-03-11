@@ -1,8 +1,0 @@
-# Amazon S3 Configuration
-development: 
-  s3_bucket: 
-  s3_key: 
-  s3_secret: 
-
-  content_directory: 
-
