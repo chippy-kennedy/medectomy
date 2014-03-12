@@ -171,7 +171,7 @@ a,a:hover,a:focus {
     height:17px;
     width:17px;
     display:inline-block;
-    background:url(../images/acc-expand.png) no-repeat top;
+    background:image-url("acc-expand.png") no-repeat top;
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
@@ -179,7 +179,7 @@ a,a:hover,a:focus {
     right:10px;
 }
 .right-side-accordion .active .dcjq-icon {
-    background:url(../images/acc-expand.png) no-repeat bottom;
+    background:image-url("acc-expand.png") no-repeat bottom;
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius: 3px;
@@ -525,7 +525,7 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
     width:100%;
 }
 .log-arrow-up {
-    background:url("../images/top-arrow.png") no-repeat;
+    background:image-url("top-arrow.png") no-repeat;
     width:18px;
     height:10px;
     margin-top:-20px;
@@ -607,7 +607,7 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
 }
 /*----*/
 .notify-arrow {
-    background:url("../images/top-arrow.png") no-repeat;
+    background:image-url("top-arrow.png") no-repeat;
     width:18px;
     height:10px;
     margin-top:0;
@@ -3040,10 +3040,10 @@ input:focus:invalid:focus,textarea:focus:invalid:focus,select:focus:invalid:focu
     color:#fff;
 }
 .blue-ribon {
-    background:url("../images/twitter_corner_blue.png") no-repeat;
+    background:image-url("twitter_corner_blue.png") no-repeat;
 }
 .black-ribon {
-    background:url("../images/twitter_corner_black.png") no-repeat;
+    background:image-url("twitter_corner_black.png") no-repeat;
 }
 .twt-feed.blue-bg {
     background:#58C9F3;
@@ -3402,7 +3402,7 @@ span.customSelect.changed {
     background-color:#fff;
 }
 .customSelectInner {
-    background: url(../images/customSelect-arrow.gif) no-repeat center right;
+    background:image- url(customSelect-arrow.gif) no-repeat center right;
 }
 /*Timeline chat*/
 .chat-form {
@@ -3934,7 +3934,7 @@ tr.odd.gradeX td.sorting_1,tr.even.gradeX td.sorting_1,table.display tr.even.gra
 }
 /*lock screen*/
 .lock-screen {
-    background:#1fb3a3 url("../images/lock-screen.jpg");
+    background:#1fb3a3 image-url("lock-screen.jpg");
     background-size:cover;
     background-repeat:repeat;
     background-position:top;
@@ -4043,7 +4043,7 @@ tr.odd.gradeX td.sorting_1,tr.even.gradeX td.sorting_1,table.display tr.even.gra
     padding:0;
 }
 .lang-arrow-up {
-    background:url("../images/top-arrow.png") no-repeat;
+    background:image-url("top-arrow.png") no-repeat;
     width:18px;
     height:10px;
     margin-top:-15px;

@@ -24,6 +24,18 @@ def chapter_attributes
 	end
 end
 
+def enrollment
+	params.require(:enrollment).permit(*enrollment_attributes)
+end
+
+def enrollment_attributes
+	if user_signed_in?
+		if current_user.has_role? :student
+			[:course_id, :user_id]
+		end
+	end
+end
+
 
 end
 
