@@ -79,6 +79,9 @@ end
 
 gem 'therubyracer', :group => :assets
 
+#for deployment
+gem 'rails_12factor'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
