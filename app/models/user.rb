@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
 		domain = Domain.where(name: self.email.split("@").last).first
 
 		if domain.nil?
+			#TODO: the two lines below were keeping the rake tasks from working properly
 			flash[:notice] = "Your institution does not currently have access to Medectomy. Feel free to contact us for a personal account."
 			redirect_to root
 		else
