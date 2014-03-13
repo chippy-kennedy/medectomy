@@ -5,7 +5,7 @@ class Ability
 
     # student role
     if user.has_role? :student
-      can :crud, Enrollment
+      can :manage, :enrollments
     end
 
     # admin role

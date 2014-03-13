@@ -8,10 +8,7 @@
         <section class="panel course-block">
           <div class="user-heading alt wdgt-row terques-bg">
               <div class="corner-ribon black-ribon">
-                <%= link_to enrollments_path(course_id:course.id), {:method => :post, id: "new_enrollment_course_#{course.id}", remote: true} do %>
-                <i style="font-size:20px;" class="fa fa-plus">
-                </i>
-                <% end %>
+                <%= render partial: 'enrollments/enrollment_button', locals: {course: course} %>
               </div>
             </a>
             <h1>

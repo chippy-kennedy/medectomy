@@ -7,16 +7,15 @@ class ChaptersController < ApplicationController
 	end
 
 	def show
-		@course = Course.find(params[:id])
-		@chapter = Chapter.find(params[:id])
 
+		@chapter = Chapter.find(params[:id])
+		@course = @chapter.course
 		# pull content from s3
 		@s3 = AWS::S3.new(access_key_id: S3_CONFIG[Rails.env]["s3_key"], secret_access_key: S3_CONFIG[Rails.env]["s3_secret"])
 		@medectomy_bucket = @s3.buckets[S3_CONFIG[Rails.env]["s3_bucket"]] 
 		
-    @partial_file =  ERB.new(@medectomy_bucket.objects[@chapter.directory].read)
-
-		render "/chapters/show"
+    	@partial_file =  ERB.new(@medectomy_bucket.objects[@chapter.directory].read)
+    	render 'chapters/show'
 	end
 
 	def new

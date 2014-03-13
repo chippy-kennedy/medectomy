@@ -8,13 +8,13 @@
         <ul class="sidebar-menu" id="nav-accordion">
             <% current_user.courses.each do |course| %>
             <li class="sub-menu">
-                <a class="active" href="javascript:;">
+                <a class="<%= 'active' if @course.id == course.id  %>" href="javascript:;">
                     <i class="fa fa-book"></i>
                     <span><%= course.name %></span>
                 </a>
                 <ul class="sub">
                     <% course.chapters.each do |chapter| %>
-                    <li class=""><a href="#"><% chapter.name %></a></li>
+                    <li class="<%= "active" if @chapter.id == chapter.id  %>"><a href="<%= chapter_path(chapter) %>"><%="#{chapter.number}-#{chapter.name}"%></a></li>
                     <% end %>
                 </ul>
             </li>

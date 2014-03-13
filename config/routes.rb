@@ -2,9 +2,9 @@ Medectomy::Application.routes.draw do
 
   devise_for :users
 
-  resources :courses do
-  	resources :chapters
-  end
+  resources :courses
+  resources :chapters
+  
   resources :enrollments
 
   # route for user profile
