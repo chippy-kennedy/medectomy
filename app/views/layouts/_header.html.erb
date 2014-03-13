@@ -64,6 +64,11 @@
 <div class="top-nav clearfix">
     <!--search & user info start-->
     <ul class="nav pull-right top-menu">
+         <li>
+            <%= link_to(user_session_path) do %>
+            <i class="fa fa-key"></i> Log In
+            <% end %>
+        </li>
         <li>
             <input type="text" class="form-control search" placeholder=" Search">
         </li>
