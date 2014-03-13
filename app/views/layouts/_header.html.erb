@@ -64,11 +64,13 @@
 <div class="top-nav clearfix">
     <!--search & user info start-->
     <ul class="nav pull-right top-menu">
-         <li>
+         <% !if user_signed_in? %>
+        <li>
             <%= link_to(user_session_path) do %>
                 <i class="fa fa-key"></i> 
             <% end %>
         </li>
+        <% end %>
         <li>
             <input type="text" class="form-control search" placeholder=" Search">
         </li>
