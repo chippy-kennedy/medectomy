@@ -77,7 +77,7 @@ group :test, :development do
 	gem 'debugger'
 end
 
-gem 'therubyracer', :platform => :ruby
+gem 'therubyracer', :group => :assets
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
