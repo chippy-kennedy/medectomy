@@ -19,13 +19,13 @@
         </ol>   
        <!-- Carousel items -->
         <div class="carousel-inner">
-            <div class="active item" style="background: url(/assets/one.jpg); text-align:center; height: 322px !important;">
+            <div class="active item" style="background: <%= image_path 'one.jpg' %>; text-align:center; height: 322px !important;">
                 
                 
             </div>
-            <div class="item" style="background: "<%=image_path("two.jpg") %>";"" text-align:center; height: 322px !important;">
+            <div class="item" style="background: <%=image_path 'two.jpg' %>;"" text-align:center; height: 322px !important;">
             </div>
-            <div class="item" style="background: url(/assets/three.jpg); text-align:center; height: 322px !important;">
+            <div class="item" style="background: <%= image_path 'three.jpg'%>; text-align:center; height: 322px !important;">
                
             </div>
         </div>
