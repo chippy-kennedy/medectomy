@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
@@ -77,6 +77,8 @@ group :test, :development do
 	gem 'debugger'
 end
 
+gem 'therubyracer', :platform => :ruby
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -85,3 +87,9 @@ end
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
+gem 'rubber'
+gem 'open4'
+gem 'gelf'
+gem 'graylog2_exceptions'
+gem 'graylog2-resque'
+gem 'unf'
