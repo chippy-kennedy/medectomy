@@ -63,6 +63,13 @@ config.assets.precompile << Proc.new do |path|
       end
     end
 
+  # Adding Webfonts to the Asset Pipeline
+config.assets.precompile << Proc.new { |path|
+  if path =~ /\.(eot|svg|ttf|woff|otf)\z/
+    true
+  end
+}
+
 
 
 
