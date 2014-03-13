@@ -58,9 +58,8 @@ group :deployment do
 	# Use PostgreSQL as database for Active Record
 	gem 'pg'
 end
-
+gem 'faker'
 group :development do
-  gem 'faker'
   gem 'database_cleaner', '< 1.1.0'
 end
 
