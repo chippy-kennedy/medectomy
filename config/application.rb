@@ -22,7 +22,7 @@ module Medectomy
     config.i18n.enforce_available_locales = true
     config.assets.enabled = true
     # add font-awesome to assets pipeline
-    config.assets.paths << "#{Rails.root}/app/assets/fonts"
+    #config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
     # add vendor path to sass
     config.sass.load_paths += %w(vendor lib).map {|l| Rails.root.join(l, 'assets', 'stylesheets') }
