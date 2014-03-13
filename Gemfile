@@ -59,8 +59,9 @@ group :deployment do
 	gem 'pg'
 end
 gem 'faker'
+gem 'database_cleaner', '< 1.1.0'
 group :development do
-  gem 'database_cleaner', '< 1.1.0'
+  #gem 'database_cleaner', '< 1.1.0'
 end
 
 group :test do
