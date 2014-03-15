@@ -8016,21 +8016,29 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
   display: inline-block; }
 
 .right-side-accordion .red-bg {
-  background: #fa8564;
-  color: #fff; }
-
+    background:#fa8564;
+    color:#fff;
+}
 .right-side-accordion .terques-bg {
-  background: #45c9c4;
-  color: #fff; }
-
+    background:#45c9c4;
+    color:#fff;
+}
 .right-side-accordion .purple-bg {
-  background: #a48ad4;
-  color: #fff; }
-
+    background:#a48ad4!important;
+    color:#fff;
+}
 .right-side-accordion .yellow-bg {
-  background: #f3c022;
-  color: #fff; }
-
+    background:#f3c022;
+    color:#fff;
+}
+.right-side-accordion .green-bg {
+    background:#99E699 !important;
+    color:#fff;
+}
+.right-side-accordion .blue-bg {
+    background:#8080FF !important;
+    color:#fff;
+}
 .prog-row {
   border-bottom: 1px solid #3C3C44;
   display: inline-block;
