@@ -229,6 +229,19 @@ th {
   select {
     background: #fff !important; }
 
+/* Added by HarKenSol */
+.microbio-course-select a:hover{
+    color:#1fb5ac;
+}
+.immune-course-select a:hover{
+    color:#f3c022;
+}
+.new-course-select a:hover{
+    color:#fa8564;
+}
+/*---------*/
+
+
   .navbar {
     display: none; }
 
@@ -668,6 +681,24 @@ pre {
 .pre-scrollable {
   max-height: 340px;
   overflow-y: scroll; }
+
+/*Added by HarkenSol*/
+.header-button {
+    background:#f6f6f6;
+    font-size:95%;
+    color:#bfbfc1;
+    margin-top: 5px;
+    text-align:center;
+    border-radius:15%;
+    -webkit-border-radius:15%;
+    width:85px;
+    height:35px;
+}
+.header-button:hover {
+    background:#32D2C9;
+}
+/*--------*/
+
 
 .container {
   margin-right: auto;
