@@ -802,6 +802,15 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
     background:#f3c022;
     color:#fff;
 }
+.right-side-accordion .green-bg {
+    background:#99E699;
+    color:#fff;
+}
+.right-side-accordion .blue-bg {
+    background:#8080FF;
+    color:#fff;
+}
+
 .prog-row {
     border-bottom:1px solid #3C3C44;
     display:inline-block;
