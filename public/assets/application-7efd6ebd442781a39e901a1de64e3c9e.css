@@ -229,19 +229,6 @@ th {
   select {
     background: #fff !important; }
 
-/* Added by HarKenSol */
-.microbio-course-select a:hover{
-    color:#1fb5ac !important;;
-}
-.immune-course-select a:hover{
-    color:#f3c022 !important;;
-}
-.new-course-select a:hover{
-    color:#fa8564 !important;;
-}
-/*---------*/
-
-
   .navbar {
     display: none; }
 
@@ -681,24 +668,6 @@ pre {
 .pre-scrollable {
   max-height: 340px;
   overflow-y: scroll; }
-
-/*Added by HarkenSol*/
-.header-button {
-    background:#f6f6f6;
-    font-size:95%;
-    color:#bfbfc1;
-    margin-top: 5px;
-    text-align:center;
-    border-radius:15%;
-    -webkit-border-radius:15%;
-    width:85px;
-    height:35px;
-}
-.header-button:hover {
-    background:#32D2C9;
-}
-/*--------*/
-
 
 .container {
   margin-right: auto;
@@ -7337,7 +7306,7 @@ a, a:hover, a:focus {
 
 /*login page*/
 .login-body {
-  background: #32323A;
+  background: #fafafa;
   background-size: cover;
   width: 100%;
   height: 100%; }
@@ -7345,6 +7314,7 @@ a, a:hover, a:focus {
 .form-signin {
   max-width: 330px;
   margin: 100px auto;
+  border: 3px solid #eaeaea;
   background: #fff;
   border-radius: 5px;
   -webkit-border-radius: 5px; }
@@ -7409,11 +7379,24 @@ a, a:hover, a:focus {
 .form-signin a, .form-signin a:hover {
   color: #1fb5ac; }
 
+/* Added by HarKenSol */
+.microbio-course-select a:hover {
+  color: #1fb5ac; }
+
+.immune-course-select a:hover {
+  color: #f3c022; }
+
+.new-course-select a:hover {
+  color: #fa8564; }
+
+/*---------*/
 .form-signin a:hover {
   text-decoration: underline; }
 
 .login-wrap {
   padding: 20px;
+  border: #FF0000;
+  border-width: 15px;
   position: relative; }
 
 .user-login-info {
@@ -8011,6 +7994,22 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
   padding: 10px;
   color: #bfbfc1; }
 
+/*Added by HarkenSol*/
+.header-button {
+  background: #f6f6f6;
+  font-size: 95%;
+  color: #bfbfc1;
+  margin-top: 5px;
+  text-align: center;
+  border-radius: 15%;
+  -webkit-border-radius: 15%;
+  width: 85px;
+  height: 35px; }
+
+.header-button:hover {
+  background: #32D2C9; }
+
+/*--------*/
 /*right sidebar*/
 .right-sidebar {
   background: #32323A;
@@ -8047,29 +8046,29 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
   display: inline-block; }
 
 .right-side-accordion .red-bg {
-    background:#fa8564;
-    color:#fff;
-}
+  background: #fa8564;
+  color: #fff; }
+
 .right-side-accordion .terques-bg {
-    background:#45c9c4;
-    color:#fff;
-}
+  background: #45c9c4;
+  color: #fff; }
+
 .right-side-accordion .purple-bg {
-    background:#a48ad4!important;
-    color:#fff;
-}
+  background: #a48ad4 !important;
+  color: #fff; }
+
 .right-side-accordion .yellow-bg {
-    background:#f3c022;
-    color:#fff;
-}
+  background: #f3c022;
+  color: #fff; }
+
 .right-side-accordion .green-bg {
-    background:#99E699 !important;
-    color:#fff;
-}
+  background: #99E699 !important;
+  color: #fff; }
+
 .right-side-accordion .blue-bg {
-    background:#8080FF !important;
-    color:#fff;
-}
+  background: #8080FF !important;
+  color: #fff; }
+
 .prog-row {
   border-bottom: 1px solid #3C3C44;
   display: inline-block;
@@ -10292,9 +10291,23 @@ input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:fo
 .alt.gray-bg {
   background: #474751; }
 
+/*--------------*/
 .terques-bg {
   background: #1fb5ad; }
 
+.blue-bg {
+  background: #8080FF; }
+
+.purple-bg {
+  background: #a48ad4; }
+
+.yellow-bg {
+  background: #f3c022; }
+
+.green-bg {
+  background: #99E699; }
+
+/*-----------*/
 .profile-nav.alt.green-border ul > li > a:hover i {
   color: #1fb5ad; }
 
