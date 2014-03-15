@@ -7,4 +7,8 @@ class PagesController < ApplicationController
 		render "pages/home"
 	end
 
+	def available_courses
+		render "pages/available_courses"
+	end
+
 end

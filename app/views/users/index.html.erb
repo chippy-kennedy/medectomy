@@ -73,8 +73,13 @@
         <header class="panel-heading tab-bg-dark-navy-blue">
           <ul class="nav nav-tabs nav-justified ">
             <li class="active">
+              <a data-toggle="tab" href="#courses">
+                Courses
+              </a>
+            </li>
+            <li class="">
               <a data-toggle="tab" href="#overview">
-                Overview
+                Recent Activity
               </a>
             </li>
             <li class="">
@@ -86,9 +91,9 @@
         </header>
         <div class="panel-body">
           <div class="tab-content tasi-tab">
-            <div id="overview" class="tab-pane active">
+            <div id="overview" class="tab-pane">
               <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                   <div class="recent-act">
                     <h1>
                       Recent Activity
@@ -162,34 +167,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-4">
-                  <div class="prf-box">
-                    <h3 class="prf-border-head">
-                      enrolled in
-                    </h3>
-                    <% if @enrollments.nil? %>
-                      <div class=" wk-progress pf-status">
-                        enroll in a course to get started!
-                      </div>
-                    <% else %> 
-                      <% @enrollments.each do |enrollment| %>
-                      <div class=" wk-progress pf-status">
-                        <div class="col-md-7 col-xs-7">
-                          <%= enrollment.course.name %>
-                        </div>
-                        <div class="col-md-5 col-xs-5">
-                          <button type="button" class="btn btn-primary btn-info btn-xs">
-                            View
-                          </button>
-                          <button type="button" class="btn btn-primary btn-danger btn-xs">
-                            Withdraw
-                          </button>
-                        </div>
-                      </div>
-                      <% end %>
-                    <% end %>
-                  </div>
-                </div>
+           
               </div>
             </div>
             <div id="settings" class="tab-pane ">
@@ -288,6 +266,40 @@
                     </div>
                   </div>
                 </form>
+              </div>
+            </div>
+              <div id="courses" class="tab-pane active">
+              <div class="position-center">
+                     <div class="col-md-4">
+                  <div class="prf-box">
+                    <h3 class="prf-border-head">
+                      enrolled in
+                    </h3>
+                    <% if @enrollments.nil? %>
+                      <div class=" wk-progress pf-status">
+                        enroll in a course to get started!
+                      </div>
+                    <% else %> 
+                      <% @enrollments.each do |enrollment| %>
+                      <div class=" wk-progress pf-status">
+                        <div class="col-md-7 col-xs-7">
+                          <%= enrollment.course.name %>
+                        </div>
+                        <div class="col-md-5 col-xs-5">
+                          <button type="button" class="btn btn-primary btn-info btn-xs">
+                            View
+                          </button>
+                          <button type="button" class="btn btn-primary btn-danger btn-xs">
+                            Withdraw
+                          </button>
+                        </div>
+                      </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+                
+                
               </div>
             </div>
           </div>

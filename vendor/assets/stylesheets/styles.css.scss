@@ -42,7 +42,8 @@ a,a:hover,a:focus {
 }
 /*login page*/
 .login-body {
-    background:#32323A;
+    
+    background:#f1f2f7;
     background-size:cover;
     width:100%;
     height:100%;
@@ -50,6 +51,7 @@ a,a:hover,a:focus {
 .form-signin {
     max-width:330px;
     margin:100px auto;
+    background:#f1f2f7;
     background:#fff;
     border-radius:5px;
     -webkit-border-radius:5px;
@@ -130,6 +132,7 @@ a,a:hover,a:focus {
     margin-bottom:0 !important;
 }
 .registration {
+    background:#f1f2f7;
     position:absolute;
     right:0;
     bottom:-35px;

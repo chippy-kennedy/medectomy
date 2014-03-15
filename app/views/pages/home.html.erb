@@ -48,7 +48,7 @@
       	<div class="panel-body">
       		<i class="fa fa-book fa-5x"></i>
       		<h2 style="text-align:center">Extensive Textbook</h2>
-      		<p>Produced by a team of students and faculty from top medical schools in the U.S., Medectomy's in-house interactive study resource covers everything a student needs to know from introdutroy classes through all parts of the USMLE.</p>
+      		<p>Produced by a team of students and faculty from top medical schools in the U.S., Medectomy's <i>Fundamentals of Basic Science and Clinical Medicine, 1st Edition</i> covers everything a student needs to know from introductory classes through all parts of the USMLE.</p>
       	</div>
       </section>
   </div>
@@ -75,9 +75,9 @@
 
 <div class="row" style="text-align:center">
   <div class="col-md-4">
-    <a href="mailto:info@medectomy.com?subject=Invitation Request">
+    <a href="#">
 
-
+      <%= link_to(contact_path) do%>
       <section class="panel" style="height:140px">
         <div class="row">
           <div class="col-md-2">
@@ -93,11 +93,13 @@
           </div>
       </div>
     </section>
+    <%end%>
   </a>
   </div>
 
     <div class="col-md-4">
-      <a href="mailto:info@medectomy.com?subject=Community Member Request">
+      <a href="#">
+      <%= link_to(contact_path) do%>
       <section class="panel" style="height:140px">
         <div class="row">
           <div class="col-md-2">
@@ -113,12 +115,14 @@
           </div>
       </div>
     </section>
+    <%end%>
   </a>
   </div>
 
 
   <div class="col-md-4">
-    <a href="mailto:info@medectomy.com?subject=Inquiry">
+    <a href="#">
+      <%= link_to(contact_path) do%>
       <section class="panel" style="height:140px">
         <div class="row">
           <div class="col-md-2">
@@ -134,6 +138,7 @@
           </div>
       </div>
     </section>
+    <%end%>
   </a>
   </div>
 

@@ -42,7 +42,7 @@ a,a:hover,a:focus {
 }
 /*login page*/
 .login-body {
-    background:#32323A;
+    background:#fafafa;
     background-size:cover;
     width:100%;
     height:100%;
@@ -50,6 +50,7 @@ a,a:hover,a:focus {
 .form-signin {
     max-width:330px;
     margin:100px auto;
+    border:3px solid #eaeaea;
     background:#fff;
     border-radius:5px;
     -webkit-border-radius:5px;
@@ -114,11 +115,27 @@ a,a:hover,a:focus {
 .form-signin a,.form-signin a:hover {
     color:#1fb5ac;
 }
+
+/* Added by HarKenSol */
+.microbio-course-select a:hover{
+    color:#1fb5ac;
+}
+.immune-course-select a:hover{
+    color:#f3c022;
+}
+.new-course-select a:hover{
+    color:#fa8564;
+}
+/*---------*/
+
+
 .form-signin a:hover {
     text-decoration:underline;
 }
 .login-wrap {
     padding:20px;
+    border:#FF0000;
+    border-width: 15px; 
     position:relative;
 }
 .user-login-info {
@@ -716,6 +733,24 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
     padding:10px;
     color: #bfbfc1;
 }
+
+/*Added by HarkenSol*/
+.header-button {
+    background:#f6f6f6;
+    font-size:95%;
+    color:#bfbfc1;
+    margin-top: 5px;
+    text-align:center;
+    border-radius:15%;
+    -webkit-border-radius:15%;
+    width:85px;
+    height:35px;
+}
+.header-button:hover {
+    background:#32D2C9;
+}
+/*--------*/
+
 /*right sidebar*/
 .right-sidebar {
     background:#32323A;
