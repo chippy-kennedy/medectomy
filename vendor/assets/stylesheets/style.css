@@ -3041,9 +3041,23 @@ input:focus:invalid:focus,textarea:focus:invalid:focus,select:focus:invalid:focu
 .alt.gray-bg {
     background:#474751;
 }
+/*--------------*/
 .terques-bg {
     background:#1fb5ad;
 }
+.blue-bg {
+    background:#8080FF;
+}
+.purple-bg {
+    background:#a48ad4;
+}
+.yellow-bg {
+    background:#f3c022;
+}
+.green-bg {
+    background:#99E699;
+}
+/*-----------*/
 .profile-nav.alt.green-border ul>li>a:hover i {
     color:#1fb5ad;
 }
