@@ -795,7 +795,7 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
     color:#fff;
 }
 .right-side-accordion .purple-bg {
-    background:#a48ad4;
+    background:#a48ad4!important;
     color:#fff;
 }
 .right-side-accordion .yellow-bg {
@@ -803,11 +803,11 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
     color:#fff;
 }
 .right-side-accordion .green-bg {
-    background:#99E699;
+    background:#99E699 !important;
     color:#fff;
 }
 .right-side-accordion .blue-bg {
-    background:#8080FF;
+    background:#8080FF !important;
     color:#fff;
 }
 
