@@ -91,6 +91,7 @@
         </header>
         <div class="panel-body">
           <div class="tab-content tasi-tab">
+<!-- Overview Tab Start-->
             <div id="overview" class="tab-pane">
               <div class="row">
                 <div class="col-md-12">
@@ -170,6 +171,9 @@
            
               </div>
             </div>
+<!-- Overview Tab End-->
+
+<!-- Setting Tab Start-->       
             <div id="settings" class="tab-pane ">
               <div class="position-center">
                 <div class="prf-contacts sttng">
@@ -268,7 +272,9 @@
                 </form>
               </div>
             </div>
-              <div id="courses" class="tab-pane active">
+<!-- Setting Tab End-->
+<!-- Courses Tab Start-->
+            <div id="courses" class="tab-pane active">
               <div class="position-center">
                      <div class="col-md-4">
                   <div class="prf-box">
@@ -280,8 +286,29 @@
                         enroll in a course to get started!
                       </div>
                     <% else %> 
+                    <div class="wk-progress pf-status">
+                      <div class="col-md-12 col-xs-12">
+                          <strong><%= Course.find('1').name %></strong>
+                      </div>
+                      <div stlye="margin-top:20px;">
+                        <div class="col-md-3 col-xs-3">
+                          <%= link_to Chapter.find('1').name, course_path(Chapter.find('1').id) do%>
+                          <button type="button" class="btn btn-primary btn-info btn-xs">
+                            View
+                          </button>
+                          <%end%>
+                        </div>
+                        <div class="col-md-5 col-xs-5">
+                          <button type="button" class="btn btn-primary btn-danger btn-xs">
+                            Withdraw
+                          </button>
+                      </div>
+                      </div>
+                    </div>
+
+                    
                       <% @enrollments.each do |enrollment| %>
-                      <div class=" wk-progress pf-status">
+                     
                         <div class="col-md-7 col-xs-7">
                           <%= enrollment.course.name %>
                         </div>
@@ -298,10 +325,10 @@
                     <% end %>
                   </div>
                 </div>
-                
-                
               </div>
             </div>
+<!-- Courses Tab End-->
+
           </div>
         </div>
       </section>

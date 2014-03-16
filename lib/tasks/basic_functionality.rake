@@ -55,7 +55,13 @@ if Rails.env.development?
 		end
 
 		desc "enrolls students in courses randomly"
-		task :create_enrollments do
+		task :create_enrollments => :environment do
+      Course.create(
+        id: '1',
+        name: "Microbiology",
+        description: "Microbiology description goes here",
+        icon_lg: "images/microscope-icon.png"
+        )
 		end
 		
 
