@@ -3,11 +3,17 @@
 <!--logo start-->
 <div class="brand">
 
-    <a href="#" class="logo">
-        <%= image_tag "logo_header.png" %>
-    </a>
+    <%= link_to(root_path) do%>
+        <div href="#" class="logo" style="margin-top:18px; margin-left:14px;">
+           
+            <%= image_tag "logo_header.png" %>
+        </div>
+    <% end %>
+
+
+
     <% if has_left_sidebar? %>
-    <div class="sidebar-toggle-box">
+    <div class="sidebar-toggle-box" style="margin-top:-35px;"><!-- sloppy, I know-->
         <div class="fa fa-bars"></div>
     </div>
     <% end %>

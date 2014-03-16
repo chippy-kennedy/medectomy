@@ -9,6 +9,54 @@
 
 
 
+<!-- Macbook carousel -->
+  <div id="carousel" class="carousel slide macbook" rel="carousel">
+    <img src="<%=image_path 'carousel-macbook.png' %>" class="carousel-macbook" alt="" />
+    
+<div class="bs-example" style="margin: 20px;">
+    <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel" style="margin-top: 20px; height:322px; margin-left:340px; margin-right:340px;">
+      <!-- Carousel indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>   
+       <!-- Carousel items -->
+        <div class="carousel-inner">
+            <div class="active item" style="background: url(<%= image_path "one.jpg" %>); text-align:center; height: 322px !important;">
+                
+                
+            </div>
+            <div class="item" style="background: url(<%=image_path 'two.jpg' %>); text-align:center; height: 322px !important;">
+            </div>
+            <div class="item" style="background: url(<%= image_path 'three.jpg'%>); text-align:center; height: 322px !important;">
+               
+            </div>
+        </div>
+        <!-- Carousel nav -->
+        <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="carousel-control right" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </div>
+</div>
+
+    
+  </div>
+  <!-- end Macbook carousel -->
+
+
+
+
+
+
+
+
+
+
+
 <div class="bs-example" style="margin: 20px;">
     <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel" style="margin-top: 20px; height:322px; margin-left:340px; margin-right:340px;">
     	<!-- Carousel indicators -->
@@ -47,8 +95,8 @@
       <section class="panel" style="height:240px">
       	<div class="panel-body">
       		<i class="fa fa-book fa-5x"></i>
-      		<h2 style="text-align:center">Extensive Textbook</h2>
-      		<p>Produced by a team of students and faculty from top medical schools in the U.S., Medectomy's <i>Fundamentals of Basic Science and Clinical Medicine, 1st Edition</i> covers everything a student needs to know from introductory classes through all parts of the USMLE.</p>
+      		<h2 style="text-align:center">Comprehensive Resource</h2>
+      		<p><i>Fundamentals of Basic Science and Clinical Medicine, 1st Edition</i> covers everything a student needs to know from basic sciences, USMLE and clinical rotations.</p>
       	</div>
       </section>
   </div>
@@ -56,8 +104,8 @@
       <section class="panel" style="height:240px">
       	<div class="panel-body">
       		<i class="fa fa-play fa-5x"></i>
-      		<h2>Comprehensive Videos</h2>
-      		<p>Every Section is supplemented by educational videos with lectures, examples, and concept review.</p>
+      		<h2>High Yield Video Lectures</h2>
+      		<p>Every chapter is supplemented by high yield lecture videos.</p>
       	</div>
       </section>
   </div>
@@ -66,7 +114,7 @@
       	<div class="panel-body">
       		<i class="fa fa-stethoscope fa-5x"></i>
       		<h2>Medical Community</h2>
-      		<p>Medectomy's interactive style allows you to connect with other medical students and professors across the country, all covering the same material you are.</p>
+      		<p>Medectomy's interactive style allows you to connect with other medical students and professors across the world.</p>
       	</div>
       </section>
   </div>
@@ -88,7 +136,7 @@
           <div class="col-md-10">
             <div class="panel-body">
               <h3 style="text-align:center; margin-top:0px;">Request an Invitation</h3>
-              <p>Select schools are joining our Beta. Individual participation will soon be added.</p>
+              <p>Select schools are being invited to join. Contact us to request an invitation to join the community. </p>
             </div>
           </div>
       </div>

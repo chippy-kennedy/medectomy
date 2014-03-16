@@ -10,7 +10,7 @@ module DeviseHelper
     
     messages = resource.errors.full_messages
     
-    html = "<div id='notifications' class='panel-body'>"
+    html = "<div id='notifications' class='panel-body' style='top-margin:50px'>"
     messages.each_with_index do |msg, index|
       html = html +
              "<div class='alert alert-danger'>
