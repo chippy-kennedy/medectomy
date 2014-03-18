@@ -3,18 +3,17 @@
 <div class="row">
     <div class="col-md-12" style="text-align:center">
       <section class="panel">
-      	<div class="panel-body">
-			<h1><strong>Finally</strong>, Your Medical School Studying Solution</h1>
+        <div class="panel-body">
+			     <h1><strong>Finally</strong>, Your Medical School Studying Solution</h1>
       		<p>Medectomy is the ultimate medical school academic resource, study guide, and student-teacher community. A one-time subscription gives you access to our custom online resource, a personalized dashboard of saved notes and book highlights, and a growing community of students and doctors from top medical schools accross the U.S.</p>
 
 
-
 <!-- Macbook carousel -->
-  <div id="carousel" class="carousel slide macbook" rel="carousel">
-    <img src="<%=image_path 'carousel-macbook.png' %>" class="carousel-macbook" alt="" />
-    
-<div class="bs-example" style="margin: 20px;">
+<div style="background: url(<%=image_path 'carousel-macbook.png' %>); height:500px; margin-left:20px;">
+<div class="bs-example" style="margin-left:20px;">
+
     <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel" style="margin-top: 20px; height:322px; margin-left:340px; margin-right:340px;">
+
       <!-- Carousel indicators -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -42,50 +41,65 @@
         </a>
     </div>
 </div>
+</div>
+  <!-- end Macbook carousel -->
 
     
+  
+
+<div class="lead-container">
+<div class="container">
+
+  <!-- Macbook carousel -->
+  <div id="carousel" class="carousel slide macbook" rel="carousel">
+    <img src="<%=image_path 'carousel-macbook.png' %>" class="carousel-macbook" alt="" />
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+     
+      <!-- Item -->
+      <div class="item active">
+        <img src="<%= image_path 'one.jpg'%>" alt="" />
+      </div>
+      <!-- end Item -->
+      <!-- Item -->
+      <div class="item">
+        <img src="<%= image_path 'two.jpg'%>" alt="" />
+      </div>
+      <!-- end Item -->
+      <!-- Item -->
+      <div class="item">
+        <img src="<%= image_path 'three.jpg'%>" alt="" />
+      </div>
+      <!-- end Item -->
+      
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#carousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="carousel-control right" href="#carousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+
+    <!-- Carousel navigation -->
+    <a class="carousel-control left" href="#POcarousel" data-slide="prev"></a>
+    <a class="carousel-control right" href="#POcarousel" data-slide="next"></a>
   </div>
   <!-- end Macbook carousel -->
 
-
-
-
-
-
-
-
-
-
-
-<div class="bs-example" style="margin: 20px;">
-    <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel" style="margin-top: 20px; height:322px; margin-left:340px; margin-right:340px;">
-    	<!-- Carousel indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>   
-       <!-- Carousel items -->
-        <div class="carousel-inner">
-            <div class="active item" style="background: url(<%= image_path "one.jpg" %>); text-align:center; height: 322px !important;">
-                
-                
-            </div>
-            <div class="item" style="background: url(<%=image_path 'two.jpg' %>); text-align:center; height: 322px !important;">
-            </div>
-            <div class="item" style="background: url(<%= image_path 'three.jpg'%>); text-align:center; height: 322px !important;">
-               
-            </div>
-        </div>
-        <!-- Carousel nav -->
-        <a class="carousel-control left" href="#myCarousel" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <a class="carousel-control right" href="#myCarousel" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
-    </div>
 </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
       	</div>
       </section>
   </div>
