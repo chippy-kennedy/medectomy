@@ -1,37 +1,129 @@
+<!--header start-->
+<header class="header fixed-top clearfix">
+<!--logo start-->
+<div class="brand">
+
+    <%= link_to(root_path) do%>
+        <div href="#" class="logo" style="margin-top:18px; margin-left:14px;">
+           
+            <%= image_tag "logo_header.png" %>
+        </div>
+    <% end %>
 
 
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-  <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Medectomy<span style="color:#e65154; font-size: 50%; vertical-align: top;">Beta</span></a>
+
+    <% if has_left_sidebar? %>
+    <div class="sidebar-toggle-box" style="margin-top:-35px;"><!-- sloppy, I know-->
+        <div class="fa fa-bars"></div>
     </div>
+    <% end %>
+</div>
+<!--logo end-->
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-      
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to 'Dashboard', root_path %></li>
-        <li><%= link_to 'Courses', courses_path %></li>
-        <li class="My Notes">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            Notes 
-            <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="#">#My Notes</a></li>
-            <li><a href="#">Start New Note</a></li>
-            <li class="divider"></li>
-            <li><a href="#">#RECENT NOTE 1</a></li>
-            <li><a href="#">#RECENT NOTE 2</a></li>
-          </ul>
-        <li><a href="#">Contact Us</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
- </div><!-- /.container-fluid -->
-</nav>
+<div class="nav notify-row" id="top_menu">
+    <!--  notification start -->
+    <!--
+    <% if user_signed_in? %>
+    <ul class="nav top-menu">
+        <li id="header_notification_bar" class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+                <i class="fa fa-bell-o"></i>
+                <span class="badge bg-important">3</span>
+            </a>
+            <ul class="dropdown-menu extended notification">
+                <li>
+                    <p>Notifications</p>
+                </li>
+                <li>
+                    <div class="alert alert-info clearfix">
+                        <span class="alert-icon"><i class="fa fa-bolt"></i></span>
+                        <div class="noti-info">
+                            <a href="#"> Server #1 overloaded.</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="alert alert-danger clearfix">
+                        <span class="alert-icon"><i class="fa fa-bolt"></i></span>
+                        <div class="noti-info">
+                            <a href="#"> Server #2 overloaded.</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="alert alert-success clearfix">
+                        <span class="alert-icon"><i class="fa fa-bolt"></i></span>
+                        <div class="noti-info">
+                            <a href="#"> Server #3 overloaded.</a>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </li>
+        <!-- notification dropdown end -->
+        <!--
+    </ul>
+    <% end %>
+    <!--  notification end -->
+</div>
+<div class="top-nav clearfix">
+    <!--search & user info start-->
+    <ul class="nav pull-right top-menu">
+        <% if !user_signed_in? %>
+        <li>
+            <%= link_to(profile_path) do %>
+                <div class="header-button">
+                    <i class="fa fa-pencil"></i> Sign Up
+                </div>
+            <% end %>
+        </li>
+        <% end %>
+        <% if !user_signed_in? %>
+        <li>
+            <%= link_to(profile_path) do %>
+                <div class="header-button">
+                    <i class="fa fa-key"></i> Log In
+                </div>
+            <% end %>
+        </li>
+        <% end %>
+       <!--
+        <li>
+            <input type="text" class="form-control search" placeholder=" Search">
+        </li>
+    -->
+        <!-- user login dropdown start-->
+        <% if user_signed_in? %>
+        <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <%= image_tag "avatar1_small.jpg" %>
+                <span class="username"><%= "#{current_user.first_name} #{current_user.last_name}" %></span>
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu extended logout">
+                <li>
+                    <%= link_to(profile_path) do %>
+                        <i class=" fa fa-suitcase"></i>Profile
+                    <% end %>
+                </li>
+                <li>
+                    <%= link_to(destroy_user_session_path, method: :delete) do %>
+                        <i class="fa fa-key"></i> Log Out
+                    <% end %>
+                </li>
+            </ul>
+        </li>
+        <% end %>
+        <!-- user login dropdown end -->
+        <li>
+            <div class="toggle-right-box">
+                <div class="fa fa-bars"></div>
+            </div>
+        </li>
+    </ul>
+    <!--search & user info end-->
+</div>
+</header>
+<!--header end-->

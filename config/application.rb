@@ -19,8 +19,63 @@ module Medectomy
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-
+    config.i18n.enforce_available_locales = true
+    config.assets.enabled = true
     # add font-awesome to assets pipeline
-    config.assets.paths << "#{Rails.root}/app/assets/fonts"
+    #config.assets.paths << "#{Rails.root}/app/assets/fonts"
+
+    # add vendor path to sass
+    config.sass.load_paths += %w(vendor lib).map {|l| Rails.root.join(l, 'assets', 'stylesheets') }
+
+    # custom layout for devise pages
+    config.to_prepare do
+      Devise::SessionsController.layout "devise"
+      Devise::RegistrationsController.layout proc{ |controller| user_signed_in? ? "application" : "devise" }
+      Devise::ConfirmationsController.layout "devise"
+      Devise::UnlocksController.layout "devise"            
+      Devise::PasswordsController.layout "devise"        
+    end
+
+
+#HAIL MARY
+
+config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif,
+                                  "fontawesome-webfont.ttf",
+                                 "fontawesome-webfont.eot",
+                                 "fontawesome-webfont.svg",
+                                 "fontawesome-webfont.woff")
+
+
+
+config.assets.precompile << Proc.new do |path|
+      if path =~ /\.(css|js)\z/
+        full_path = Rails.application.assets.resolve(path).to_path
+        app_assets_path = Rails.root.join('app', 'assets').to_path
+        if full_path.starts_with? app_assets_path
+          puts "including asset: " + full_path
+          true
+        else
+          puts "excluding asset: " + full_path
+          false
+        end
+      else
+        false
+      end
+    end
+
+  # Adding Webfonts to the Asset Pipeline
+config.assets.precompile << Proc.new { |path|
+  if path =~ /\.(eot|svg|ttf|woff|otf)\z/
+    true
+  end
+}
+
+
+
+
+
+
   end
 end
+
+

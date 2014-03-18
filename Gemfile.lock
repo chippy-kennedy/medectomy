@@ -1,5 +1,12 @@
+GIT
+  remote: https://github.com/Kjarrigan/flot-rails.git
+  revision: c20cf50084856963f8554c762dd44cbb4a156c97
+  specs:
+    flot-rails (0.0.4)
+      jquery-rails (>= 2.0.2)
+
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     actionmailer (4.0.0)
       actionpack (= 4.0.0)
@@ -25,20 +32,30 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
-    animate-rails (1.0.4)
+    animate-rails (1.0.5)
       rails
     arel (4.0.2)
-    atomic (1.1.14)
-    aws-sdk (1.34.0)
+    atomic (1.1.15)
+    aws-sdk (1.36.1)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
-    bcrypt-ruby (3.1.2)
-    bcrypt-ruby (3.1.2-x86-mingw32)
+    bcrypt (3.1.7)
+    bcrypt (3.1.7-x86-mingw32)
+    bcrypt-ruby (3.1.5)
+      bcrypt (>= 3.1.3)
+    bcrypt-ruby (3.1.5-x86-mingw32)
+      bcrypt (>= 3.1.3)
     bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
     builder (3.1.4)
     cancan (1.6.10)
+    capistrano (2.15.5)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
     capybara (2.2.1)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -50,6 +67,7 @@ GEM
     celluloid-io (0.15.0)
       celluloid (>= 0.15.0)
       nio4r (>= 0.5.0)
+    clamp (0.6.3)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -60,13 +78,13 @@ GEM
     coffee-script-source (1.7.0)
     columnize (0.3.6)
     database_cleaner (1.0.1)
-    debugger (1.6.5)
+    debugger (1.6.6)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.3.1)
+      debugger-ruby_core_source (~> 1.3.2)
     debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.3.1)
-    devise (3.2.2)
+    debugger-ruby_core_source (1.3.2)
+    devise (3.2.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -74,31 +92,49 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     erubis (2.7.0)
+    excon (0.31.0)
     execjs (2.0.2)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.4.0)
+    factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
-    faker (1.2.0)
+    faker (1.3.0)
       i18n (~> 0.5)
     ffi (1.9.3)
     ffi (1.9.3-x86-mingw32)
+    fog (1.20.0)
+      builder
+      excon (~> 0.31.0)
+      formatador (~> 0.2.0)
+      mime-types
+      multi_json (~> 1.0)
+      net-scp (~> 1.1)
+      net-ssh (>= 2.1.3)
+      nokogiri (>= 1.5.11)
     font-awesome-rails (4.0.3.1)
       railties (>= 3.2, < 5.0)
     formatador (0.2.4)
+    gelf (1.1.3)
+      json
     gibbon (1.1.1)
       httparty
       multi_json (>= 1.3.4)
-    guard (2.4.0)
+    graylog2-resque (0.5.1)
+      gelf
+      resque
+    graylog2_exceptions (1.3.0)
+      gelf (= 1.1.3)
+    guard (2.5.1)
       formatador (>= 0.2.4)
-      listen (~> 2.1)
+      listen (~> 2.6)
       lumberjack (~> 1.0)
       pry (>= 0.9.12)
       thor (>= 0.18.1)
-    guard-rspec (4.2.6)
+    guard-rspec (4.2.8)
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
+    highline (1.6.21)
     hike (1.2.3)
     httparty (0.13.0)
       json (~> 1.8)
@@ -110,8 +146,19 @@ GEM
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-turbolinks (2.0.2)
+      railties (>= 3.1.0)
+      turbolinks
+    jquery-ui-rails (4.0.3)
+      jquery-rails
+      railties (>= 3.1.0)
+    jquery-ui-sass-rails (4.0.3.0)
+      jquery-rails
+      jquery-ui-rails (= 4.0.3)
+      railties (>= 3.1.0)
     json (1.8.1)
-    listen (2.5.0)
+    libv8 (3.16.14.3)
+    listen (2.7.0)
       celluloid (>= 0.15.2)
       celluloid-io (>= 0.15.0)
       rb-fsevent (>= 0.9.3)
@@ -124,17 +171,26 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.2)
     minitest (4.7.5)
-    multi_json (1.8.4)
+    mono_logger (1.1.0)
+    multi_json (1.9.0)
     multi_xml (0.5.5)
+    net-scp (1.1.2)
+      net-ssh (>= 2.6.5)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.8.0)
+    net-ssh-gateway (1.2.0)
+      net-ssh (>= 2.6.5)
     nio4r (1.0.0)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     nokogiri (1.6.1-x86-mingw32)
       mini_portile (~> 0.5.0)
+    open4 (1.3.3)
     orm_adapter (0.5.0)
     pg (0.17.1)
     pg (0.17.1-x86-mingw32)
-    polyglot (0.3.3)
+    polyglot (0.3.4)
     pry (0.9.12.6)
       coderay (~> 1.0)
       method_source (~> 0.8)
@@ -145,6 +201,8 @@ GEM
       slop (~> 3.4)
       win32console (~> 1.3)
     rack (1.5.2)
+    rack-protection (1.5.2)
+      rack
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.0.0)
@@ -155,7 +213,11 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.0.0)
       sprockets-rails (~> 2.0.0)
-    rails_layout (1.0.7)
+    rails_12factor (0.0.2)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.2)
+    rails_stdout_logging (0.0.3)
     railties (4.0.0)
       actionpack (= 4.0.0)
       activesupport (= 4.0.0)
@@ -167,16 +229,34 @@ GEM
       ffi (>= 0.5.0)
     rdoc (4.1.1)
       json (~> 1.4)
+    redis (3.0.7)
+    redis-namespace (1.4.1)
+      redis (~> 3.0.4)
+    ref (1.0.5)
+    resque (1.25.2)
+      mono_logger (~> 1.0)
+      multi_json (~> 1.0)
+      redis-namespace (~> 1.3)
+      sinatra (>= 0.9.2)
+      vegas (~> 0.1.2)
     rolify (3.4.0)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
-    rspec-core (2.14.7)
+    rspec-core (2.14.8)
     rspec-expectations (2.14.5)
       diff-lcs (>= 1.1.3, < 2.0)
-    rspec-mocks (2.14.5)
-    sass (3.2.14)
+    rspec-mocks (2.14.6)
+    rubber (2.7.3)
+      capistrano (~> 2.12)
+      clamp
+      fog (~> 1.6)
+      json
+      net-ssh (~> 2.6)
+      open4
+      thor
+    sass (3.3.2)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
@@ -184,8 +264,12 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
-    slop (3.4.7)
-    sprockets (2.10.1)
+    sinatra (1.4.4)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (~> 1.3, >= 1.3.4)
+    slop (3.5.0)
+    sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -194,11 +278,14 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sqlite3 (1.3.8)
-    sqlite3 (1.3.8-x86-mingw32)
+    sqlite3 (1.3.9)
+    sqlite3 (1.3.9-x86-mingw32)
+    therubyracer (0.12.1)
+      libv8 (~> 3.16.14.0)
+      ref
     thor (0.18.1)
-    thread_safe (0.1.3)
-      atomic
+    thread_safe (0.2.0)
+      atomic (>= 1.1.7, < 2)
     tilt (1.4.1)
     timers (1.1.0)
     treetop (1.4.15)
@@ -206,11 +293,17 @@ GEM
       polyglot (>= 0.3.1)
     turbolinks (2.2.1)
       coffee-rails
-    tzinfo (0.3.38)
+    tzinfo (0.3.39)
     uglifier (2.4.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unf (0.1.3)
+      unf_ext
+    unf_ext (0.0.6)
+    unf_ext (0.0.6-x86-mingw32)
     uuidtools (2.1.4)
+    vegas (0.1.11)
+      rack (>= 1.0.0)
     warden (1.2.3)
       rack (>= 1.0)
     win32console (1.3.2-x86-mingw32)
@@ -233,17 +326,27 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker
+  flot-rails!
   font-awesome-rails
+  gelf
   gibbon
+  graylog2-resque
+  graylog2_exceptions
   guard-rspec
   jbuilder (~> 1.2)
   jquery-rails
+  jquery-turbolinks
+  jquery-ui-sass-rails
+  open4
   pg
   rails (= 4.0.0)
-  rails_layout
+  rails_12factor
   rolify
+  rubber
   sass-rails (~> 4.0.0)
   sdoc
   sqlite3
+  therubyracer
   turbolinks
   uglifier (>= 1.3.0)
+  unf

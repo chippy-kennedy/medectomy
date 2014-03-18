@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
@@ -15,6 +15,11 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+gem 'jquery-turbolinks'
+
+# UI Element for JQuery
+gem 'jquery-ui-sass-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
@@ -29,16 +34,14 @@ end
 # Bootstrap for Rails 4
 gem 'bootstrap-sass'
 
-group :development do
-  gem 'rails_layout'
-end
-
-
 # Fonts
 gem "font-awesome-rails"
 
 # Animate.css for Rails
 gem "animate-rails"
+
+# Flot Graph API
+gem 'flot-rails', :git => "https://github.com/Kjarrigan/flot-rails.git"
 
 # Authentication w/ Devise, Rolify, & CanCan
 gem 'devise'
@@ -51,15 +54,14 @@ gem 'gibbon'
 # Amazon's official AWS SDK
 gem "aws-sdk"
 
-
 group :deployment do 
 	# Use PostgreSQL as database for Active Record
 	gem 'pg'
 end
-
+gem 'faker'
+gem 'database_cleaner', '< 1.1.0'
 group :development do
-  gem 'faker'
-  gem 'database_cleaner', '< 1.1.0'
+  #gem 'database_cleaner', '< 1.1.0'
 end
 
 group :test do
@@ -75,6 +77,11 @@ group :test, :development do
 	gem 'debugger'
 end
 
+gem 'therubyracer', :group => :assets
+
+#for deployment
+gem 'rails_12factor'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -83,3 +90,9 @@ end
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
+gem 'rubber'
+gem 'open4'
+gem 'gelf'
+gem 'graylog2_exceptions'
+gem 'graylog2-resque'
+gem 'unf'

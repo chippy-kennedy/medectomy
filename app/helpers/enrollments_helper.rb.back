@@ -1,0 +1,11 @@
+module EnrollmentsHelper
+
+	def enrolled_in?(course, user)
+		return Enrollment.where(user_id: user.id, course_id: course.id).count > 0
+	end
+
+	def get_enrollment(course, user)
+		enrollments = Enrollment.where(user_id: user.id, course_id: course.id)
+		if enrollments 
+	end
+end

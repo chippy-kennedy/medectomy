@@ -1,0 +1,14 @@
+var enrollment_form = $("#enroll_course_<%= @enrollment.course.id %>").parent().parent();
+var enrollment_icon = $("#enroll_course_<%= @enrollment.course.id %> > i");
+console.log(<%=j enrollment_path(@enrollment) %>)
+// create remove enrollment link
+if(enrollment_icon.hasClass('fa-plus')) {
+	$(enrollment_form).attr('method', 'delete');
+	$(enrollment_form).attr('action', <%=escape_javascript( enrollment_path(@enrollment)) %>);
+	$(enrollment_icon).removeClass('fa-plus');
+	$(enrollment_icon).addClass('fa-minus');
+}
+// create add enrollment link
+else {
+	
+}

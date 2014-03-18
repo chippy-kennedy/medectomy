@@ -6,13 +6,23 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
 
 </head>
-<body>
-	<%= render partial: "layouts/header" %>
-	<div class="container">
-    	<%= yield %>
-	</div>
-	<%= render partial: "layouts/footer" %>
+<body <%= "class=full-width" if (!has_left_sidebar?) %>>
+	<section id="container">
+		<%= render partial: "layouts/header" %>
+		<%= render partial: "layouts/sidebar_left" if (has_left_sidebar?) %>
+    <%= render partial: "layouts/messages" %>
+		<section id="main-content">
+			<%= yield %>
+		</section>
+		<%= render partial: "layouts/sidebar_right" %>
+	</section>
 </body>
 </html>

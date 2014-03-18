@@ -1,18 +1,26 @@
-
-
-
 // Bootstrap
- @import "bootstrap";  
-
-// Base
-@import "base/base";
-@import "base/helpers";
+@import "bootstrap";  
 
 // Fonts
 @import "font-awesome";
 
 // Libraries
+@import "jquery.ui.core";
+
+// Vendor
+@import "bootstrap-reset";
+@import "jplayer.blue.monday";
+@import "style";
+@import "style-responsive";
+
+// Base
+@import "base/helpers";
+@import "base/custom";
 
 // Modules
-@import "modules/container";
+@import "modules/course";
+
+
+
+
 

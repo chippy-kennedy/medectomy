@@ -16,8 +16,9 @@
 /tmp
 
 # Ignore .yml config files
-/config/database.yml
-/config/aws.yml
+#/config/database.yml
+#/config/aws.yml
 
 /resources
 
+.elasticbeanstalk/

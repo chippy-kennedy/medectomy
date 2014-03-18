@@ -3,19 +3,16 @@ class Ability
 
   def initialize(user)
 
-    # basic user role
-    if user_signed_in?
+    # student role
+    if user.has_role? :student
+      can :manage, :enrollments
+    end
 
-        # student role
-        if current_user.has_role? :student
+    # admin role
+    if user.has_role? :admin
+        can :manage, :all
+    end
+end
 
-        end
-
-        # admin role
-        if current_user.has_role? :admin
-            can :manage, :all
-        end
-
-  end
 
 end

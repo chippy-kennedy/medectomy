@@ -5,4 +5,3 @@ development:
   s3_secret: 
 
   content_directory: 
-

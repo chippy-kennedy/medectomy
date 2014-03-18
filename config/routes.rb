@@ -2,15 +2,22 @@ Medectomy::Application.routes.draw do
 
   devise_for :users
 
-  resources :courses do
-  	resources :chapters
-  end
-
-  resources :dashboard do
-    resources :notes
-  end
+  resources :courses
+  resources :chapters
+  
+  resources :enrollments
 
 
-  root to: 'dashboard#index'
+  # route for user profile
+  #TODO: Below not working during intial signin
+  get 'profile', :to => 'users#index'
+
+  root to: 'pages#home'
+	
+  # routes for navigation on front pages 
+  get 'available_courses', :to => 'pages#available_courses'
+  get 'contact', :to => 'pages#contact'
+
+
 
 end

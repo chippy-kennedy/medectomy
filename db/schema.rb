@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140219212927) do
+ActiveRecord::Schema.define(version: 20140310025049) do
 
   create_table "chapters", force: true do |t|
     t.string   "name"
@@ -35,6 +35,20 @@ ActiveRecord::Schema.define(version: 20140219212927) do
     t.integer  "chapter_id"
   end
 
+  create_table "domains", force: true do |t|
+    t.string   "name"
+    t.integer  "university_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "enrollments", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "course_id"
+    t.integer  "user_id"
+  end
+
   create_table "roles", force: true do |t|
     t.string   "name"
     t.integer  "resource_id"
@@ -45,6 +59,12 @@ ActiveRecord::Schema.define(version: 20140219212927) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
+
+  create_table "universities", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -59,6 +79,13 @@ ActiveRecord::Schema.define(version: 20140219212927) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "description"
+    t.string   "twitter_handle"
+    t.string   "facebook_id"
+    t.string   "linkedin_id"
+    t.integer  "university_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
