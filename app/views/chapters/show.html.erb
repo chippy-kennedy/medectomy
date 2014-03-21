@@ -111,7 +111,9 @@ l<section class="wrapper">
           </div>
           <div style="margin-top:4%;" class="col-sm-4">
             <div class=" text-justify">
-              <%= @chapter.description %>
+              <b>
+                <%= @chapter.description %>
+              </b>
             </div>
           </div>
         </div>
@@ -120,10 +122,12 @@ l<section class="wrapper">
   </div>
   
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-9">
       <section class="panel">
         <header class="panel-heading">
+          <b>
           <%= "Chapter #{@chapter.id}: #{@chapter.name}" %>
+          </b>
           <span class="tools pull-right">
             <a href="javascript:;" class="fa fa-chevron-down">
             </a>
@@ -131,6 +135,40 @@ l<section class="wrapper">
         </header>
         <div class="panel-body">
           <%= render text: @partial_file.result(binding).force_encoding('utf-8').html_safe %>
+        </div>
+        
+      </section>
+       <section class="panel">
+        <header class="panel-heading">
+          <b>
+          <%= "Chapter #{@chapter.id}: #{@chapter.name} References" %>
+          </b>
+          <span class="tools pull-right">
+            <a href="javascript:;" class="fa fa-chevron-down">
+            </a>
+          </span>
+        </header>
+        <div class="panel-body">
+          <!-- TODO -->
+          <ul>
+            <li> -  </li>
+            <li> -  </li>
+          </ul>
+        </div>
+        
+      </section>
+    </div>
+    <div class="col-sm-3">
+      <section class="panel">
+        <header class="panel-heading">
+          <b>USMLE Step 1 Review</b>
+          <span class="tools pull-right">
+            <a href="javascript:;" class="fa fa-chevron-down">
+            </a>
+          </span>
+        </header>
+        <div class="panel-body">
+          <!-- TODO -->
         </div>
         
       </section>
