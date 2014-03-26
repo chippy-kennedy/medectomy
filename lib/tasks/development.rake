@@ -7,8 +7,6 @@ require 'fileutils'
 
 #include AWS::S3
  
-if Rails.env.development?
-
 	namespace :dev do
 
 		# holds an AWS S3 object
@@ -59,8 +57,10 @@ if Rails.env.development?
 
 			connect_s3			
 			logger = File.open("#{Rails.root}/log/s3log.txt","a")
-			content_directory = S3_CONFIG[Rails.env]["content_directory"]
+			content_directory = YAML.load(ERB.new(File.read("#{Rails.root}/config/aws.yml")).result)[Rails.env]["content_directory"]
 			new_content = Dir.glob(content_directory)
+			puts content_directory
+
 			new_content.each do |local_file_path|
 				file_name = File.basename(local_file_path)
 
@@ -125,7 +125,7 @@ if Rails.env.development?
 		desc "Creates a directory structure from the files uploaded"
 		task :organize_information => :environment do		
 			logger = File.open("#{Rails.root}/log/s3log.txt","a")
-			Dir.glob(S3_CONFIG[Rails.env]["content_directory"]).each do |local_file_path|
+			Dir.glob(YAML.load(ERB.new(File.read("#{Rails.root}/config/aws.yml")).result)[Rails.env]["content_directory"]).each do |local_file_path|
 
 				file_name = File.basename(local_file_path)
 
@@ -312,8 +312,4 @@ if Rails.env.development?
 		end
 
 	end
-end
-
-else
-	puts "'Development.rake' should only be run in the development environment."
 end

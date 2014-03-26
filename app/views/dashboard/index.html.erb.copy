@@ -1,0 +1,92 @@
+
+
+<!-- User Dashboard -->
+
+<section id="content" class="dashboard-container">
+
+
+  <div class="container">
+    <h2 class="text-left"><span style="color:#e65154;">My</span> Dashboard</h2>
+  </div>
+
+
+
+
+  <!-- Column 1 -->
+    <div class="col-md-5 dashboard-info" style="margin: 30px 40px 40px 60px;">
+        <h2 style="text-align:center;">My Classes</h2>
+        <ul class="media-list">
+            <% 5.times do |index| %>
+                <li class="media course-listing <%= "last-course-listing" if index == 9 %>">
+                    <div class="media-body">
+                        
+                        <div class="col-md-8">
+                            <h3><%= link_to 'Micobiology', courses_path %></h3>
+                            <p>Last Chapter Worked On: #CHAP<br>Date Started: MM/DD/YYYY<br> Total Notes Taken: #GOES HERE</p>
+                        </div>
+                        <div class="col-md-4" style="margin: 20px 0px 0px;">
+                            <input type="text" value="43" class="dial" data-width="80%" data-displayInput=false>
+                            <script>
+                            $('.dial')
+                            .trigger(
+                            'configure',
+                            {
+                            "min":10,
+                            "max":40,
+                            "fgColor":"#FFFFF",
+                            "skin":"tron",
+                            "cursor":true
+                            }
+                            );
+                            $(function() {
+                            $(".dial").knob();
+                            });
+                            </script>
+                        </div>
+                    </div>
+                        <% end %>
+                  </li>
+                </ul>
+
+    </div>
+    <!-- End Column 1 -->
+
+    <!-- Coloumn 2 -->
+    
+    <div class="col-md-5 dashboard-info">
+        <div class="col-md-8" style="margin:0px 0px 40px 75px;">
+
+            <h3 style="text-align:center;"><%= link_to 'Start New Course', courses_path %></h3>
+            <p style="text-align:center;">
+                    <span class="glyphicon glyphicon-asterisk" style="font-size: 2.5em;"></span>
+                    <br>Lorem ipsum dolor: sit amet, consectetur: adipisicing elit, sed:
+            </p>
+        </div>
+
+        <!-- Look at Saved Notes -->
+        <div class="col-md-8" style="margin:0px 0px 40px 75px;">
+            <h3 style="text-align:center;"><%= link_to 'My Saved Notes', courses_path %></h3>
+            <p style="text-align:center;">
+                    <span class="glyphicon glyphicon-list-alt" style="font-size: 2.5em;"></span>
+                    <br>Lorem ipsum dolor: sit amet, consectetur: adipisicing elit, sed:
+            </p>
+        </div>
+
+        <!-- Start New Course -->
+        <div class="col-md-8" style="margin:0px 0px 40px 75px;">
+            <h3 style="text-align:center;"><%= link_to 'Track Progress', courses_path %></h3>
+            <p style="text-align:center;">
+                    <span class="glyphicon glyphicon-stats" style="font-size: 2.5em;"></span>
+                    <br>Lorem ipsum dolor: sit amet, consectetur: adipisicing elit, sed:
+            </p>
+        </div>
+</div><!-- End Column 2 -->
+
+
+
+
+
+   
+
+    
+</section>
