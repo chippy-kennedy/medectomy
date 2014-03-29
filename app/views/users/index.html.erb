@@ -199,11 +199,11 @@
                     <% else %> 
                     <div class="wk-progress pf-status">
                       <div class="col-md-12 col-xs-12">
-                          <strong><%= Course.find('2').name %></strong>
+                          <strong><%= Course.find_by(name: "Virology").name%></strong>
                       </div>
                       <div stlye="margin-top:20px;">
                         <div class="col-md-3 col-xs-3">
-                          <%= link_to chapter_path(Chapter.find('1').id) do%>
+                          <%= link_to chapter_path(Chapter.find(:first, :conditions => ["course_id = ?",Course.find_by(name: "Virology").id], :order => "number ASC").id) do %>
                           <button type="button" class="btn btn-primary btn-info btn-xs">
                             View
                           </button>
@@ -219,7 +219,7 @@
 
                     
                       </div>
-                    <% end %>
+                    <%end%>
                   </div>
                 </div>
               </div>
