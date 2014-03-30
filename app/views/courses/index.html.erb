@@ -5,27 +5,25 @@
     <div class="col-md-3">
       <!--widget start-->
       <aside class="profile-nav alt">
-        <section class="panel course-block">
+        <section id='course-block-<%= course.id %>' class="panel course-block">
           <div class="user-heading alt wdgt-row terques-bg">
-              <div class="corner-ribon black-ribon">
                 <%= render partial: 'enrollments/enrollment_button', locals: {course: course} %>
-              </div>
             </a>
             <h1>
               <%= course.name %>
             </h1>
           </div>
           
-          <div class="panel-group m-bot20" id="<%= "#{course.name}-accordion" %>">
+          <div class="panel-group m-bot20" id="<%= "#{course.id}-accordion" %>">
             <div class="panel">
               <div class="panel-heading">
                 <h4 class="panel-title text-center">
-                  <a class="text-center accordion-toggle collapsed" data-toggle="collapse" data-parent="#<%= "#{course.name}-accordion" %>" href="#<%= "accordion-#{course.name}" %>">
+                  <a class="text-center accordion-toggle collapsed" data-toggle="collapse" data-parent="#<%= "#{course.id}-accordion" %>" href="#<%= "accordion-#{course.id}" %>">
                     Chapters
                   </a>
                 </h4>
               </div>
-              <div id="<%= "accordion-#{course.name}" %>" class="panel-collapse collapse" style="height: 0px;">
+              <div id="<%= "accordion-#{course.id}" %>" class="panel-collapse collapse" style="height: 0px;">
                 <div class="panel-body">
                   <table class="table">
                     <thead>

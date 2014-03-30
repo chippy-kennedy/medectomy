@@ -14,8 +14,8 @@ class EnrollmentsController < ApplicationController
 	end
 
 	def destroy
-		debugger
-		@enrollment = Enrollment.find(params[:enrollment_id]).destroy
+		@enrollment = Enrollment.find(params[:id])
+		@enrollment.destroy
 		respond_to do |format|
 	    	format.js
 	  	end

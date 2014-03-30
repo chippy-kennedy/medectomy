@@ -1,11 +1,11 @@
+<div class="corner-ribon black-ribon">
 <% if enrolled_in?(course, current_user) %>
-	<%= button_to , :method => :delete, id: "enroll_course_#{enrollment.course_id}", remote: true do %>
-		<i style="font-size:20px;" class="fa fa-minus">
-		</i>
+	<%= button_to get_enrollment(course, current_user), :method => :delete, remote: true do %>
+		<i style="font-size:20px;" class="fa fa-minus"></i>
 	<% end %>
 <% else %>
 	<%= button_to enrollments_path(course_id: course.id), :method => :post, id: "enroll_course_#{course.id}", remote: true do %>
-		<i style="font-size:20px;" class="fa fa-plus">
-		</i>
+		<i style="font-size:20px;" class="fa fa-plus"></i>
 	<% end %>
 <% end %>
+</div>
