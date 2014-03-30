@@ -2,8 +2,6 @@
 
 
 
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
 
@@ -17,9 +15,7 @@
 <!-- Header -->             
               <div class="row position-center">
               <div class="prf-contacts sttng">
-                  <h2>
-                    User Settings
-                  </h2>
+                 
                 </div>
                 <form role="form" class="form-horizontal">
                 </form>
@@ -28,6 +24,9 @@
 <!-- Personal Info --> 
               <div class="row position-center">
                 <div class="prf-contacts sttng">
+                   <h2>
+                    <b>User Settings</b>
+                  </h2>
                   <h2>
                     Personal Information
                   </h2>
