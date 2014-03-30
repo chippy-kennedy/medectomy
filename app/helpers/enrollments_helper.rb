@@ -5,7 +5,6 @@ module EnrollmentsHelper
 	end
 
 	def get_enrollment(course, user)
-		enrollments = Enrollment.where(user_id: user.id, course_id: course.id)
-		if enrollments 
+		Enrollment.where(user_id: user.id, course_id: course.id).first
 	end
 end
