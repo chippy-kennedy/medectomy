@@ -157,7 +157,7 @@ a,a:hover,a:focus {
     width:240px;
     height:100%;
     position:fixed;
-    background:#32323a;
+    background:#dddddd;
     -webkit-transition:all .3s ease-in-out;
     -moz-transition:all .3s ease-in-out;
     -o-transition:all .3s ease-in-out;
@@ -5466,7 +5466,7 @@ div.tagsinput span.tag {
 }
 
 .brand {
-    background:#969696;
+    background: transparent;
     float:left;
     width:240px;
     height:80px;
