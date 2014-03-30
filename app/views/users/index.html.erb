@@ -63,7 +63,7 @@
                   </a>
                 </li>
                 <li>
-                    <%= link_to '<i class="fa fa-wrench"></i>'.html_safe,edit_user_registration_path(current_user) %>
+                    <%= link_to '<i class="fa fa-wrench"></i>'.html_safe, edit_user_registration_path(current_user) %>
                 </li>
 
 
@@ -91,10 +91,15 @@
               </a>
             </li>
             <li class="">
+
               <a data-toggle="tab" href="#settings">
                 Settings
               </a>
             </li>
+
+
+
+
           </ul>
         </header>
         <div class="panel-body">
@@ -186,8 +191,7 @@
               <div class="row">
                 <div class="col-md-12">
                   
-              <%= render(:partial => "devise/registrations/edit" ,:controller=>"application") %>
-
+              <%= render(:partial => "devise/registrations/edit", locals: {resource: current_user}) %>
 
                 </div>
            
@@ -196,7 +200,7 @@
 <!-- Setting Tab End-->
 <!-- Courses Tab Start-->
             <div id="courses" class="tab-pane active">
-              <div class="position-center">
+              <div class="row position-center">
                      <div class="col-md-4">
                   <div class="prf-box">
                     <h3 class="prf-border-head">

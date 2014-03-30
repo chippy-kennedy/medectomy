@@ -140,11 +140,11 @@
                   <div class="form-group">
                     <%= f.label :password_confirmation, :class => 'col-lg-2 control-label' %>
                     <div class="col-lg-6">
-                      <%= f.password_field :password, :class => 'form-control', :type => 'text' %><i>(we need your current password to confirm your changes)</i><br />
+                      <%= f.password_field :password, :class => 'form-control', :type => 'text' %><i><b>(we need your current password to confirm your changes)</b></i><br />
                     </div>
                   </div>
 
-                  <div><%= f.submit "Update" %></div>
+                  <div><%= f.submit "Update", class:"btn btn-lg" %></div>
                   <% end %>
 
                   </form>
@@ -159,11 +159,12 @@
                 </div>
                 <form role="form" class="form-horizontal">
 
-                  <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>
+                  <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, class:"btn btn-md" %>
 
 
                   </form>
-                </div><!-- End Row -->       
+                </div><!-- End Row --> 
+
 
 
 
