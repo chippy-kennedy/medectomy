@@ -8,8 +8,7 @@ class CoursesController < ApplicationController
 	end
 
 	def show
-		@Course = Course.find(params[:id])
-		render "courses/chapter-list"
+		@course = Course.find(params[:id])
 	end
 
 	def new

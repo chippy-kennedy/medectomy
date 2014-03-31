@@ -18,6 +18,7 @@ class EnrollmentsController < ApplicationController
 		@enrollment.destroy
 		respond_to do |format|
 	    	format.js
+	    	format.html {redirect_to profile_path}
 	  	end
 	end
 	
