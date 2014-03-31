@@ -82,7 +82,6 @@
 </li>
 <% end %>
 
-<% if !user_signed_in? %>
 <%= link_to(available_courses_path) do%>
 <li class="widget-collapsible">
     <div href="#" class="head widget-head terques-bg active">
@@ -92,6 +91,9 @@
 </li>
 <% end %>
 
+
+
+<% if !user_signed_in? %>
 <li class="widget-collapsible">
     <div href="#" class="head widget-head yellow-bg active">
         <span class="pull-left"> consultation</span>
