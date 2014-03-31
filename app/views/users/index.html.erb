@@ -207,9 +207,12 @@
                       enrolled in
                     </h3>
                     <% if @enrollments.empty? %>
-                      <div class=" wk-progress pf-status">
+
+                    <%= link_to ' <div class=" wk-progress pf-status">
                         Enroll in a course to get started!
-                      </div>
+                      </div>'.html_safe, courses_path() %>
+
+                      
                     <% else %> 
                     <% @enrollments.each do |enrollment| %>
                     <div class="wk-progress pf-status">
@@ -218,7 +221,7 @@
                       </div>
                       <div stlye="margin-top:20px;">
                         <div class="col-md-3 col-xs-3">
-                          <%= link_to course_path(enrollment.course) do %>
+                          <%= link_to chapter_path(enrollment.course) do %>
                           <button type="button" class="btn btn-primary btn-info btn-xs">
                             View
                           </button>

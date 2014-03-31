@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   helper_method :permitted_params
 
   def configure_permitted_parameters
-    debugger
+    #debugger
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :first_name, :last_name, :university_id) }
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, :password) }
 

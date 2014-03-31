@@ -1,0 +1,48 @@
+<section class="wrapper">
+
+<div class="row">
+    <div class="col-md-12" style="text-align:center">
+      <section class="panel">
+        <div class="panel-body">
+      <h1><strong>MICROBIOLOGY</strong> SECTIONS</h1>
+          <p>Select any section's plus symbol to enroll in that section.</p>
+
+        </div>
+      </section>
+  </div>
+</div>
+
+
+
+<% section.course.each do |chapter| %>
+  <%= render partial: 'courses/index'%>
+<%end%>
+
+
+
+
+
+
+
+
+  <!-- page end-->
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="footer" style="text-align:center">
+    <div class="container">
+      <p class="muted credit">&copy; Medectomy 2014</p>
+    </div>
+</div>
+
