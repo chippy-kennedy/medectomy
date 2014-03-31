@@ -5468,11 +5468,7 @@ div.tagsinput span.tag {
 }
 
 .brand {
-<<<<<<< HEAD
-    background:#FFFFFF;
-=======
     background: transparent;
->>>>>>> a69c0e3ad183651bbf92c151aceb32e252ec8e41
     float:left;
     width:240px;
     height:80px;
