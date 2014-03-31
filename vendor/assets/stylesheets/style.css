@@ -24,6 +24,8 @@ a,a:hover,a:focus {
     text-decoration:none;
     outline:none;
 }
+
+
 ::selection {
     background:#1FB5AD;
     color:#fff;
@@ -334,7 +336,7 @@ ul.sidebar-menu li a.active i {
     width:100%;
 }
 .brand {
-    background:#999999;
+    background:#FFFFFF;
     float:left;
     width:240px;
     height:80px;
@@ -5485,4 +5487,10 @@ a.logo:hover,a.logo:focus {
 }
 a.logo span {
     color: #FF6C60;
+}
+
+/* HarkenSol */
+@media only screen and (max-width: 640px) {
+
+
 }
