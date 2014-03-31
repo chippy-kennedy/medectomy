@@ -37,13 +37,13 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <% course.chapters.each do |chapter| %>
+                      <% course.chapters.order("number ASC").each do |chapter| %>
                       <tr>
                         <td>
                           <%= chapter.number %>
                         </td>
                         <td>
-                          <%= chapter.name %>
+                         <a href = "<%= chapter_path(chapter)%>" <%= chapter.name %>
                         </td>
                       </tr>
                     <% end %>
