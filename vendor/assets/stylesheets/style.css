@@ -128,6 +128,9 @@ a,a:hover,a:focus {
 .new-course-select a:hover{
     color:#fa8564;
 }
+.live-course-select a:hover{
+    color:#9466B5;
+}
 /*---------*/
 
 
