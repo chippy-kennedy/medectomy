@@ -14,7 +14,7 @@
                     <span><%= course.name %></span>
                 </a>
                 <ul class="sub">
-                    <% course.chapters.each do |chapter| %>
+                    <% course.chapters.order("number ASC").each do |chapter| %>
                     <li class="<%= "active" if @chapter.id == chapter.id  %>"><a href="<%= chapter_path(chapter) %>"><%="#{chapter.number}-#{chapter.name}"%></a></li>
                     <% end %>
                 </ul>
