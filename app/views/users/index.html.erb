@@ -207,9 +207,12 @@
                       enrolled in
                     </h3>
                     <% if @enrollments.empty? %>
-                      <div class=" wk-progress pf-status">
+
+                    <%= link_to ' <div class=" wk-progress pf-status">
                         Enroll in a course to get started!
-                      </div>
+                      </div>'.html_safe, courses_path() %>
+            
+                      
                     <% else %> 
                     <% @enrollments.each do |enrollment| %>
                     <div class="wk-progress pf-status">
