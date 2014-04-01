@@ -1,11 +1,15 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+
+  include ContentHelper
+
   protect_from_forgery with: :exception
   
   before_filter :authenticate_user!
   
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_filter :debugger_help, if: :devise_controller?
   #before_filter :detect_university, if: :devise_controller?
 
   # ensures authentication occurs in every action
@@ -25,7 +29,6 @@ class ApplicationController < ActionController::Base
   helper_method :permitted_params
 
   def configure_permitted_parameters
-    #debugger
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :first_name, :last_name, :university_id) }
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, :password) }
 
@@ -42,9 +45,14 @@ class ApplicationController < ActionController::Base
       else
         params[:user][:university_id] = domain.university_id
       end
-      debugger
     end
+  end
 
+  def debugger_help
+    if params[:action] == "create" && params[:controller] = "devise/sessions"
+      debugger
+      puts "attempted login"
+    end
   end
 
 
