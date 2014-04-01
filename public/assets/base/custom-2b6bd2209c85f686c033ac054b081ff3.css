@@ -1,0 +1,19 @@
+/* line 1, /home/pi/Harkensol/medectomy/app/assets/stylesheets/base/custom.css.scss */
+.field_with_errors {
+  margin-bottom: 15px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 1px solid #b50505;
+}
+
+/* line 8, /home/pi/Harkensol/medectomy/app/assets/stylesheets/base/custom.css.scss */
+.corner-ribon a {
+  float: none !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+/* line 13, /home/pi/Harkensol/medectomy/app/assets/stylesheets/base/custom.css.scss */
+.corner-ribon button {
+  background: transparent;
+  border: none;
+}
