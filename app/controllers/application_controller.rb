@@ -9,8 +9,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   
   before_filter :configure_permitted_parameters, if: :devise_controller?
-  before_filter :debugger_help, if: :devise_controller?
-  #before_filter :detect_university, if: :devise_controller?
+  before_filter :detect_university, if: :devise_controller?
 
   # ensures authentication occurs in every action
   check_authorization :unless => :devise_controller?
