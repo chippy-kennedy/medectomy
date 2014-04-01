@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
 
       if domain.nil?
         flash[:notice] = "Your institution does not currently have access to Medectomy. Feel free to contact us for a personal account."
-        redirect_to root
+        redirect_to root_path
       else
         params[:user][:university_id] = domain.university_id
       end
