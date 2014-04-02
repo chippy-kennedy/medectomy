@@ -12,7 +12,9 @@
 	<div class="container">
 	<%= render partial: "layouts/header" %>
     <%= render partial: "layouts/messages" %>
+	<div class="error">
 	  <%= devise_error_messages! %>
+	 </div>
 		<%= yield %>
 	</div>
 <%= render partial: "layouts/sidebar_right" %>

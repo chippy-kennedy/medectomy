@@ -8,6 +8,11 @@ body{
     .merge-header{
         margin-right: 0px !important;
     }
+
+.error{
+    position: relative! important;
+}
+
 .brand{
     width: 100%;
     float: none;

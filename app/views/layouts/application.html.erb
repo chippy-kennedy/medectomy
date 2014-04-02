@@ -18,7 +18,10 @@
 	<section id="container">
 		<%= render partial: "layouts/header" %>
 		<%= render partial: "layouts/sidebar_left" if (has_left_sidebar?) %>
-    <%= render partial: "layouts/messages" %>
+    <div class="error">
+      <%= render partial: "layouts/messages" %>
+    </div>
+    
 		<section id="main-content">
 			<%= yield %>
 		</section>
