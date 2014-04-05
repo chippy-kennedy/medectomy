@@ -7,8 +7,6 @@ require 'fileutils'
 
 #include AWS::S3
 
-if Rails.env.development?
-
 	namespace :dev do
 
     task :clean_basic => :environment do 
@@ -66,8 +64,3 @@ if Rails.env.development?
 		
 
 	end
-
-
-else
-	puts "'Development.rake' should only be run in the development environment."
-end
