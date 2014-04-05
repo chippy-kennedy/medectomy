@@ -73,11 +73,10 @@
     <ul class="nav pull-right top-menu">
         <% if !user_signed_in? %>
         <li>
-            <%= link_to(profile_path) do %>
-                <div class="header-button">
-                    <i class="fa fa-pencil"></i> Sign Up
-                </div>
-            <% end %>
+            <%= link_to '<div class="header-button">
+            <i class="fa fa-pencil"></i> Sign Up
+            </div>'.html_safe, new_user_registration_path(current_user) %>
+            
         </li>
         <% end %>
         <% if !user_signed_in? %>
@@ -89,6 +88,9 @@
             <% end %>
         </li>
         <% end %>
+
+
+
        <!--
         <li>
             <input type="text" class="form-control search" placeholder=" Search">

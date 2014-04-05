@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 201404300025012) do
+ActiveRecord::Schema.define(version: 20140405010639) do
 
   create_table "chapters", force: true do |t|
     t.string   "name"
@@ -24,17 +24,6 @@ ActiveRecord::Schema.define(version: 201404300025012) do
     t.integer  "course_id"
     t.string   "description"
   end
-
-  create_table "comments", force: true do |t|
-    t.text     "content"
-    t.integer  "commentable_id"
-    t.string   "commentable_type"
-    t.string   "ancestry"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "comments", ["ancestry"], name: "index_comments_on_ancestry"
 
   create_table "courses", force: true do |t|
     t.string   "name"

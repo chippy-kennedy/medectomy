@@ -49,6 +49,21 @@
                   </div>
 
                   <div class="form-group">
+                    <%= f.label :graduation_year, :class => 'col-lg-2 control-label' %>
+                    <div class="col-lg-6">
+                      <%= f.text_field :graduation_year, :autofocus => true, :class => 'form-control', :type => 'text' %>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <%= f.label :degree, :class => 'col-lg-2 control-label' %>
+                    <div class="col-lg-6">
+                      <%= f.select :degree, options_for_select([["Undergraduate","undergraduate"],["MD","md"],["Masters","masters"],["PhD","phd"]]), :autofocus => true, :class => 'form-control', :type => 'text' %>
+
+                    </div>
+                  </div>
+
+                  <div class="form-group">
                     <%= f.label :email, :class => 'col-lg-2 control-label' %>
                     <div class="col-lg-6">
                       <%= f.email_field :email, :autofocus => true, :class => 'form-control', :type => 'text' %>
