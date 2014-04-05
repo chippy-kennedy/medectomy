@@ -5159,3 +5159,36 @@ Stored: courses/Virology/7-Hepatitis Viruses/html/images/Virology_7-Hepatitis Vi
 Stored: courses/Virology/7-Hepatitis Viruses/html/Virology_7-Hepatitis Viruses#.html.erb
 Stored: courses/Virology/2-Classification of Viruses/html/Virology_2-Classification of Viruses#.html.erb
 Stored: courses/Virology/8-Arboviruses/html/Virology_8-Arboviruses#.html.erb
+Stored: courses/Virology/11-Slow Viruses/html/Virology_11-Slow Viruses#.html.erb
+Stored: courses/Virology/7-Hepatitis Viruses/html/images/Virology_7-Hepatitis Viruses#him_image005.png
+Stored: courses/Virology/6-Non-Enveloped RNA Viruses/html/Virology_6-Non-Enveloped RNA Viruses#.html.erb
+Stored: courses/Virology/7-Hepatitis Viruses/html/images/Virology_7-Hepatitis Viruses#him_image002.png
+Stored: courses/Virology/5-Enveloped RNA Viruses/html/Virology_5-Enveloped RNA Viruses#.html.erb
+Stored: courses/Virology/7-Hepatitis Viruses/html/images/Virology_7-Hepatitis Viruses#him_image003.png
+Stored: courses/Virology/7-Hepatitis Viruses/html/images/Virology_7-Hepatitis Viruses#him_image004.png
+Stored: courses/Virology/7-Hepatitis Viruses/html/images/Virology_7-Hepatitis Viruses#him_image001.png
+Stored: courses/Virology/7-Hepatitis Viruses/html/Virology_7-Hepatitis Viruses#.html.erb
+Stored: courses/Virology/2-Classification of Viruses/html/Virology_2-Classification of Viruses#.html.erb
+Stored: courses/Virology/8-Arboviruses/html/Virology_8-Arboviruses#.html.erb
+Stored: courses/Virology/11-Slow Viruses/html/Virology_11-Slow Viruses#.html.erb
+Stored: courses/Virology/7-Hepatitis Viruses/html/images/Virology_7-Hepatitis Viruses#him_image005.png
+Stored: courses/Virology/6-Non-Enveloped RNA Viruses/html/Virology_6-Non-Enveloped RNA Viruses#.html.erb
+Stored: courses/Virology/7-Hepatitis Viruses/html/images/Virology_7-Hepatitis Viruses#him_image002.png
+Stored: courses/Virology/5-Enveloped RNA Viruses/html/Virology_5-Enveloped RNA Viruses#.html.erb
+Stored: courses/Virology/7-Hepatitis Viruses/html/images/Virology_7-Hepatitis Viruses#him_image003.png
+Stored: courses/Virology/7-Hepatitis Viruses/html/images/Virology_7-Hepatitis Viruses#him_image004.png
+Stored: courses/Virology/7-Hepatitis Viruses/html/images/Virology_7-Hepatitis Viruses#him_image001.png
+Stored: courses/Virology/7-Hepatitis Viruses/html/Virology_7-Hepatitis Viruses#.html.erb
+Stored: courses/Virology/2-Classification of Viruses/html/Virology_2-Classification of Viruses#.html.erb
+Stored: courses/Virology/8-Arboviruses/html/Virology_8-Arboviruses#.html.erb
+Stored: courses/Virology/11-Slow Viruses/html/Virology_11-Slow Viruses#.html.erb
+Stored: courses/Virology/7-Hepatitis Viruses/html/images/Virology_7-Hepatitis Viruses#him_image005.png
+Stored: courses/Virology/6-Non-Enveloped RNA Viruses/html/Virology_6-Non-Enveloped RNA Viruses#.html.erb
+Stored: courses/Virology/7-Hepatitis Viruses/html/images/Virology_7-Hepatitis Viruses#him_image002.png
+Stored: courses/Virology/5-Enveloped RNA Viruses/html/Virology_5-Enveloped RNA Viruses#.html.erb
+Stored: courses/Virology/7-Hepatitis Viruses/html/images/Virology_7-Hepatitis Viruses#him_image003.png
+Stored: courses/Virology/7-Hepatitis Viruses/html/images/Virology_7-Hepatitis Viruses#him_image004.png
+Stored: courses/Virology/7-Hepatitis Viruses/html/images/Virology_7-Hepatitis Viruses#him_image001.png
+Stored: courses/Virology/7-Hepatitis Viruses/html/Virology_7-Hepatitis Viruses#.html.erb
+Stored: courses/Virology/2-Classification of Viruses/html/Virology_2-Classification of Viruses#.html.erb
+Stored: courses/Virology/8-Arboviruses/html/Virology_8-Arboviruses#.html.erb
