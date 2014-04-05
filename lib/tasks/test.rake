@@ -5,7 +5,6 @@ require 'ext/faker'
 require 'database_cleaner'
 require 'fileutils'
 
-if Rails.env.development?
 
 	namespace :dev do
 
@@ -159,7 +158,4 @@ if Rails.env.development?
     end
 
   end
-end
-else
-  puts "'Development.rake' should only be run in the development environment."
 end
