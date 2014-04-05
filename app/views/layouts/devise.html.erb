@@ -9,15 +9,19 @@
 
 </head>
 <body class="login-body">
-	<div class="container">
+	<section id="container">
 	<%= render partial: "layouts/header" %>
     <%= render partial: "layouts/messages" %>
 	<div class="error">
 	  <%= devise_error_messages! %>
 	 </div>
 		<%= yield %>
-	</div>
+	</section>
 <%= render partial: "layouts/sidebar_right" %>
 
 </body>
 </html>
+
+
+
+

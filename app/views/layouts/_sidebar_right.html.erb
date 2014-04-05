@@ -4,14 +4,8 @@
     <input type="text" placeholder="Search" class="form-control">
 </div>
 <ul class="right-side-accordion">
-<!--
-<li class="widget-collapsible">
-    <a href="#" class="head widget-head terques-bg active">
-        <span class="pull-left"> available courses</span>
-        <span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
-    </a>
-</li>
--->
+
+<!-- If User Signed In -->
 <% if user_signed_in? %>
 <%= link_to(profile_path) do%>
 <li class="widget-collapsible">
@@ -21,108 +15,22 @@
     </div>
 </li>
 <% end %>
-<% end %>
-
-
-
 <%= link_to(available_courses_path) do%>
 <li class="widget-collapsible">
-    <div href="#" class="head widget-head terques-bg active">
+    <div href="#" class="head widget-head purple-bg active">
         <span class="pull-left"> available courses</span>
         <span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
     </div>
 </li>
 <% end %>
-
-
-<!--
-<li class="widget-collapsible">
-    <a href="#" class="head widget-head red-bg active">
-        <span class="pull-left"> recent activity (3)</span>
-        <span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
-    </a>
-    <ul class="widget-container">
-        <li>
-            <div class="prog-row">
-                <div class="user-thumb rsn-activity">
-                    <i class="fa fa-clock-o"></i>
-                </div>
-                <div class="rsn-details ">
-                    <p class="text-muted">
-                        just now
-                    </p>
-                    <p>
-                        <a href="#">John Sinna </a>Purchased new equipments for zonal office setup
-                    </p>
-                </div>
-            </div>
-            <div class="prog-row">
-                <div class="user-thumb rsn-activity">
-                    <i class="fa fa-clock-o"></i>
-                </div>
-                <div class="rsn-details ">
-                    <p class="text-muted">
-                        2 min ago
-                    </p>
-                    <p>
-                        <a href="#">Sumon </a>Purchased new equipments for zonal office setup
-                    </p>
-                </div>
-            </div>
-            <div class="prog-row">
-                <div class="user-thumb rsn-activity">
-                    <i class="fa fa-clock-o"></i>
-                </div>
-                <div class="rsn-details ">
-                    <p class="text-muted">
-                        1 day ago
-                    </p>
-                    <p>
-                        <a href="#">Mosaddek </a>Purchased new equipments for zonal office setup
-                    </p>
-                </div>
-            </div>
-        </li>
-    </ul>
-</li>
--->
-
-
-
 <%= link_to(root_path) do%>
 <li class="widget-collapsible">
-    <div href="#" class="head widget-head purple-bg active">
+    <div href="#" class="head widget-head red-bg active">
         <span class="pull-left"> about medectomy</span>
         <span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
     </div>
 </li>
 <% end %>
-
-
-
-
-
-<% if !user_signed_in? %>
-
-<%= link_to(new_user_registration_path) do%>
-<li class="widget-collapsible">
-    <div href="#" class="head widget-head green-bg active">
-        <span class="pull-left"> register</span>
-        <span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
-    </div>
-</li>
-<% end %>
-
-<%= link_to(profile_path) do%>
-<li class="widget-collapsible">
-    <div href="#" class="head widget-head red-bg active">
-        <span class="pull-left"> sign in</span>
-        <span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
-    </div>
-</li>
-<% end %>
-<% end %>
-
 <%= link_to(contact_path) do%>
 <li class="widget-collapsible">
     <div href="#" class="head widget-head blue-bg active">
@@ -131,6 +39,73 @@
     </div>
 </li>
 <% end %>
+
+
+
+<% end %>
+<!--END  If User Signed In -->
+
+
+
+
+<!-- If User NOT Signed In -->
+<% if !user_signed_in? %>
+<%= link_to(new_user_registration_path) do%>
+<li class="widget-collapsible">
+    <div href="#" class="head widget-head green-bg active">
+        <span class="pull-left"> register</span>
+        <span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
+    </div>
+</li>
+<% end %>
+<%= link_to(profile_path) do%>
+<li class="widget-collapsible">
+    <div href="#" class="head widget-head terques-bg active">
+        <span class="pull-left"> sign in</span>
+        <span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
+    </div>
+</li>
+<% end %>
+
+<%= link_to(available_courses_path) do%>
+<li class="widget-collapsible">
+    <div href="#" class="head widget-head purple-bg active">
+        <span class="pull-left"> available courses</span>
+        <span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
+    </div>
+</li>
+<% end %>
+<%= link_to(root_path) do%>
+<li class="widget-collapsible">
+    <div href="#" class="head widget-head red-bg active">
+        <span class="pull-left"> about medectomy</span>
+        <span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
+    </div>
+</li>
+<% end %>
+<%= link_to(contact_path) do%>
+<li class="widget-collapsible">
+    <div href="#" class="head widget-head blue-bg active">
+        <span class="pull-left"> contact us</span>
+        <span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
+    </div>
+</li>
+<% end %>
+
+<% end %>
+<!--END  If User NOT Signed In -->
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </ul>
