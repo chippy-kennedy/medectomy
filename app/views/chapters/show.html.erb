@@ -1,6 +1,13 @@
 
-l<section class="wrapper">
+    <script type="text/javascript">
+      var disqus_config = function () {
+      this.page.remote_auth_s3 = "<%= get_disqus_sso_message(current_user) %>";
+      this.page.api_key = "<%= get_disqus_public_key %>";
+   </script>
+<section class="wrapper">
   <!-- page start-->
+
+
   <div class="row">
     <div class="col-sm-12">
       <section class="protected panel">
@@ -177,13 +184,8 @@ l<section class="wrapper">
     </div>
   </div>
   <!-- MJ TESTING -->
-      <div id="disqus_thread"></div>
     <!-- END MJ TESTING -->
-   <script> 
-      var disqus_config = function () {
-      this.page.remote_auth_s3 = "<%= get_disqus_sso_message(current_user) %>";
-      this.page.api_key = "<%= get_disqus_public_key %>";
-   </script>
+
        <div id="disqus_thread"></div>
     <script type="text/javascript">
         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
