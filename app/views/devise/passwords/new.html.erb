@@ -1,24 +1,16 @@
-<!-- Modal -->
-<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-              <h4 class="modal-title">Forgot Password ?</h4>
-          </div>
-          <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :post}) do |f| %>
+	<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :post}) do |f| %>
 			  <%= devise_error_messages! %>
-			  <div class="modal-body">
-			  	<p>Enter your e-mail address below to reset your password.</p>
-			  	<%= f.email_field :email, :autofocus => true, placeholder:"Email", class:"form-control placeholder-no-fix" %></div>
+			  	 <h2 class="form-signin-heading">Enter your e-mail address below to reset your password.</h2>
+			  	   		<div class="login-wrap">
+			  	   		        <div class="user-login-info">
+			  	<%= f.email_field :email, :autofocus => true, placeholder:"Email", class:"form-control" %>
+			  	</div>
 			  	<div class="modal-footer">
 			  		<button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
 			  		<%= f.submit "Submit", class:"btn btn-success" %>
 			  </div>
 			  </div>
 		  <% end %>
-      </div>
-  </div>
-</div>
+
 <!-- modal -->
 
