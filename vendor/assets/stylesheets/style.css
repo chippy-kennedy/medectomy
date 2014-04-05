@@ -335,7 +335,7 @@ ul.sidebar-menu li a.active i {
     transition:all .3s ease-in-out;
 }
 .merge-header {
-    margin-right:240px;
+    margin-right:0px;
 }
 .fixed-top {
     position:relative;
@@ -353,7 +353,7 @@ ul.sidebar-menu li a.active i {
     float:left;
     width:240px;
     height:80px;
-    position:relative;
+    position:fixed;
 }
 a.logo {
     font-size:21px;
@@ -751,6 +751,7 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
 
 /*Added by HarkenSol*/
 .header-button {
+    background: none !important;
     background:#f6f6f6;
     font-size:95%;
     color:#bfbfc1;
@@ -760,10 +761,10 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
     -webkit-border-radius:15%;
     width:85px;
     height:35px;
+    padding-left: 2px;
+    padding-top: 2px;
 }
-.header-button:hover {
-    background:#32D2C9;
-}
+
 /*--------*/
 
 /*right sidebar*/
