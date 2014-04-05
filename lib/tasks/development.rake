@@ -60,7 +60,7 @@ require 'fileutils'
 			content_directory = YAML.load(ERB.new(File.read("#{Rails.root}/config/aws.yml")).result)[Rails.env]["content_directory"]
 			new_content = Dir.glob(content_directory)
 			puts content_directory
-
+			debugger
 			new_content.each do |local_file_path|
 				file_name = File.basename(local_file_path)
 

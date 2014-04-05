@@ -179,7 +179,7 @@ l<section class="wrapper">
   <!-- MJ TESTING -->
       <div id="disqus_thread"></div>
     <!-- END MJ TESTING -->
-   <script> <%= disqus_sso(current_user) %> </script>
+   <script> <%= escape_javascript(disqus_sso(current_user)) %> </script>
        <div id="disqus_thread"></div>
     <script type="text/javascript">
         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
