@@ -97,6 +97,8 @@ ActiveRecord::Schema.define(version: 201404300025012) do
     t.string   "facebook_id"
     t.string   "linkedin_id"
     t.integer  "university_id"
+    t.integer  "graduation_year"
+    t.string   "degree"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
