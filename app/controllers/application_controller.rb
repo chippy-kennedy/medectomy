@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :detect_university, if: :devise_controller?
 
-  before_filter :debugger_help, if: :devise_controller?
+  #before_filter :debugger_help, if: :devise_controller?
 
   # ensures authentication occurs in every action
   check_authorization :unless => :devise_controller?
@@ -66,7 +66,6 @@ end
     if params[:action] == "create" && params[:controller] = "devise/registrations"
       # try to find a matching domain
       domain = Domain.where(name: params[:user][:email].split("@").last).first
-
       if domain.nil?
         flash[:notice] = "Your institution does not currently have access to Medectomy. Feel free to contact us for a personal account."
         redirect_to root_path
@@ -78,7 +77,6 @@ end
 
   def debugger_help
     if params[:action] == "create" && params[:controller] = "devise/sessions"
-      debugger
       puts "attempted login"
     end
   end
