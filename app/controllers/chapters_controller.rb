@@ -1,6 +1,7 @@
 class ChaptersController < ApplicationController
 	
   skip_authorization_check
+  include DisqusHelper
 
 	def index
 		render "chapters/index"

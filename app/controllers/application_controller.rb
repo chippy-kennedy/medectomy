@@ -23,31 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-  DISQUS_SECRET_KEY = 'w9ZlSbxZEzmdzEeTfGrivqsRFhzXpTX5YlcFK47hOW0gFaXdc6j0A6dJC1bjgs3o'
-  DISQUS_PUBLIC_KEY = '1L7BHGrWA9w5JMfGZYmht5h4c4vWfK1Ye1OVLOUmq3RI0RKcJgD6fP1XmCQp4vAn'
- def disqus_sso(user)
-   data = {
-      'id' => user['id'],
-      'username' => user['username'],
-      'email' => user['email']
-  #'avatar' => user['avatar'],
-  #'url' => user['url']
-    }.to_json
- 
-    # encode the data to base64
-    message = Base64.encode64(data).gsub("\n", "")
-    # generate a timestamp for signing the message
-    timestamp = Time.now.to_i
-    # generate our hmac signature
-    sig = OpenSSL::HMAC.hexdigest('sha1', DISQUS_SECRET_KEY, '%s %s' % [message, timestamp])
- 
-    # return a script tag to insert the sso message
-    return "var disqus_config = function() {
-              this.page.remote_auth_s3 = \"#{message} #{sig} #{timestamp}\";
-              this.page.api_key = \"#{DISQUS_PUBLIC_KEY}\";
-            }"
-  end
-
+  
   # checks what parameters can be modified in ActiveRecord
   def permitted_params
   	@permitted_params ||= PermittedParams.new(params, current_user)
