@@ -87,13 +87,14 @@ Medectomy::Application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default :charset => "utf-8"
  config.action_mailer.smtp_settings = {
-   :address => MANDRILL_CONFIG[Rails.env]["mandrill_host"],
+   address: "smtp.mandrillapp.com",
    :port => 587,
-      :authentication => :plain,   
-     :enable_starttls_auto => true,  
-     :user_name => MANDRILL_CONFIG[Rails.env]["mandrill_username"] ,
-     :password => MANDRILL_CONFIG[Rails.env]["mandrill_api"],
-     :domain => 'medectomy.com'
+   domain: "medectomy.com",
+      :authentication => :login,   
+      enable_starttls_auto: true,
+     :user_name => "app19202615@heroku.com" ,
+     :password => "q8JIIWVatM_rpO5gCsflSA"
    }
 end
