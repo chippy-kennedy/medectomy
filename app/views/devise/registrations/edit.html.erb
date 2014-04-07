@@ -38,7 +38,7 @@
       <div class="form-group">
         <%= f.label :degree, :class => 'col-lg-2 control-label' %>
          <div class="col-lg-6">
-          <%= f.select :degree, options_for_select([["Undergraduate","Undergraduate"],["MD","Md"],["Masters","Masters"],["PhD","Phd"]]), :autofocus => true, :class => 'form-control', :type => 'text' %>
+          <%= f.select :degree, options_for_select([["Please Select",""],["Undergraduate","Undergraduate"],["MD","Md"],["Masters","Masters"],["PhD","Phd"]]), :autofocus => true, :class => 'form-control', :type => 'text' %>
           </div>
       </div>
 
@@ -98,14 +98,14 @@
                   <div class="form-group">
                     <%= f.label :password, :class => 'col-lg-2 control-label' %>
                     <div class="col-lg-6">
-                      <%= f.password_field :password, :autocomplete => "off", :class => 'form-control', :type => 'text' %><i>(leave blank if you don't want to change it)</i><br />
+                    <%= f.password_field :password, :autocomplete => "off", :class => 'form-control', :type => 'password' %><i>(leave blank if you don't want to change it)</i><br />
                     </div>
                   </div>
 
                   <div class="form-group">
                     <%= f.label :password_confirmation, :class => 'col-lg-2 control-label' %>
                     <div class="col-lg-6">
-                      <%= f.password_field :password_confirmation, :class => 'form-control', :type => 'text' %>
+                      <%= f.password_field :password_confirmation, :autocomplete => "off", :class => 'form-control', :type => 'password' %>
                     </div>
                   </div>
     </div>
@@ -121,7 +121,7 @@
                   <div class="form-group">
                     <%= f.label :current_password, :class => 'col-lg-2 control-label' %>
                     <div class="col-lg-6">
-                      <%= f.password_field :current_password, :class => 'form-control', :type => 'text' %><i><b>(we need your current password to confirm your changes)</b></i><br />
+                      <%= f.password_field :current_password, :autocomplete => "off", :class => 'form-control', :type => 'password' %><i><b>(we need your current password to confirm your changes)</b></i><br />
                     </div>
                   </div>
 
