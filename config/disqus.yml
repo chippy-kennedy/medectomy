@@ -1,0 +1,7 @@
+development: 
+  disqus_secret_key: w9ZlSbxZEzmdzEeTfGrivqsRFhzXpTX5YlcFK47hOW0gFaXdc6j0A6dJC1bjgs3o
+  disqus_public_key: 1L7BHGrWA9w5JMfGZYmht5h4c4vWfK1Ye1OVLOUmq3RI0RKcJgD6fP1XmCQp4vAn
+
+production: 
+  disqus_secret_key: w9ZlSbxZEzmdzEeTfGrivqsRFhzXpTX5YlcFK47hOW0gFaXdc6j0A6dJC1bjgs3o
+  disqus_public_key: 1L7BHGrWA9w5JMfGZYmht5h4c4vWfK1Ye1OVLOUmq3RI0RKcJgD6fP1XmCQp4vAn
