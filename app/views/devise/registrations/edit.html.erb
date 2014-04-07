@@ -105,7 +105,7 @@
                   <div class="form-group">
                     <%= f.label :password_confirmation, :class => 'col-lg-2 control-label' %>
                     <div class="col-lg-6">
-                      <%= f.password_field :password, :class => 'form-control', :type => 'text' %>
+                      <%= f.password_field :password_confirmation, :class => 'form-control', :type => 'text' %>
                     </div>
                   </div>
     </div>
@@ -129,19 +129,10 @@
                   <% end %>
     </div>
     <!--END Update Info Form Group-->
-    <!--CANCEL ACCOUNT Form Group-->
-    <div class="prf-contacts sttng">
-                  <h2>
-                    Cancel My Account
-                  </h2>
-                </div>
-                <div class="form-horizontal">
-
-                  <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, class:"btn btn-md" %>
 
 
-    </div>
-    <!--END CANCEL ACCOUNT Form Group-->
+    
+
 
   </div><!--End Row Centering-->
 

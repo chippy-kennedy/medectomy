@@ -18,6 +18,9 @@ Medectomy::Application.routes.draw do
   get 'available_courses', :to => 'pages#available_courses'
   get 'contact', :to => 'pages#contact'
 
+  #special route for cancelling account
+  #get 'cancel_account', :to => 'devise/registrations#cancel'
+
 
 
 end
