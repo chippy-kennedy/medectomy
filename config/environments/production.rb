@@ -82,5 +82,18 @@ Medectomy::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   #used for confirming users - change if using mailChimp
-  config.action_mailer.default_url_options = { :host => 'medectomy.heroku.com' }
+  config.action_mailer.default_url_options = { :host => 'www.medectomy.com' }
+  MANDRILL_CONFIG = YAML.load(File.read(File.expand_path("#{Rails.root}/config/mandrill.yml", __FILE__)))
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+ config.action_mailer.delivery_method = :smtp
+ config.action_mailer.smtp_settings = {
+   :address => MANDRILL_CONFIG[Rails.env]["mandrill_host"],
+   :port => 587,
+      :authentication => :plain,   
+     :enable_starttls_auto => true,  
+     :user_name => MANDRILL_CONFIG[Rails.env]["mandrill_username"] ,
+     :password => MANDRILL_CONFIG[Rails.env]["mandrill_api"]
+
+   }
 end

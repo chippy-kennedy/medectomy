@@ -1,0 +1,13 @@
+# Amazon S3 Configuration
+development: 
+  mandrill_username: app19202615@heroku.com
+  mandrill_api: AKIAIRD463QJ4GJ5V3HQ
+  mandrill_host: smtp.mandrillapp.com
+  mandrill_port: 587
+
+# Amazon S3 Configuration
+production: 
+  mandrill_username: app19202615@heroku.com
+  mandrill_api: AKIAIRD463QJ4GJ5V3HQ
+  mandrill_host: smtp.mandrillapp.com
+  mandrill_port: 587

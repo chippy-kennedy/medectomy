@@ -28,8 +28,19 @@ Medectomy::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-
+  MANDRILL_CONFIG = YAML.load(File.read(File.expand_path("#{Rails.root}/config/mandrill.yml", __FILE__)))
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
-
+  config.action_mailer.perform_deliveries = false
+  config.action_mailer.raise_delivery_errors = true
+ config.action_mailer.delivery_method = :smtp
+ config.action_mailer.smtp_settings = {
+   :address => MANDRILL_CONFIG[Rails.env]["mandrill_host"],
+   :port => 587,
+      :authentication => :plain,   # I've also tried :login
+     :enable_starttls_auto => true,  # Also tried tls => true
+     :user_name => MANDRILL_CONFIG[Rails.env]["mandrill_username"] ,
+     :password => MANDRILL_CONFIG[Rails.env]["mandrill_api"],
+     :enable_starttls_auto => true,
+     :domain => 'medectomy.com'
+   }
 end
