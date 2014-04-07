@@ -94,6 +94,6 @@ Medectomy::Application.configure do
      :enable_starttls_auto => true,  
      :user_name => MANDRILL_CONFIG[Rails.env]["mandrill_username"] ,
      :password => MANDRILL_CONFIG[Rails.env]["mandrill_api"]
-
+     :domain => 'medectomy.com'
    }
 end

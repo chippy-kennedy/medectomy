@@ -36,8 +36,8 @@ Medectomy::Application.configure do
  config.action_mailer.smtp_settings = {
    :address => MANDRILL_CONFIG[Rails.env]["mandrill_host"],
    :port => 587,
-      :authentication => :plain,   # I've also tried :login
-     :enable_starttls_auto => true,  # Also tried tls => true
+      :authentication => :plain,   
+     :enable_starttls_auto => true,  
      :user_name => MANDRILL_CONFIG[Rails.env]["mandrill_username"] ,
      :password => MANDRILL_CONFIG[Rails.env]["mandrill_api"],
      :enable_starttls_auto => true,
