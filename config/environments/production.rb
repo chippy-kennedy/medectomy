@@ -80,4 +80,7 @@ Medectomy::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  #used for confirming users - change if using mailChimp
+  config.action_mailer.default_url_options = { :host => 'medectomy.heroku.com' }
 end
