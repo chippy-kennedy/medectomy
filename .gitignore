@@ -19,4 +19,8 @@
 #/config/database.yml
 #/config/aws.yml
 
+# Ignore working files
+/app/mailers/new_user.rb.ignore
+
+
 

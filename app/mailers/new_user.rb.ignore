@@ -1,5 +1,3 @@
-#mailer to notify Zain of new users
-
 class new_user < ActionMailer::Base
    def contact(recipient, subject, message, sent_at = Time.now)
       @subject = subject
