@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140407010939) do
+ActiveRecord::Schema.define(version: 20140409202227) do
 
   create_table "chapters", force: true do |t|
     t.string   "name"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20140407010939) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "chapter_id"
+    t.integer  "section_id"
   end
 
   create_table "domains", force: true do |t|
@@ -59,6 +60,15 @@ ActiveRecord::Schema.define(version: 20140407010939) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
+
+  create_table "sections", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "description"
+    t.string   "icon_lg"
+    t.string   "icon_sm"
+  end
 
   create_table "universities", force: true do |t|
     t.string   "name"

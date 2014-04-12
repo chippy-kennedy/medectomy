@@ -138,13 +138,15 @@
               </div>
             </div>
 <!-- Setting Tab End-->
+<!--TODO:  Count the number of courses in total user enrollments and make columns accordingly-->
+
 <!-- Courses Tab Start-->
             <div id="courses" class="tab-pane active">
               <div class="row position-center">
-                     <div class="col-md-4">
+                <div class="col-md-4">
                   <div class="prf-box">
                     <h3 class="prf-border-head">
-                      enrolled in
+                      MicroBiology
                     </h3>
                     <% if @enrollments.empty? %>
 
@@ -154,6 +156,7 @@
 
                       
                     <% else %> 
+                    
                     <% @enrollments.each do |enrollment| %>
                     <div class="wk-progress pf-status">
                       <div class="col-md-4 col-xs-4">
