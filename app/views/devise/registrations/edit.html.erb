@@ -38,7 +38,7 @@
       <div class="form-group">
         <%= f.label :degree, :class => 'col-lg-2 control-label' %>
          <div class="col-lg-6">
-          <%= f.select :degree, options_for_select([["Please Select",""],["Undergraduate","Undergraduate"],["MD","Md"],["Masters","Masters"],["PhD","Phd"]]), :autofocus => true, :class => 'form-control', :type => 'text' %>
+          <%= f.select :degree, options_for_select([["Please Select",""],["Undergraduate","Undergraduate"],["MD","MD"],["Masters","Masters"],["PhD","Phd"]]), :autofocus => true, :class => 'form-control', :type => 'text' %>
           </div>
       </div>
 
@@ -76,7 +76,8 @@
                   <div class="form-group">
                     <%= f.label :twitter, :class => 'col-lg-2 control-label' %>
                     <div class="col-lg-6">
-                      <%= f.text_field :twitter_handle, :autofocus => true, :class => 'form-control', :type => 'text' %>
+                      <%= f.text_field :twitter_handle, :autofocus => true, :class => 'form-control', :type => 'tex
+                      t' %>
                     </div>
                   </div>
 
@@ -124,11 +125,15 @@
                       <%= f.password_field :current_password, :autocomplete => "off", :class => 'form-control', :type => 'password' %><i><b>(we need your current password to confirm your changes)</b></i><br />
                     </div>
                   </div>
-
                   <div><%= f.submit "Update", class:"btn btn-lg" %></div>
-                  <% end %>
+            <% end %>
     </div>
     <!--END Update Info Form Group-->
+    
+
+
+
+
 
 
     

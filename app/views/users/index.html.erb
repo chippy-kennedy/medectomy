@@ -18,6 +18,10 @@
               <span class="text-muted">
                 <%= current_user.university.name %>, 
                 <%= current_user.degree %>
+                <% if(!current_user.graduation_year.blank?) %>
+                  Class of
+                  <%= current_user.graduation_year%>
+                <% end %>
               </span>
               <div>
                 <p>
@@ -52,19 +56,23 @@
                   </a>
                 </li>
                 <li class="active">
-                  <a href="#">
-                    <i class="fa fa-twitter">
-                    </i>
-                  </a>
+                    <%= link_to "https://twitter.com/#{current_user.twitter_handle}" do%>
+                      <i class="fa fa-twitter"></i>
+                    <% end %>
                 </li>
                 <li>
                   <a href="#">
-                    <i class="fa fa-linkedin">
-                    </i>
+<script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
+<script type="IN/MemberProfile" data-id="http://www.linkedin.com/pub/chippy-kennedy/58/ba5/384" data-format="hover"></script>
+                    <%= link_to "#{current_user.linkedin_id}" do%>
+                      <i class="fa fa-linkedin"></i>
+                    <% end %>
                   </a>
                 </li>
 
-
+    <!--t.string   "twitter_handle"
+    t.string   "facebook_id"
+    t.string   "linkedin_id"-->
 
 
 
